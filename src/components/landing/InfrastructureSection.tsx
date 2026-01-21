@@ -83,7 +83,7 @@ const InfrastructureSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="section-padding relative overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
 

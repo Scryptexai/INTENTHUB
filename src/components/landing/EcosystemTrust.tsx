@@ -47,7 +47,7 @@ const EcosystemTrust = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding">
+    <section id="ecosystem" ref={sectionRef} className="section-padding">
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center mb-12">
