@@ -26,7 +26,7 @@ const SupportedDapps = () => {
   const [activeNetwork, setActiveNetwork] = useState("arc");
 
   return (
-    <section className="section-padding">
+    <section id="dapps" className="section-padding">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
