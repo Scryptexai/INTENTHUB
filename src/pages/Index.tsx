@@ -1,12 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/landing/Navbar";
+import HeroSection from "@/components/landing/HeroSection";
+import SocialProofBanner from "@/components/landing/SocialProofBanner";
+import ProblemFraming from "@/components/landing/ProblemFraming";
+import InfrastructureSection from "@/components/landing/InfrastructureSection";
+import VideoDemo from "@/components/landing/VideoDemo";
+import SupportedDapps from "@/components/landing/SupportedDapps";
+import OutputShowcase from "@/components/landing/OutputShowcase";
+import TechnicalEdge from "@/components/landing/TechnicalEdge";
+import ComparisonTable from "@/components/landing/ComparisonTable";
+import Testimonials from "@/components/landing/Testimonials";
+import FAQSection from "@/components/landing/FAQSection";
+import EcosystemTrust from "@/components/landing/EcosystemTrust";
+import NetworkExpansion from "@/components/landing/NetworkExpansion";
+import FinalCTA from "@/components/landing/FinalCTA";
+import Footer from "@/components/landing/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <SocialProofBanner />
+        <ProblemFraming />
+        <InfrastructureSection />
+        <VideoDemo />
+        <SupportedDapps />
+        <OutputShowcase />
+        <TechnicalEdge />
+        <ComparisonTable />
+        <Testimonials />
+        <FAQSection />
+        <EcosystemTrust />
+        <NetworkExpansion />
+        <FinalCTA />
+      </main>
+      <Footer />
     </div>
   );
 };
