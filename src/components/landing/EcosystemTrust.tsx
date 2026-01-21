@@ -1,5 +1,9 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { ExternalLink } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const partners = [
   "Arc Network",
@@ -13,17 +17,40 @@ const partners = [
 ];
 
 const EcosystemTrust = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (gridRef.current) {
+        const items = gridRef.current.querySelectorAll('.partner-card');
+        
+        gsap.from(items, {
+          scale: 0.5,
+          opacity: 0,
+          stagger: {
+            from: "center",
+            amount: 0.5,
+          },
+          duration: 0.6,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section-padding">
+    <section ref={sectionRef} className="section-padding">
       <div className="container-custom">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-6">
             <span className="orange-square" />
             <p className="eyebrow-accent">BUILT WITH THE ECOSYSTEM</p>
@@ -33,24 +60,17 @@ const EcosystemTrust = () => {
             <br />
             Network Partners
           </h2>
-        </motion.div>
+        </div>
 
         {/* Logo Grid - Brutalist */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        <div
+          ref={gridRef}
           className="grid grid-cols-2 md:grid-cols-4 border border-foreground max-w-4xl mx-auto mb-10"
         >
           {partners.map((partner, index) => (
-            <motion.div
+            <div
               key={partner}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className={`p-6 flex items-center justify-center cursor-pointer transition-colors hover:bg-primary hover:text-primary-foreground group ${
+              className={`partner-card p-6 flex items-center justify-center cursor-pointer transition-colors hover:bg-primary hover:text-primary-foreground group ${
                 index < partners.length - (partners.length <= 4 ? 0 : 4) ? "border-b border-foreground" : ""
               } ${(index + 1) % 4 !== 0 ? "border-r border-foreground" : ""}`}
             >
@@ -64,18 +84,12 @@ const EcosystemTrust = () => {
                   {partner}
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <a
             href="#"
             className="inline-flex items-center gap-2 font-mono text-sm font-bold text-foreground border-b-2 border-foreground hover:text-primary hover:border-primary transition-colors"
@@ -83,7 +97,7 @@ const EcosystemTrust = () => {
             VERIFIED CONTRACTS ON ARC EXPLORER
             <ExternalLink className="w-4 h-4" />
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
