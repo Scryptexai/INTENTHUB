@@ -1,5 +1,9 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Link2, Target, RefreshCw, Ban } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
@@ -29,17 +33,52 @@ const features = [
 ];
 
 const TechnicalEdge = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header slide in from left
+      gsap.from(headerRef.current, {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Grid cards animation
+      if (gridRef.current) {
+        const cards = gridRef.current.querySelectorAll('.feature-card');
+        
+        gsap.from(cards, {
+          y: 80,
+          opacity: 0,
+          stagger: 0.15,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section-padding">
+    <section ref={sectionRef} className="section-padding">
       <div className="container-custom">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
+        <div ref={headerRef} className="mb-16">
           <div className="flex items-center gap-4 mb-6">
             <span className="orange-square" />
             <p className="eyebrow-accent">TECHNICAL EDGE</p>
@@ -49,18 +88,14 @@ const TechnicalEdge = () => {
             <br />
             <span className="text-muted">Not Task Forms</span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Feature Cards - 2x2 Grid Brutalist */}
-        <div className="grid sm:grid-cols-2 border border-foreground">
+        <div ref={gridRef} className="grid sm:grid-cols-2 border border-foreground">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={feature.headline}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-8 md:p-10 group hover:bg-primary hover:text-primary-foreground transition-colors ${
+              className={`feature-card p-8 md:p-10 group hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer ${
                 index === 0 ? "border-b border-r border-foreground" :
                 index === 1 ? "border-b border-foreground" :
                 index === 2 ? "border-r border-foreground" : ""
@@ -80,7 +115,7 @@ const TechnicalEdge = () => {
               <p className="text-muted-foreground group-hover:text-primary-foreground/80 leading-relaxed">
                 {feature.text}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

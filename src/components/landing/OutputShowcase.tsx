@@ -1,7 +1,12 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import proofNftMockup from "@/assets/proof-nft-mockup.jpg";
 import campaignContentMockup from "@/assets/campaign-content-mockup.jpg";
 import dashboardMockup from "@/assets/dashboard-mockup.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const outputs = [
   {
@@ -25,8 +30,50 @@ const outputs = [
 ];
 
 const OutputShowcase = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll('.output-card');
+        
+        cards.forEach((card, index) => {
+          gsap.from(card, {
+            x: index % 2 === 0 ? -100 : 100,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          // Parallax effect on images
+          const image = card.querySelector('.output-image');
+          if (image) {
+            gsap.to(image, {
+              yPercent: -10,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            });
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section-padding bg-card border-y border-foreground">
+    <section ref={sectionRef} className="section-padding bg-card border-y border-foreground">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -46,15 +93,11 @@ const OutputShowcase = () => {
         </motion.div>
 
         {/* Output Cards - Brutalist */}
-        <div className="grid md:grid-cols-3 border border-foreground">
+        <div ref={cardsRef} className="grid md:grid-cols-3 border border-foreground">
           {outputs.map((output, index) => (
-            <motion.div
+            <div
               key={output.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className={`group ${
+              className={`output-card group ${
                 index < outputs.length - 1 ? "border-b md:border-b-0 md:border-r border-foreground" : ""
               }`}
             >
@@ -63,7 +106,7 @@ const OutputShowcase = () => {
                 <img
                   src={output.image}
                   alt={output.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="output-image w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Number Badge */}
                 <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 font-mono text-sm font-bold border border-foreground">
@@ -82,7 +125,7 @@ const OutputShowcase = () => {
                   {output.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

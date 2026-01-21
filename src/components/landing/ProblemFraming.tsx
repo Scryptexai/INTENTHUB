@@ -1,5 +1,10 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { X, FileText, User } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const problems = [
   {
@@ -23,17 +28,50 @@ const problems = [
 ];
 
 const ProblemFraming = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      gsap.from(headerRef.current, {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Cards stagger animation
+      if (cardsRef.current) {
+        gsap.from(cardsRef.current.querySelectorAll('.problem-card'), {
+          y: 100,
+          opacity: 0,
+          stagger: 0.2,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section-padding border-b border-foreground">
+    <section ref={sectionRef} className="section-padding border-b border-foreground">
       <div className="container-custom">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
+        <div ref={headerRef} className="mb-16">
           <div className="flex items-center gap-4 mb-6">
             <span className="orange-square" />
             <p className="eyebrow-accent">THE SYSTEM FAILURE</p>
@@ -43,20 +81,16 @@ const ProblemFraming = () => {
             <br />
             <span className="text-muted">Doesn't Scale Trust</span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Problem Cards - Brutalist Grid */}
-        <div className="grid md:grid-cols-3 border border-foreground">
+        <div ref={cardsRef} className="grid md:grid-cols-3 border border-foreground">
           {problems.map((problem, index) => (
-            <motion.div
+            <div
               key={problem.headline}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`p-8 md:p-10 ${
+              className={`problem-card p-8 md:p-10 ${
                 index < problems.length - 1 ? "border-b md:border-b-0 md:border-r border-foreground" : ""
-              } hover:bg-primary hover:text-primary-foreground group transition-colors`}
+              } hover:bg-primary hover:text-primary-foreground group transition-colors cursor-pointer`}
             >
               {/* Number */}
               <div className="flex items-center justify-between mb-8">
@@ -77,7 +111,7 @@ const ProblemFraming = () => {
               <p className="text-muted-foreground group-hover:text-primary-foreground/80 leading-relaxed">
                 {problem.text}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
