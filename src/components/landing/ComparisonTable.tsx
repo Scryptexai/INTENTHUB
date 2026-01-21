@@ -13,7 +13,7 @@ const comparisons = [
 
 const ComparisonTable = () => {
   return (
-    <section className="section-padding bg-background-secondary">
+    <section className="section-padding border-y border-foreground bg-card">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -23,58 +23,73 @@ const ComparisonTable = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="eyebrow-purple mb-4">THE DIFFERENCE</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            Traditional Farming vs Verified Proof
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">THE DIFFERENCE</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
+            Traditional Farming
+            <br />
+            vs Verified Proof
           </h2>
         </motion.div>
 
-        {/* Comparison Table */}
+        {/* Comparison Table - Brutalist */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="glass-card overflow-hidden max-w-4xl mx-auto"
+          className="max-w-4xl mx-auto border border-foreground overflow-hidden"
         >
           {/* Table Header */}
-          <div className="grid grid-cols-3 gap-4 p-6 border-b border-border bg-foreground/5">
-            <div className="font-display font-semibold text-foreground">Feature</div>
-            <div className="font-display font-semibold text-muted text-center">Traditional</div>
-            <div className="font-display font-semibold text-primary text-center">INTENT</div>
+          <div className="grid grid-cols-3 gap-0 bg-foreground text-background">
+            <div className="p-4 md:p-6 font-mono text-sm font-bold uppercase border-r border-background/20">
+              Feature
+            </div>
+            <div className="p-4 md:p-6 font-mono text-sm font-bold uppercase text-center border-r border-background/20">
+              Traditional
+            </div>
+            <div className="p-4 md:p-6 font-mono text-sm font-bold uppercase text-center bg-primary">
+              INTENT
+            </div>
           </div>
 
           {/* Table Rows */}
           {comparisons.map((row, index) => (
             <div
               key={row.feature}
-              className={`grid grid-cols-3 gap-4 p-6 ${
-                index < comparisons.length - 1 ? "border-b border-border" : ""
-              } ${index % 2 === 1 ? "bg-foreground/2" : ""}`}
+              className={`grid grid-cols-3 gap-0 ${
+                index < comparisons.length - 1 ? "border-b border-foreground" : ""
+              }`}
             >
-              <div className="text-foreground font-medium">{row.feature}</div>
-              <div className="flex items-center justify-center gap-2 text-muted">
+              <div className="p-4 md:p-6 font-medium text-foreground border-r border-foreground bg-background-secondary">
+                {row.feature}
+              </div>
+              <div className="p-4 md:p-6 flex items-center justify-center gap-2 text-muted-foreground border-r border-foreground">
                 <X className="w-4 h-4 text-destructive" />
                 <span className="text-sm">{row.traditional}</span>
               </div>
-              <div className="flex items-center justify-center gap-2 text-primary">
-                <Check className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium">{row.intent}</span>
+              <div className="p-4 md:p-6 flex items-center justify-center gap-2 bg-primary/10">
+                <Check className="w-4 h-4 text-primary" />
+                <span className="text-sm font-bold text-foreground">{row.intent}</span>
               </div>
             </div>
           ))}
         </motion.div>
 
         {/* Bottom Caption */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-10 font-display text-2xl md:text-3xl gradient-text font-semibold"
+          className="text-center mt-12"
         >
-          Infrastructure {">"} Manual Tasks
-        </motion.p>
+          <span className="inline-block bg-foreground text-background px-8 py-4 font-display text-xl md:text-2xl font-bold uppercase">
+            Infrastructure {">"} Manual Tasks
+          </span>
+        </motion.div>
       </div>
     </section>
   );
