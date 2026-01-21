@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Twitter } from "lucide-react";
 
 const testimonials = [
   {
@@ -34,14 +33,17 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="eyebrow mb-4">COMMUNITY VOICES</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">COMMUNITY VOICES</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
             Builders Using INTENT
           </h2>
         </motion.div>
 
-        {/* Testimonial Cards */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        {/* Testimonial Cards - Brutalist */}
+        <div className="grid md:grid-cols-3 border border-foreground">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.handle}
@@ -49,27 +51,35 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card-hover p-8"
+              className={`p-8 group hover:bg-primary hover:text-primary-foreground transition-colors ${
+                index < testimonials.length - 1 ? "border-b md:border-b-0 md:border-r border-foreground" : ""
+              }`}
             >
+              {/* Quote */}
+              <div className="mb-8">
+                <span className="x-marker text-3xl">×</span>
+              </div>
+              
+              <p className="text-foreground group-hover:text-primary-foreground leading-relaxed mb-8 text-lg">
+                "{testimonial.quote}"
+              </p>
+
               {/* Profile */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center">
-                  <span className="font-display font-bold text-primary-foreground">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 border border-foreground group-hover:border-primary-foreground flex items-center justify-center bg-background-secondary group-hover:bg-transparent">
+                  <span className="font-mono font-bold text-sm">
                     {testimonial.avatar}
                   </span>
                 </div>
                 <div>
-                  <p className="font-mono text-sm text-foreground">
+                  <p className="font-mono text-sm font-bold text-foreground group-hover:text-primary-foreground">
                     {testimonial.handle}
                   </p>
-                  <Twitter className="w-4 h-4 text-primary" />
+                  <p className="font-mono text-xs text-muted-foreground group-hover:text-primary-foreground/60 uppercase">
+                    Twitter/X
+                  </p>
                 </div>
               </div>
-
-              {/* Quote */}
-              <p className="text-foreground italic leading-relaxed">
-                "{testimonial.quote}"
-              </p>
             </motion.div>
           ))}
         </div>

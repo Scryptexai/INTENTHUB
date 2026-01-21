@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Search, CheckCircle, Palette } from "lucide-react";
+import { Search, CheckCircle, Palette, ArrowRight } from "lucide-react";
 
 const steps = [
   {
@@ -25,8 +25,8 @@ const steps = [
 const InfrastructureSection = () => {
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-radial grid-pattern" />
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 grid-pattern opacity-50" />
 
       <div className="container-custom relative z-10">
         {/* Section Header */}
@@ -35,45 +35,34 @@ const InfrastructureSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <p className="eyebrow mb-4">INFRASTRUCTURE LAYER</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
-            INTENT is an On-Chain Behavior
-            <br />
-            <span className="gradient-text">Verification Layer</span>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">INFRASTRUCTURE LAYER</p>
+            <span className="orange-square" />
+          </div>
+          
+          {/* Spaced Letters Title */}
+          <h2 className="font-display text-lg md:text-xl text-muted-foreground spaced-letters uppercase mb-4">
+            b e y o n d &nbsp;&nbsp; C a p i t a l
           </h2>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            It indexes protocol interactions, validates real usage, and issues structured proofs.
-          </p>
+          
+          <h3 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground uppercase">
+            INTENT is an On-Chain
+            <br />
+            Behavior Verification Layer
+          </h3>
         </motion.div>
 
-        {/* 3-Step System */}
-        <div className="grid md:grid-cols-3 gap-6 relative">
-          {/* Connecting Lines (desktop only) */}
-          <div className="hidden md:block absolute top-1/2 left-1/3 w-1/3 h-0.5 -translate-y-1/2 z-0">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="h-full bg-gradient-to-r from-primary/50 to-secondary/50 origin-left"
-              style={{
-                backgroundImage: `repeating-linear-gradient(90deg, hsl(var(--primary)) 0px, hsl(var(--primary)) 8px, transparent 8px, transparent 16px)`,
-              }}
-            />
+        {/* 3-Step System - Brutalist Cards */}
+        <div className="grid md:grid-cols-3 relative">
+          {/* Connecting Lines */}
+          <div className="hidden md:block absolute top-1/2 left-[33%] w-[17%] h-px bg-foreground -translate-y-1/2 z-0">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-8 border-transparent border-l-foreground" />
           </div>
-          <div className="hidden md:block absolute top-1/2 right-1/3 w-1/3 h-0.5 -translate-y-1/2 z-0">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="h-full origin-left"
-              style={{
-                backgroundImage: `repeating-linear-gradient(90deg, hsl(var(--secondary)) 0px, hsl(var(--secondary)) 8px, transparent 8px, transparent 16px)`,
-              }}
-            />
+          <div className="hidden md:block absolute top-1/2 right-[33%] w-[17%] h-px bg-foreground -translate-y-1/2 z-0">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-8 border-transparent border-l-foreground" />
           </div>
 
           {steps.map((step, index) => (
@@ -83,26 +72,26 @@ const InfrastructureSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="glass-card-hover p-8 md:p-12 text-center relative z-10"
+              className="relative z-10 p-6"
             >
-              {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-primary mb-6">
-                <span className="font-display text-2xl font-bold text-primary-foreground">
+              <div className="border border-foreground bg-card p-8 h-full hover:bg-primary hover:text-primary-foreground group transition-colors">
+                {/* Number Badge */}
+                <div className="inline-block bg-primary text-primary-foreground group-hover:bg-foreground group-hover:text-background px-4 py-2 font-mono text-xl font-bold mb-6 border border-foreground">
                   {step.number}
-                </span>
-              </div>
+                </div>
 
-              {/* Icon */}
-              <div className="w-12 h-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <step.icon className="w-6 h-6 text-primary" />
-              </div>
+                {/* Icon */}
+                <div className="w-16 h-16 border border-foreground group-hover:border-primary-foreground flex items-center justify-center mb-6 bg-background-secondary group-hover:bg-transparent">
+                  <step.icon className="w-8 h-8" />
+                </div>
 
-              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
-                {step.headline}
-              </h3>
-              <p className="text-muted leading-relaxed">
-                {step.text}
-              </p>
+                <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary-foreground mb-3 uppercase">
+                  {step.headline}
+                </h3>
+                <p className="text-muted-foreground group-hover:text-primary-foreground/80 leading-relaxed">
+                  {step.text}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

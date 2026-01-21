@@ -39,7 +39,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="section-padding bg-background-secondary">
+    <section className="section-padding border-y border-foreground bg-card">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -49,14 +49,17 @@ const FAQSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="eyebrow mb-4">COMMON QUESTIONS</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">COMMON QUESTIONS</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
             Everything You Need to Know
           </h2>
         </motion.div>
 
-        {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto space-y-4">
+        {/* FAQ Accordion - Brutalist */}
+        <div className="max-w-3xl mx-auto border border-foreground">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -64,20 +67,29 @@ const FAQSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="glass-card overflow-hidden"
+              className={index < faqs.length - 1 ? "border-b border-foreground" : ""}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-foreground/5 transition-colors"
+                className={`w-full flex items-center justify-between p-6 text-left transition-colors ${
+                  openIndex === index ? "bg-primary text-primary-foreground" : "hover:bg-foreground hover:text-background"
+                }`}
               >
-                <span className="font-display text-lg font-medium text-foreground pr-4">
-                  {faq.question}
-                </span>
-                <div className="shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-sm font-bold">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-display text-lg font-bold uppercase">
+                    {faq.question}
+                  </span>
+                </div>
+                <div className={`shrink-0 w-8 h-8 border flex items-center justify-center ${
+                  openIndex === index ? "border-primary-foreground" : "border-foreground"
+                }`}>
                   {openIndex === index ? (
-                    <Minus className="w-4 h-4 text-primary" />
+                    <Minus className="w-4 h-4" />
                   ) : (
-                    <Plus className="w-4 h-4 text-primary" />
+                    <Plus className="w-4 h-4" />
                   )}
                 </div>
               </button>
@@ -89,9 +101,9 @@ const FAQSection = () => {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden"
+                    className="overflow-hidden bg-primary"
                   >
-                    <div className="px-6 pb-6 text-muted leading-relaxed">
+                    <div className="px-6 pb-6 pt-0 text-primary-foreground/90 leading-relaxed pl-16">
                       {faq.answer}
                     </div>
                   </motion.div>

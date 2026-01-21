@@ -24,19 +24,24 @@ const EcosystemTrust = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="eyebrow mb-4">BUILT WITH THE ECOSYSTEM</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            Trusted By Arc Network Partners
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">BUILT WITH THE ECOSYSTEM</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
+            Trusted By Arc
+            <br />
+            Network Partners
           </h2>
         </motion.div>
 
-        {/* Logo Grid */}
+        {/* Logo Grid - Brutalist */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto mb-10"
+          className="grid grid-cols-2 md:grid-cols-4 border border-foreground max-w-4xl mx-auto mb-10"
         >
           {partners.map((partner, index) => (
             <motion.div
@@ -45,18 +50,20 @@ const EcosystemTrust = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className={`glass-card p-6 flex items-center justify-center cursor-pointer transition-all duration-300 grayscale hover:grayscale-0 hover:scale-110 ${
-                index === 0 ? "grayscale-0 col-span-2 md:col-span-1" : "opacity-60 hover:opacity-100"
-              }`}
+              className={`p-6 flex items-center justify-center cursor-pointer transition-colors hover:bg-primary hover:text-primary-foreground group ${
+                index < partners.length - (partners.length <= 4 ? 0 : 4) ? "border-b border-foreground" : ""
+              } ${(index + 1) % 4 !== 0 ? "border-r border-foreground" : ""}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
-                <span className="text-lg font-display font-bold text-primary-foreground">
-                  {partner.charAt(0)}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 border border-foreground group-hover:border-primary-foreground flex items-center justify-center bg-background-secondary group-hover:bg-transparent">
+                  <span className="font-display font-bold text-sm">
+                    {partner.charAt(0)}
+                  </span>
+                </div>
+                <span className="font-mono text-sm font-medium text-foreground group-hover:text-primary-foreground">
+                  {partner}
                 </span>
               </div>
-              <span className="ml-3 font-medium text-foreground hidden sm:inline">
-                {partner}
-              </span>
             </motion.div>
           ))}
         </motion.div>
@@ -71,9 +78,9 @@ const EcosystemTrust = () => {
         >
           <a
             href="#"
-            className="inline-flex items-center gap-2 font-mono text-sm text-primary hover:underline"
+            className="inline-flex items-center gap-2 font-mono text-sm font-bold text-foreground border-b-2 border-foreground hover:text-primary hover:border-primary transition-colors"
           >
-            Verified Contracts on Arc Explorer
+            VERIFIED CONTRACTS ON ARC EXPLORER
             <ExternalLink className="w-4 h-4" />
           </a>
         </motion.div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,63 +6,49 @@
 
 @layer base {
   :root {
-    /* INTENT Design System - Dark Futuristic Theme */
-    --background: 222 47% 7%;
-    --background-secondary: 224 35% 11%;
-    --foreground: 0 0% 100%;
+    /* ChainGPT Labs Inspired - Light Brutalist Theme */
+    --background: 0 0% 90%;
+    --background-secondary: 0 0% 95%;
+    --foreground: 0 0% 8%;
     
-    --card: 0 0% 100% / 0.02;
-    --card-foreground: 0 0% 100%;
-    --card-border: 0 0% 100% / 0.05;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+    --card-border: 0 0% 0%;
     
-    --popover: 224 35% 11%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
     
-    --primary: 188 100% 50%;
-    --primary-foreground: 222 47% 7%;
+    /* Orange accent like ChainGPT Labs */
+    --primary: 24 100% 56%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 263 84% 58%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 100%;
     
-    --muted: 215 20% 65%;
-    --muted-foreground: 217 19% 55%;
+    --muted: 0 0% 45%;
+    --muted-foreground: 0 0% 40%;
     
-    --accent: 160 84% 39%;
+    --accent: 24 100% 56%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 0 0% 100% / 0.05;
-    --input: 0 0% 100% / 0.1;
-    --ring: 188 100% 50%;
+    --border: 0 0% 0%;
+    --input: 0 0% 85%;
+    --ring: 24 100% 56%;
     
-    --radius: 0.5rem;
-    
-    /* Custom INTENT tokens */
-    --text-primary: 0 0% 100%;
-    --text-secondary: 215 25% 63%;
-    --text-muted: 215 16% 47%;
-    
-    --gradient-primary: linear-gradient(135deg, hsl(188 100% 50%) 0%, hsl(263 84% 58%) 100%);
-    --gradient-vertical: linear-gradient(180deg, hsla(188, 100%, 50%, 0.1) 0%, transparent 100%);
-    --gradient-radial: radial-gradient(circle at 50% 0%, hsla(263, 84%, 58%, 0.15) 0%, transparent 50%);
-    --gradient-cta: linear-gradient(135deg, hsl(188 100% 50%) 0%, hsl(263 84% 58%) 100%);
-    
-    --glow-cyan: 0 0 40px hsla(188, 100%, 50%, 0.3);
-    --glow-purple: 0 0 40px hsla(263, 84%, 58%, 0.3);
-    --elevation: 0 20px 60px hsla(0, 0%, 0%, 0.4);
-    --elevation-high: 0 40px 100px hsla(0, 0%, 0%, 0.6);
+    --radius: 0px;
     
     /* Sidebar tokens */
-    --sidebar-background: 222 47% 7%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 188 100% 50%;
-    --sidebar-primary-foreground: 222 47% 7%;
-    --sidebar-accent: 224 35% 11%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 100% / 0.05;
-    --sidebar-ring: 188 100% 50%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 24 100% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 24 100% 56%;
   }
 }
 
@@ -90,206 +76,181 @@
 }
 
 @layer components {
-  /* Glass Card Effect */
-  .glass-card {
-    @apply bg-card backdrop-blur-xl border border-card-border rounded-2xl;
-    background: hsla(0, 0%, 100%, 0.02);
+  /* Brutalist Grid Card */
+  .brutalist-card {
+    @apply bg-card border border-foreground transition-all duration-200;
   }
   
-  .glass-card-hover {
-    @apply glass-card transition-all duration-300;
+  .brutalist-card-hover {
+    @apply brutalist-card;
   }
   
-  .glass-card-hover:hover {
-    border-color: hsl(var(--primary));
-    box-shadow: var(--glow-cyan);
-    transform: translateY(-4px);
+  .brutalist-card-hover:hover {
+    @apply bg-primary text-primary-foreground;
   }
   
-  /* Gradient Text */
-  .gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .brutalist-card-hover:hover h3,
+  .brutalist-card-hover:hover p,
+  .brutalist-card-hover:hover span {
+    @apply text-primary-foreground;
   }
   
-  /* Glow Effects */
-  .glow-cyan {
-    box-shadow: var(--glow-cyan);
+  /* Grid Module */
+  .grid-module {
+    @apply border border-foreground bg-card;
   }
   
-  .glow-purple {
-    box-shadow: var(--glow-purple);
-  }
-  
-  /* Primary Button */
+  /* Primary Button - Brutalist Style */
   .btn-primary {
-    @apply relative px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300;
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--gradient-primary);
-    color: hsl(var(--background));
+    @apply relative px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 border-2 border-foreground;
+    font-family: 'Roboto Mono', monospace;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
   
   .btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: var(--glow-cyan);
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
   
   /* Secondary Button */
   .btn-secondary {
-    @apply px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 bg-transparent border-2;
-    font-family: 'Space Grotesk', sans-serif;
-    border-color: hsla(0, 0%, 100%, 0.1);
+    @apply px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 bg-transparent border-2 border-foreground;
+    font-family: 'Roboto Mono', monospace;
     color: hsl(var(--foreground));
   }
   
   .btn-secondary:hover {
-    border-color: hsl(var(--primary));
-    background: hsla(188, 100%, 50%, 0.05);
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
   
   /* Eyebrow Text */
   .eyebrow {
-    @apply text-sm uppercase tracking-widest font-mono;
-    letter-spacing: 2px;
-    color: hsl(var(--primary));
+    @apply text-xs uppercase tracking-[0.2em] font-mono font-bold;
+    color: hsl(var(--muted));
   }
   
-  .eyebrow-purple {
+  .eyebrow-accent {
     @apply eyebrow;
-    color: hsl(var(--secondary));
+    color: hsl(var(--primary));
   }
   
   /* Section Styling */
   .section-padding {
-    @apply py-20 md:py-32;
+    @apply py-16 md:py-24;
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 lg:px-6;
   }
   
   /* Grid Pattern Background */
   .grid-pattern {
     background-image: 
-      linear-gradient(hsla(0, 0%, 100%, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, hsla(0, 0%, 100%, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
+      linear-gradient(hsl(var(--foreground) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
   
-  /* Animated Background Elements */
-  .bg-gradient-radial {
-    background: radial-gradient(circle at 50% 0%, hsla(263, 84%, 58%, 0.15) 0%, transparent 50%);
+  /* Orange Square Decorator */
+  .orange-square {
+    @apply w-2 h-2 bg-primary;
   }
   
-  /* Status Badges */
+  /* Corner Brackets Decorator */
+  .corner-bracket {
+    @apply absolute w-4 h-4 border-foreground;
+  }
+  
+  .corner-bracket-tl {
+    @apply corner-bracket top-0 left-0 border-t-2 border-l-2;
+  }
+  
+  .corner-bracket-tr {
+    @apply corner-bracket top-0 right-0 border-t-2 border-r-2;
+  }
+  
+  .corner-bracket-bl {
+    @apply corner-bracket bottom-0 left-0 border-b-2 border-l-2;
+  }
+  
+  .corner-bracket-br {
+    @apply corner-bracket bottom-0 right-0 border-b-2 border-r-2;
+  }
+  
+  /* Status Badges - Brutalist */
   .badge-live {
-    @apply px-3 py-1 rounded-full text-xs font-mono font-medium;
-    background: hsla(160, 84%, 39%, 0.2);
-    color: hsl(var(--accent));
-    border: 1px solid hsla(160, 84%, 39%, 0.3);
+    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground;
+    background: hsl(142 76% 36%);
+    color: white;
   }
   
   .badge-auto {
-    @apply px-3 py-1 rounded-full text-xs font-mono font-medium;
-    background: hsla(188, 100%, 50%, 0.2);
-    color: hsl(var(--primary));
-    border: 1px solid hsla(188, 100%, 50%, 0.3);
+    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
   
   .badge-soon {
-    @apply px-3 py-1 rounded-full text-xs font-mono font-medium;
-    background: hsla(0, 0%, 100%, 0.1);
-    color: hsl(var(--muted));
-    border: 1px solid hsla(0, 0%, 100%, 0.1);
+    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground bg-muted text-foreground;
   }
   
   /* Category Badge */
   .category-badge {
-    @apply px-3 py-1 rounded-full text-xs font-mono;
-    background: hsla(188, 100%, 50%, 0.15);
-    color: hsl(var(--primary));
+    @apply px-2 py-0.5 text-xs font-mono font-bold uppercase border border-foreground bg-card;
   }
   
-  /* Feature Badge */
-  .feature-badge {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm;
-    background: hsla(188, 100%, 50%, 0.05);
-    border: 1px solid hsla(188, 100%, 50%, 0.2);
-    color: hsl(var(--foreground));
+  /* X Marker Decorator */
+  .x-marker {
+    @apply text-primary font-bold text-lg;
+  }
+  
+  /* Spaced Letters Effect */
+  .spaced-letters {
+    letter-spacing: 0.3em;
   }
 }
 
 @layer utilities {
-  /* Text Shadow for Hero */
-  .text-glow {
-    text-shadow: 0 0 30px hsla(188, 100%, 50%, 0.3);
-  }
-  
   /* Animation Delays */
   .animation-delay-100 { animation-delay: 100ms; }
   .animation-delay-200 { animation-delay: 200ms; }
   .animation-delay-300 { animation-delay: 300ms; }
   .animation-delay-500 { animation-delay: 500ms; }
   .animation-delay-700 { animation-delay: 700ms; }
-  
-  /* Custom Scrollbar */
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: hsla(0, 0%, 100%, 0.02);
-    border-radius: 3px;
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: hsla(188, 100%, 50%, 0.3);
-    border-radius: 3px;
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: hsla(188, 100%, 50%, 0.5);
-  }
 }
 
 /* Keyframe Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
-@keyframes scroll-indicator {
-  0%, 100% { opacity: 0.3; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(8px); }
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
 }
 
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-.animate-scroll-indicator {
-  animation: scroll-indicator 2s ease-in-out infinite;
+/* Selection Color */
+::selection {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
 }

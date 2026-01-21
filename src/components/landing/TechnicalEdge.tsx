@@ -4,21 +4,25 @@ import { Link2, Target, RefreshCw, Ban } from "lucide-react";
 const features = [
   {
     icon: Link2,
+    number: "01",
     headline: "Protocol-Level Validation",
     text: "Verifies contract interactions, not UI clicks. Anti-sybil by design.",
   },
   {
     icon: Target,
+    number: "02",
     headline: "Anti-Sybil by Behavior",
     text: "No captchas. No forms. Behavioral verification impossible to fake.",
   },
   {
     icon: RefreshCw,
+    number: "03",
     headline: "Cross-Campaign Reusable Proofs",
     text: "Proof minted once, usable across multiple campaigns and ecosystems.",
   },
   {
     icon: Ban,
+    number: "04",
     headline: "No Off-Chain Task System",
     text: "Everything verifiable on-chain. No manual submission trust required.",
   },
@@ -34,18 +38,21 @@ const TechnicalEdge = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <p className="eyebrow mb-4">TECHNICAL EDGE</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            Built on Verification Infrastructure,
+          <div className="flex items-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">TECHNICAL EDGE</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground uppercase leading-tight">
+            Built on Verification
             <br />
-            <span className="gradient-text">Not Task Forms</span>
+            <span className="text-muted">Not Task Forms</span>
           </h2>
         </motion.div>
 
-        {/* Feature Cards */}
-        <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
+        {/* Feature Cards - 2x2 Grid Brutalist */}
+        <div className="grid sm:grid-cols-2 border border-foreground">
           {features.map((feature, index) => (
             <motion.div
               key={feature.headline}
@@ -53,15 +60,26 @@ const TechnicalEdge = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card-hover p-8 md:p-10"
+              className={`p-8 md:p-10 group hover:bg-primary hover:text-primary-foreground transition-colors ${
+                index === 0 ? "border-b border-r border-foreground" :
+                index === 1 ? "border-b border-foreground" :
+                index === 2 ? "border-r border-foreground" : ""
+              }`}
             >
-              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                <feature.icon className="w-7 h-7 text-primary" />
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-14 h-14 border border-foreground group-hover:border-primary-foreground flex items-center justify-center bg-background-secondary group-hover:bg-transparent">
+                  <feature.icon className="w-7 h-7" />
+                </div>
+                <span className="font-mono text-3xl font-bold text-muted-foreground group-hover:text-primary-foreground/50">
+                  {feature.number}
+                </span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
+              <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary-foreground mb-3 uppercase">
                 {feature.headline}
               </h3>
-              <p className="text-muted leading-relaxed">{feature.text}</p>
+              <p className="text-muted-foreground group-hover:text-primary-foreground/80 leading-relaxed">
+                {feature.text}
+              </p>
             </motion.div>
           ))}
         </div>

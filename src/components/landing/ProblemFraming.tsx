@@ -1,19 +1,22 @@
 import { motion } from "framer-motion";
-import { XCircle, ClipboardList, User } from "lucide-react";
+import { X, FileText, User } from "lucide-react";
 
 const problems = [
   {
-    icon: XCircle,
+    icon: X,
+    number: "01",
     headline: "Fake Participation",
     text: "Tasks can be completed without real protocol usage. Bots game the system.",
   },
   {
-    icon: ClipboardList,
+    icon: FileText,
+    number: "02",
     headline: "Manual Proof",
     text: "Screenshots, forms, self-reported activity. No verification layer.",
   },
   {
     icon: User,
+    number: "03",
     headline: "No Portable Reputation",
     text: "Your actions don't build long-term on-chain identity.",
   },
@@ -21,7 +24,7 @@ const problems = [
 
 const ProblemFraming = () => {
   return (
-    <section className="section-padding">
+    <section className="section-padding border-b border-foreground">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -29,19 +32,21 @@ const ProblemFraming = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <p className="eyebrow-purple mb-4">THE SYSTEM FAILURE</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Traditional Participation Doesn't Scale Trust
+          <div className="flex items-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">THE SYSTEM FAILURE</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground uppercase leading-tight">
+            Traditional Participation
+            <br />
+            <span className="text-muted">Doesn't Scale Trust</span>
           </h2>
-          <p className="text-lg text-muted max-w-xl mx-auto">
-            Ecosystems can't reward what they can't verify.
-          </p>
         </motion.div>
 
-        {/* Problem Cards */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        {/* Problem Cards - Brutalist Grid */}
+        <div className="grid md:grid-cols-3 border border-foreground">
           {problems.map((problem, index) => (
             <motion.div
               key={problem.headline}
@@ -49,15 +54,27 @@ const ProblemFraming = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-card-hover p-10"
+              className={`p-8 md:p-10 ${
+                index < problems.length - 1 ? "border-b md:border-b-0 md:border-r border-foreground" : ""
+              } hover:bg-primary hover:text-primary-foreground group transition-colors`}
             >
-              <div className="w-12 h-12 rounded-xl bg-destructive/20 flex items-center justify-center mb-6">
-                <problem.icon className="w-6 h-6 text-destructive" />
+              {/* Number */}
+              <div className="flex items-center justify-between mb-8">
+                <span className="font-mono text-4xl font-bold text-muted-foreground group-hover:text-primary-foreground/60">
+                  {problem.number}
+                </span>
+                <span className="x-marker group-hover:text-primary-foreground">×</span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
+
+              {/* Icon */}
+              <div className="w-12 h-12 border border-foreground group-hover:border-primary-foreground flex items-center justify-center mb-6">
+                <problem.icon className="w-6 h-6" />
+              </div>
+
+              <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary-foreground mb-3 uppercase">
                 {problem.headline}
               </h3>
-              <p className="text-muted leading-relaxed">
+              <p className="text-muted-foreground group-hover:text-primary-foreground/80 leading-relaxed">
                 {problem.text}
               </p>
             </motion.div>
