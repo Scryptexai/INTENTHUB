@@ -1,7 +1,7 @@
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import SocialProofBanner from "@/components/landing/SocialProofBanner";
-import ProblemFraming from "@/components/landing/ProblemFraming";
+import ProblemCarousel from "@/components/landing/ProblemCarousel";
 import InfrastructureSection from "@/components/landing/InfrastructureSection";
 import VideoDemo from "@/components/landing/VideoDemo";
 import SupportedDapps from "@/components/landing/SupportedDapps";
@@ -10,7 +10,7 @@ import TechnicalEdge from "@/components/landing/TechnicalEdge";
 import ComparisonTable from "@/components/landing/ComparisonTable";
 import Testimonials from "@/components/landing/Testimonials";
 import FAQSection from "@/components/landing/FAQSection";
-import EcosystemTrust from "@/components/landing/EcosystemTrust";
+import OurEcosystem from "@/components/landing/OurEcosystem";
 import NetworkExpansion from "@/components/landing/NetworkExpansion";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
@@ -22,16 +22,16 @@ const Index = () => {
       <main>
         <HeroSection />
         <SocialProofBanner />
-        <ProblemFraming />
+        <ProblemCarousel />
         <InfrastructureSection />
         <VideoDemo />
         <SupportedDapps />
         <OutputShowcase />
         <TechnicalEdge />
         <ComparisonTable />
+        <OurEcosystem />
         <Testimonials />
         <FAQSection />
-        <EcosystemTrust />
         <NetworkExpansion />
         <FinalCTA />
       </main>

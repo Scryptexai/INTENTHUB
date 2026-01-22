@@ -75,44 +75,37 @@ const TechnicalEdge = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding">
+    <section ref={sectionRef} className="section-padding relative">
       <div className="container-custom">
         {/* Section Header */}
         <div ref={headerRef} className="mb-16">
-          <div className="flex items-center gap-4 mb-6">
-            <span className="orange-square" />
-            <p className="eyebrow-accent">TECHNICAL EDGE</p>
-          </div>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground uppercase leading-tight">
+          <p className="eyebrow-accent mb-6">Technical Edge</p>
+          <h2 className="section-headline">
             Built on Verification
             <br />
-            <span className="text-muted">Not Task Forms</span>
+            <span className="text-muted-foreground">Not Task Forms</span>
           </h2>
         </div>
 
-        {/* Feature Cards - 2x2 Grid Brutalist */}
-        <div ref={gridRef} className="grid sm:grid-cols-2 border border-foreground">
-          {features.map((feature, index) => (
+        {/* Feature Cards - 2x2 Grid */}
+        <div ref={gridRef} className="grid sm:grid-cols-2 gap-6">
+          {features.map((feature) => (
             <div
               key={feature.headline}
-              className={`feature-card p-8 md:p-10 group hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer ${
-                index === 0 ? "border-b border-r border-foreground" :
-                index === 1 ? "border-b border-foreground" :
-                index === 2 ? "border-r border-foreground" : ""
-              }`}
+              className="feature-card glass-card p-8 md:p-10"
             >
               <div className="flex items-center justify-between mb-6">
-                <div className="w-14 h-14 border border-foreground group-hover:border-primary-foreground flex items-center justify-center bg-background-secondary group-hover:bg-transparent">
-                  <feature.icon className="w-7 h-7" />
+                <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <feature.icon className="w-7 h-7 text-primary" />
                 </div>
-                <span className="font-mono text-3xl font-bold text-muted-foreground group-hover:text-primary-foreground/50">
+                <span className="text-3xl font-bold text-white/10">
                   {feature.number}
                 </span>
               </div>
-              <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary-foreground mb-3 uppercase">
+              <h3 className="card-headline">
                 {feature.headline}
               </h3>
-              <p className="text-muted-foreground group-hover:text-primary-foreground/80 leading-relaxed">
+              <p className="card-description">
                 {feature.text}
               </p>
             </div>

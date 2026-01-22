@@ -6,49 +6,52 @@
 
 @layer base {
   :root {
-    /* ChainGPT Labs Inspired - Light Brutalist Theme */
-    --background: 0 0% 90%;
-    --background-secondary: 0 0% 95%;
-    --foreground: 0 0% 8%;
+    /* ChainGPT Labs Dark Theme - Exact Match */
+    --background: 220 40% 8%;
+    --background-secondary: 220 35% 12%;
+    --foreground: 0 0% 100%;
     
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
-    --card-border: 0 0% 0%;
+    --card: 220 35% 10%;
+    --card-foreground: 0 0% 100%;
+    --card-border: 220 20% 20%;
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover: 220 35% 10%;
+    --popover-foreground: 0 0% 100%;
     
-    /* Orange accent like ChainGPT Labs */
-    --primary: 24 100% 56%;
-    --primary-foreground: 0 0% 100%;
+    /* Cyan accent like ChainGPT Labs */
+    --primary: 187 100% 50%;
+    --primary-foreground: 220 40% 8%;
     
-    --secondary: 0 0% 8%;
+    /* Purple accent */
+    --accent-purple: 263 70% 50%;
+    
+    --secondary: 220 20% 20%;
     --secondary-foreground: 0 0% 100%;
     
-    --muted: 0 0% 45%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 215 16% 47%;
+    --muted-foreground: 215 16% 60%;
     
-    --accent: 24 100% 56%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 187 100% 50%;
+    --accent-foreground: 220 40% 8%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 0 0% 0%;
-    --input: 0 0% 85%;
-    --ring: 24 100% 56%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 187 100% 50%;
     
-    --radius: 0px;
+    --radius: 12px;
     
     /* Sidebar tokens */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 8%;
-    --sidebar-primary: 24 100% 56%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 8%;
-    --sidebar-border: 0 0% 0%;
-    --sidebar-ring: 24 100% 56%;
+    --sidebar-background: 220 35% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 220 40% 8%;
+    --sidebar-accent: 220 35% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 187 100% 50%;
   }
 }
 
@@ -76,91 +79,131 @@
 }
 
 @layer components {
-  /* Brutalist Grid Card */
+  /* Glass Card - ChainGPT Style */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glass-card:hover {
+    border-color: rgba(0, 217, 255, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 217, 255, 0.15);
+  }
+  
+  /* Brutalist Card (legacy) */
   .brutalist-card {
-    @apply bg-card border border-foreground transition-all duration-200;
-  }
-  
-  .brutalist-card-hover {
-    @apply brutalist-card;
-  }
-  
-  .brutalist-card-hover:hover {
-    @apply bg-primary text-primary-foreground;
-  }
-  
-  .brutalist-card-hover:hover h3,
-  .brutalist-card-hover:hover p,
-  .brutalist-card-hover:hover span {
-    @apply text-primary-foreground;
+    @apply glass-card;
   }
   
   /* Grid Module */
   .grid-module {
-    @apply border border-foreground bg-card;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
   
-  /* Primary Button - Brutalist Style */
+  /* Primary Button - Gradient ChainGPT Style */
   .btn-primary {
-    @apply relative px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 border-2 border-foreground;
-    font-family: 'Roboto Mono', monospace;
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    @apply relative px-12 py-5 font-bold text-base uppercase tracking-wide transition-all duration-300;
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, hsl(187 100% 50%) 0%, hsl(263 70% 50%) 100%);
+    color: white;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 32px rgba(0, 217, 255, 0.25);
   }
   
   .btn-primary:hover {
-    background: hsl(var(--foreground));
-    color: hsl(var(--background));
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(0, 217, 255, 0.4);
+    filter: brightness(1.1);
   }
   
-  /* Secondary Button */
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(0, 217, 255, 0.3);
+  }
+  
+  /* Secondary Button - Ghost Style */
   .btn-secondary {
-    @apply px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 bg-transparent border-2 border-foreground;
-    font-family: 'Roboto Mono', monospace;
-    color: hsl(var(--foreground));
+    @apply px-12 py-5 font-bold text-base uppercase tracking-wide transition-all duration-300;
+    font-family: 'Space Grotesk', sans-serif;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
   }
   
   .btn-secondary:hover {
-    background: hsl(var(--foreground));
-    color: hsl(var(--background));
+    border-color: rgba(0, 217, 255, 0.5);
+    background: rgba(0, 217, 255, 0.05);
+    transform: translateY(-2px);
   }
   
-  /* Eyebrow Text */
+  /* Eyebrow Text - Cyan Style */
   .eyebrow {
-    @apply text-xs uppercase tracking-[0.2em] font-mono font-bold;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
     color: hsl(var(--muted));
   }
   
   .eyebrow-accent {
-    @apply eyebrow;
-    color: hsl(var(--primary));
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #00D9FF;
+    text-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
   }
   
-  /* Section Styling */
+  /* Section Styling - ChainGPT Spacing */
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-24 md:py-36;
   }
   
   .container-custom {
     @apply max-w-7xl mx-auto px-4 lg:px-6;
   }
   
-  /* Grid Pattern Background */
+  /* Grid Pattern Background - Dark */
   .grid-pattern {
     background-image: 
-      linear-gradient(hsl(var(--foreground) / 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--foreground) / 0.08) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
   
-  /* Orange Square Decorator */
+  /* Cyan Decorators */
+  .cyan-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00D9FF, transparent);
+    margin: 16px auto;
+  }
+  
+  .cyan-glow {
+    color: #00D9FF;
+    text-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+  }
+  
+  /* Orange Square Decorator (legacy) */
   .orange-square {
-    @apply w-2 h-2 bg-primary;
+    @apply w-2 h-2;
+    background: #00D9FF;
   }
   
   /* Corner Brackets Decorator */
   .corner-bracket {
-    @apply absolute w-4 h-4 border-foreground;
+    @apply absolute w-4 h-4;
+    border-color: rgba(255, 255, 255, 0.2);
   }
   
   .corner-bracket-tl {
@@ -179,36 +222,119 @@
     @apply corner-bracket bottom-0 right-0 border-b-2 border-r-2;
   }
   
-  /* Status Badges - Brutalist */
+  /* Status Badges */
   .badge-live {
-    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground;
-    background: hsl(142 76% 36%);
-    color: white;
+    @apply px-3 py-1 text-xs font-bold uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.5);
+    border-radius: 8px;
+    color: #10B981;
   }
   
   .badge-auto {
-    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground;
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    @apply px-3 py-1 text-xs font-bold uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+    background: rgba(0, 217, 255, 0.2);
+    border: 1px solid rgba(0, 217, 255, 0.5);
+    border-radius: 8px;
+    color: #00D9FF;
   }
   
   .badge-soon {
-    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground bg-muted text-foreground;
+    @apply px-3 py-1 text-xs font-bold uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
   }
   
   /* Category Badge */
   .category-badge {
-    @apply px-2 py-0.5 text-xs font-mono font-bold uppercase border border-foreground bg-card;
+    @apply px-2 py-0.5 text-xs font-bold uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
   }
   
-  /* X Marker Decorator */
-  .x-marker {
-    @apply text-primary font-bold text-lg;
+  /* Section Headlines - ChainGPT Typography */
+  .section-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: white;
   }
   
-  /* Spaced Letters Effect */
-  .spaced-letters {
-    letter-spacing: 0.3em;
+  @media (max-width: 1024px) {
+    .section-headline {
+      font-size: 42px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-headline {
+      font-size: 36px;
+    }
+  }
+  
+  /* Card Headlines */
+  .card-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+  }
+  
+  /* Card Descriptions */
+  .card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: hsl(215 16% 60%);
+  }
+  
+  /* Gradient Overlays */
+  .hero-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  .cta-gradient-overlay {
+    background: radial-gradient(ellipse at center, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+  }
+  
+  /* Logo Grid Item */
+  .logo-grid-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-grid-item:hover {
+    border-color: rgba(0, 217, 255, 0.3);
+    transform: scale(1.1);
+  }
+  
+  .logo-grid-item img {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  .logo-grid-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
   }
 }
 
@@ -237,6 +363,11 @@
   50% { opacity: 0.5; }
 }
 
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 60px rgba(0, 217, 255, 0.2); }
+  50% { box-shadow: 0 0 120px rgba(0, 217, 255, 0.4); }
+}
+
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
@@ -249,8 +380,30 @@
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
 /* Selection Color */
 ::selection {
   background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
