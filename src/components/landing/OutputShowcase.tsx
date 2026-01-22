@@ -73,11 +73,8 @@ const OutputShowcase = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding relative">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background-secondary to-background" />
-      
-      <div className="container-custom relative">
+    <section ref={sectionRef} className="section-padding bg-card border-y border-foreground">
+      <div className="container-custom">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -86,38 +83,45 @@ const OutputShowcase = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="eyebrow-accent mb-6">The Deliverables</p>
-          <h2 className="section-headline">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">THE DELIVERABLES</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
             What You Actually Get
           </h2>
         </motion.div>
 
-        {/* Output Cards */}
-        <div ref={cardsRef} className="grid md:grid-cols-3 gap-6">
-          {outputs.map((output) => (
+        {/* Output Cards - Brutalist */}
+        <div ref={cardsRef} className="grid md:grid-cols-3 border border-foreground">
+          {outputs.map((output, index) => (
             <div
               key={output.title}
-              className="output-card glass-card overflow-hidden group"
+              className={`output-card group ${
+                index < outputs.length - 1 ? "border-b md:border-b-0 md:border-r border-foreground" : ""
+              }`}
             >
               {/* Image */}
-              <div className="aspect-square overflow-hidden relative">
+              <div className="aspect-square overflow-hidden border-b border-foreground relative">
                 <img
                   src={output.image}
                   alt={output.title}
                   className="output-image w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Number Badge */}
-                <div className="absolute top-4 left-4 bg-primary/20 backdrop-blur-sm text-primary px-3 py-1 rounded-lg text-sm font-bold">
+                <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 font-mono text-sm font-bold border border-foreground">
                   {output.number}
                 </div>
+                {/* X Marker */}
+                <span className="x-marker absolute top-4 right-4 text-primary">×</span>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="card-headline">
+              <div className="p-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary-foreground mb-2 uppercase">
                   {output.title}
                 </h3>
-                <p className="card-description">
+                <p className="text-muted-foreground group-hover:text-primary-foreground/80">
                   {output.description}
                 </p>
               </div>

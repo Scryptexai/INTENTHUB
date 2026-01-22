@@ -9,47 +9,57 @@ const features = [
 
 const VideoDemo = () => {
   return (
-    <section id="how-it-works" className="section-padding relative">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background-secondary to-background" />
-      
-      <div className="container-custom relative">
+    <section className="section-padding border-y border-foreground bg-card">
+      <div className="container-custom">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <p className="eyebrow-accent mb-6">See It In Action</p>
-          <h2 className="section-headline mb-6">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">SEE IT IN ACTION</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
             From Transaction to
             <br />
             Verified Proof in 4 Steps
           </h2>
         </motion.div>
 
-        {/* Video Container */}
+        {/* Video Container - Brutalist */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto mb-16"
+          className="max-w-4xl mx-auto mb-12"
         >
-          <div className="relative aspect-video glass-card overflow-hidden animate-glow-pulse">
+          <div className="relative aspect-video border-2 border-foreground bg-background">
+            {/* Corner Brackets */}
+            <div className="corner-bracket-tl" />
+            <div className="corner-bracket-tr" />
+            <div className="corner-bracket-bl" />
+            <div className="corner-bracket-br" />
+
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <button className="w-20 h-20 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center hover:bg-primary/30 hover:scale-110 transition-all group">
-                <Play className="w-8 h-8 text-primary ml-1" fill="currentColor" />
+              <button className="w-20 h-20 bg-primary border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors group">
+                <Play className="w-8 h-8 text-primary-foreground group-hover:text-background ml-1" fill="currentColor" />
               </button>
             </div>
 
             {/* Duration Badge */}
-            <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-sm text-foreground px-3 py-1 rounded-lg text-sm">
+            <div className="absolute bottom-4 right-4 bg-foreground text-background px-3 py-1 font-mono text-xs">
               00:38
             </div>
+
+            {/* X Markers */}
+            <span className="x-marker absolute top-2 left-4 text-primary">×</span>
+            <span className="x-marker absolute top-2 right-4 text-primary">×</span>
           </div>
         </motion.div>
 
@@ -59,15 +69,15 @@ const VideoDemo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-4 mb-10"
         >
           {features.map((feature) => (
             <div
               key={feature.label}
-              className="glass-card flex items-center gap-3 px-6 py-3"
+              className="flex items-center gap-3 px-6 py-3 border border-foreground bg-card hover:bg-foreground hover:text-background transition-colors"
             >
-              <feature.icon className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">{feature.label}</span>
+              <feature.icon className="w-4 h-4" />
+              <span className="font-mono text-sm font-medium">{feature.label}</span>
             </div>
           ))}
         </motion.div>
@@ -81,7 +91,7 @@ const VideoDemo = () => {
           className="text-center"
         >
           <button className="btn-primary inline-flex items-center gap-3 group">
-            Try It Yourself
+            TRY IT YOURSELF
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
         </motion.div>

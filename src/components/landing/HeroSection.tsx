@@ -72,13 +72,13 @@ const HeroSection = () => {
 
   return (
     <>
-      <section id="hero" ref={sectionRef} className="min-h-screen relative overflow-hidden">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-background" />
-        <div className="hero-gradient-overlay" />
-        
+      <section id="hero" ref={sectionRef} className="min-h-screen relative overflow-hidden grid-pattern">
         {/* Grid Lines Overlay */}
-        <div className="absolute inset-0 pointer-events-none grid-pattern opacity-50" />
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-px h-full bg-foreground/10" />
+          <div className="absolute top-0 left-2/4 w-px h-full bg-foreground/10" />
+          <div className="absolute top-0 left-3/4 w-px h-full bg-foreground/10" />
+        </div>
 
         {/* 3D Element */}
         <div className="hero-3d-container absolute right-0 top-0 w-full lg:w-1/2 h-full">
@@ -90,28 +90,26 @@ const HeroSection = () => {
           <div ref={headlineRef} className="grid lg:grid-cols-2 gap-8 items-center min-h-[80vh]">
             {/* Left Column - Text Content */}
             <div>
-              {/* Tagline - Beyond Farming */}
+              {/* Orange Square Decorator */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-center lg:text-left"
-              >
-                <p className="eyebrow-accent mb-4">Beyond Farming</p>
-                <div className="cyan-line lg:mx-0" />
-              </motion.div>
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="orange-square mb-8"
+              />
 
-              {/* Main Headline */}
+              {/* Main Headline - Stacked Typography */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.6 }}
                 className="mb-8"
               >
-                <h1 className="section-headline text-center lg:text-left">
-                  Verify Real
-                  <br />
-                  Protocol Usage
+                <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] tracking-tight uppercase">
+                  BACKING
+                </h1>
+                <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] tracking-tight uppercase">
+                  TOMORROW
                 </h1>
               </motion.div>
 
@@ -120,27 +118,23 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg md:text-xl text-muted-foreground max-w-md mb-10 leading-relaxed text-center lg:text-left mx-auto lg:mx-0"
+                className="text-lg md:text-xl text-muted-foreground max-w-md mb-10 leading-relaxed"
               >
-                INTENT is more than testnet farming—it's proof infrastructure. We verify real protocol usage, not just transaction counts.
+                Backing the very best web3 builders - transforming visionary ideas into real-world growth.
               </motion.p>
 
-              {/* CTA Buttons */}
+              {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
                 <button 
                   onClick={() => setIsWaitlistOpen(true)}
-                  className="btn-primary inline-flex items-center justify-center gap-3 group"
+                  className="btn-primary inline-flex items-center gap-3 group"
                 >
-                  Join Waitlist
+                  JOIN WAITLIST
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-                <button className="btn-secondary inline-flex items-center justify-center gap-3">
-                  Learn More
                 </button>
               </motion.div>
             </div>
@@ -150,23 +144,36 @@ const HeroSection = () => {
           </div>
 
           {/* Bottom Section - Live dApps */}
-          <div ref={partnersRef} className="mt-16 pt-8 border-t border-white/10">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full animate-pulse bg-emerald-500" />
+          <div ref={partnersRef} className="mt-16 border-t border-foreground pt-8">
+            <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-6 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "hsl(142, 76%, 36%)" }} />
               Live on Arc Network
             </p>
             <div className="flex flex-wrap items-center gap-4">
               {dapps.map((dapp) => (
                 <div
                   key={dapp.name}
-                  className="partner-item glass-card px-5 py-3 flex items-center gap-3 cursor-pointer"
+                  className="partner-item px-4 py-2 border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-mono text-sm cursor-pointer flex items-center gap-3"
                 >
                   <img src={dapp.logo} alt={dapp.name} className="w-5 h-5" />
-                  <span className="text-sm font-medium">{dapp.name}</span>
+                  {dapp.name}
                 </div>
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Social Links - Fixed Right */}
+        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-30 hidden lg:flex flex-col gap-2">
+          {["X", "TG", "M", "IN"].map((social) => (
+            <a
+              key={social}
+              href="#"
+              className="w-10 h-10 border border-foreground bg-background flex items-center justify-center font-mono text-xs hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+            >
+              {social}
+            </a>
+          ))}
         </div>
       </section>
 

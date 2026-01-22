@@ -33,7 +33,7 @@ const InfrastructureSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title animation
+      // Title animation - split text effect
       gsap.from(titleRef.current, {
         y: 60,
         opacity: 0,
@@ -83,53 +83,61 @@ const InfrastructureSection = () => {
   }, []);
 
   return (
-    <section id="features" ref={sectionRef} className="section-padding relative overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="section-padding relative overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 grid-pattern opacity-50" />
+
       <div className="container-custom relative z-10">
         {/* Section Header */}
         <div ref={titleRef} className="text-center mb-20">
-          <p className="eyebrow-accent mb-6">Infrastructure Layer</p>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="orange-square" />
+            <p className="eyebrow-accent">INFRASTRUCTURE LAYER</p>
+            <span className="orange-square" />
+          </div>
           
           {/* Spaced Letters Title */}
-          <h2 className="text-lg md:text-xl text-muted-foreground tracking-[0.3em] uppercase mb-4 font-display">
-            beyond farming
+          <h2 className="font-display text-lg md:text-xl text-muted-foreground spaced-letters uppercase mb-4">
+            b e y o n d &nbsp;&nbsp; C a p i t a l
           </h2>
           
-          <h3 className="section-headline">
+          <h3 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground uppercase">
             INTENT is an On-Chain
             <br />
             Behavior Verification Layer
           </h3>
         </div>
 
-        {/* 3-Step System */}
-        <div ref={cardsRef} className="grid md:grid-cols-3 gap-6 relative">
+        {/* 3-Step System - Brutalist Cards */}
+        <div ref={cardsRef} className="grid md:grid-cols-3 relative">
           {/* Connecting Lines */}
-          <div className="connecting-line hidden md:block absolute top-1/2 left-[30%] w-[10%] h-px bg-gradient-to-r from-primary/50 to-transparent -translate-y-1/2 z-0 origin-left" />
-          <div className="connecting-line hidden md:block absolute top-1/2 right-[30%] w-[10%] h-px bg-gradient-to-l from-primary/50 to-transparent -translate-y-1/2 z-0 origin-right" />
+          <div className="connecting-line hidden md:block absolute top-1/2 left-[33%] w-[17%] h-px bg-foreground -translate-y-1/2 z-0 origin-left">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-8 border-transparent border-l-foreground" />
+          </div>
+          <div className="connecting-line hidden md:block absolute top-1/2 right-[33%] w-[17%] h-px bg-foreground -translate-y-1/2 z-0 origin-left">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-8 border-transparent border-l-foreground" />
+          </div>
 
           {steps.map((step, index) => (
             <div
               key={step.number}
-              className="step-card relative z-10"
+              className="step-card relative z-10 p-6"
             >
-              <div className="glass-card p-8 h-full">
+              <div className="border border-foreground bg-card p-8 h-full hover:bg-primary hover:text-primary-foreground group transition-colors cursor-pointer">
                 {/* Number Badge */}
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-primary text-sm font-bold tracking-wider">
-                    {step.number}
-                  </span>
-                  <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
+                <div className="inline-block bg-primary text-primary-foreground group-hover:bg-foreground group-hover:text-background px-4 py-2 font-mono text-xl font-bold mb-6 border border-foreground">
+                  {step.number}
                 </div>
 
                 {/* Icon */}
-                <div className="w-16 h-16 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
-                  <step.icon className="w-8 h-8 text-primary" />
+                <div className="w-16 h-16 border border-foreground group-hover:border-primary-foreground flex items-center justify-center mb-6 bg-background-secondary group-hover:bg-transparent">
+                  <step.icon className="w-8 h-8" />
                 </div>
 
-                <h3 className="card-headline">
+                <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary-foreground mb-3 uppercase">
                   {step.headline}
                 </h3>
-                <p className="card-description">
+                <p className="text-muted-foreground group-hover:text-primary-foreground/80 leading-relaxed">
                   {step.text}
                 </p>
               </div>
