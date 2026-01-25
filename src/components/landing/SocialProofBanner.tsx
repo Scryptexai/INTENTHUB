@@ -32,7 +32,7 @@ const SocialProofBanner = () => {
       const ctx = gsap.context(() => {
         gsap.to(".arc-logos-scroll", {
           x: "-50%",
-          duration: 60,
+          duration: 20, // 3x faster (was 60)
           ease: "none",
           repeat: -1,
         });

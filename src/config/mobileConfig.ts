@@ -56,10 +56,10 @@ export const MOBILE_CONFIG = {
 
   // Animation timing
   animations: {
-    // Running text scroll speed (2-3x faster)
+    // Running text scroll speed
     tickerSpeed: {
-      mobile: 27,    // seconds (2.9x faster: was 80)
-      desktop: 20,   // seconds (3x faster: was 60)
+      mobile: 80,    // seconds (slower on mobile for readability)
+      desktop: 60,
     },
     // Tap ripple duration
     tapDuration: 200,
