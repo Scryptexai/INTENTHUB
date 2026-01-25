@@ -208,3 +208,12 @@ select,
     display: none;
   }
 }
+
+/* Modal Centering - Mobile Fix */
+@media (max-width: 767px) {
+  div[style*="position: fixed"][style*="top: 50%"] {
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(calc(100vw - 32px), 90vw) !important;
+  }
+}

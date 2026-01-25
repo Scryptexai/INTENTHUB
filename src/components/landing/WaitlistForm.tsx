@@ -17,6 +17,12 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
   const [walletAddress, setWalletAddress] = useState("");
   const [isMinting, setIsMinting] = useState(false);
 
+  // Debug log
+  if (isOpen) {
+    console.log('WaitlistForm is open, isMobile:', isMobile);
+    console.log('Window dimensions:', { width: window.innerWidth, height: window.innerHeight });
+  }
+
   const handleFollowTwitter = () => {
     window.open("https://twitter.com/intent_network", "_blank");
     setTimeout(() => setTwitterFollowed(true), 1000);
