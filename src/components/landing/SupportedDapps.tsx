@@ -275,7 +275,7 @@ const SupportedDapps = () => {
             className="space-y-6"
           >
             {/* Eyebrow */}
-            <div className="border-b-2 border-[#1A1A1A] pb-4">
+            <div className="border-b-2 border-[#FF6B35] pb-4">
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#9B9B9B] font-bold">
                 OUR ECOSYSTEM
               </p>
@@ -364,7 +364,7 @@ const SupportedDapps = () => {
                     />
                     {/* Outer Node */}
                     <div
-                      className="absolute w-12 h-12 border-2 border-[#1A1A1A] rounded-full bg-[#FAFAF8] opacity-30"
+                      className="absolute w-12 h-12 border-2 border-[#FF6B35] rounded-full bg-[#FAFAF8] opacity-30"
                       style={{
                         left: `calc(50% + ${x}px)`,
                         top: `calc(50% + ${y}px)`,
@@ -393,7 +393,7 @@ const SupportedDapps = () => {
               className={`relative p-6 border-4 transition-all duration-300 ${
                 activeNetwork === network.id
                   ? "border-[#FF6B35] bg-white"
-                  : "border-[#E5E5E0] bg-[#F5F5F2] hover:border-[#1A1A1A]"
+                  : "border-[#E5E5E0] bg-[#F5F5F2] hover:border-[#FF6B35]"
               }`}
             >
               {/* Status Badge */}
@@ -459,7 +459,7 @@ const SupportedDapps = () => {
                 className="group bg-gradient-to-br from-white to-[#FFF8F5] border-2 border-[#E5E5E0] p-6 hover:border-[#FF6B35] hover:shadow-xl transition-all duration-300 cursor-pointer"
               >
                 {/* Logo */}
-                <div className="w-16 h-16 border-2 border-[#1A1A1A] group-hover:border-[#FF6B35] bg-[#FAFAF8] flex items-center justify-center mb-4 overflow-hidden transition-all duration-300">
+                <div className="w-16 h-16 border-2 border-[#FF6B35] group-hover:border-[#FF6B35] bg-[#FAFAF8] flex items-center justify-center mb-4 overflow-hidden transition-all duration-300">
                   {dapp.logo ? (
                     <Logo
                       src={dapp.logo}

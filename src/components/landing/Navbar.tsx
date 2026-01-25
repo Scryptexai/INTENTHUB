@@ -55,7 +55,7 @@ const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-white/95 backdrop-blur-xl border-b-2 border-[#1A1A1A] safe-area-top"
+          className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-white/95 backdrop-blur-xl border-b-2 border-[#FF6B35] safe-area-top"
         >
           {/* Logo */}
           <a
@@ -64,7 +64,7 @@ const Navbar = () => {
               e.preventDefault();
               scrollToSection("hero");
             }}
-            className="touch-target w-12 h-12 border-2 border-[#1A1A1A] rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0 hover:shadow-xl transition-shadow active:scale-95"
+            className="touch-target w-12 h-12 border-2 border-[#FF6B35] rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0 hover:shadow-xl transition-shadow active:scale-95"
           >
             <img
               src={intentLogo}
@@ -76,7 +76,7 @@ const Navbar = () => {
           {/* Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="touch-target w-12 h-12 flex items-center justify-center border-2 border-[#1A1A1A] rounded-full bg-white hover:bg-[#FF6B35] transition-all duration-300 active:scale-95"
+            className="touch-target w-12 h-12 flex items-center justify-center border-2 border-[#FF6B35] rounded-full bg-white hover:bg-[#FF6B35] transition-all duration-300 active:scale-95"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -108,7 +108,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-20 right-0 bottom-0 w-full max-w-xs z-40 bg-white/98 backdrop-blur-xl border-l-2 border-[#1A1A1A] shadow-2xl overflow-y-auto pt-2 pb-24 px-4 space-y-3"
+              className="fixed top-20 right-0 bottom-0 w-full max-w-xs z-40 bg-white/98 backdrop-blur-xl border-l-2 border-[#FF6B35] shadow-2xl overflow-y-auto pt-2 pb-24 px-4 space-y-3"
             >
               <button
                 onClick={() => scrollToSection("problem")}
@@ -214,7 +214,7 @@ const Navbar = () => {
         }`}
       >
         <div 
-          className="flex items-center gap-2 px-8 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#1A1A1A] rounded-full"
+          className="flex items-center gap-2 px-8 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#FF6B35] rounded-full"
           style={{ backdropFilter: "blur(24px)" }}
         >
           <button
@@ -260,7 +260,7 @@ const Navbar = () => {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="fixed top-8 right-8 z-50"
       >
-        <div className="flex items-center gap-4 px-6 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#1A1A1A] rounded-full shadow-lg">
+        <div className="flex items-center gap-4 px-6 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#FF6B35] rounded-full shadow-lg">
           <span className="font-mono text-sm font-bold text-[#9B9B9B] uppercase tracking-wider">
             Launch in
           </span>

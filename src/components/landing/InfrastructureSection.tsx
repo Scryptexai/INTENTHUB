@@ -140,7 +140,7 @@ const InfrastructureSection = () => {
           </div>
 
           <div className="absolute top-1/3 right-1/3 infra-ornament-rotate pointer-events-none">
-            <div className="w-20 h-20 border-4 border-[#1A1A1A] opacity-5 rotate-45" />
+            <div className="w-20 h-20 border-4 border-[#FF6B35] opacity-5 rotate-45" />
           </div>
 
           {/* Large Background Text */}
@@ -268,22 +268,22 @@ const InfrastructureSection = () => {
                 className="infra-step-card relative z-10 group opacity-0"
                 style={{ y: 80 }}
               >
-                <div className="bg-[#FAFAF8] border-4 border-[#1A1A1A] p-6 lg:p-8 h-full hover:bg-[#FF6B35] transition-all duration-500 relative overflow-hidden">
+                <div className="bg-[#FAFAF8] border-4 border-[#FF6B35] p-6 lg:p-8 h-full hover:bg-[#FF6B35] transition-all duration-500 relative overflow-hidden">
                   {/* Loading Animation Overlay */}
                   <div className="absolute inset-0 bg-[#FAFAF8] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-30">
                     <Loader2 className="w-8 h-8 text-[#FF6B35] animate-spin" />
                   </div>
                   
                   {/* Number Badge - Top Left Corner */}
-                  <div className="absolute -top-4 -left-4 w-14 h-14 lg:w-16 lg:h-16 bg-[#1A1A1A] group-hover:bg-white border-4 border-white group-hover:border-[#1A1A1A] flex items-center justify-center transition-all duration-500 z-10">
-                    <span className="font-mono text-lg lg:text-xl font-black text-white group-hover:text-[#1A1A1A]">
+                  <div className="absolute -top-4 -left-4 w-14 h-14 lg:w-16 lg:h-16 bg-[#FF6B35] group-hover:bg-white border-4 border-white group-hover:border-[#FF6B35] flex items-center justify-center transition-all duration-500 z-10">
+                    <span className="font-mono text-lg lg:text-xl font-black text-white group-hover:text-[#FF6B35]">
                       {step.number}
                     </span>
                   </div>
 
                   {/* Icon Container */}
                   <div className="mb-6 pt-6 lg:pt-8">
-                    <div className="w-16 h-16 lg:w-20 lg:h-20 border-4 border-[#1A1A1A] group-hover:border-white bg-white group-hover:bg-transparent flex items-center justify-center transition-all duration-500">
+                    <div className="w-16 h-16 lg:w-20 lg:h-20 border-4 border-[#FF6B35] group-hover:border-white bg-white group-hover:bg-transparent flex items-center justify-center transition-all duration-500">
                       <step.icon className="w-8 h-8 lg:w-10 lg:h-10 text-[#FF6B35] group-hover:text-white" />
                     </div>
                   </div>
@@ -319,7 +319,7 @@ const InfrastructureSection = () => {
                   </div>
 
                   {/* Decorative Corner Element */}
-                  <div className="absolute bottom-0 right-0 w-16 h-16 lg:w-20 lg:h-20 border-t-4 border-l-4 border-[#1A1A1A] group-hover:border-white opacity-10 group-hover:opacity-30 transition-all duration-500" />
+                  <div className="absolute bottom-0 right-0 w-16 h-16 lg:w-20 lg:h-20 border-t-4 border-l-4 border-[#FF6B35] group-hover:border-white opacity-10 group-hover:opacity-30 transition-all duration-500" />
 
                   {/* Background Pattern on Hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none">

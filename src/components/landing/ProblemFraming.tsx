@@ -130,7 +130,7 @@ const ProblemFraming = () => {
       </div>
 
       <div className="absolute top-1/2 right-1/4 w-16 h-16 ornament-rotate pointer-events-none">
-        <div className="w-full h-full border-2 border-[#1A1A1A] opacity-5" />
+        <div className="w-full h-full border-2 border-[#FF6B35] opacity-5" />
       </div>
 
       <div className="container max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -147,7 +147,7 @@ const ProblemFraming = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="border-b-2 border-[#1A1A1A] pb-4"
+              className="border-b-2 border-[#FF6B35] pb-4"
             >
               <p 
                 className="font-mono text-xs uppercase tracking-[0.25em] text-[#9B9B9B] font-bold"
@@ -221,17 +221,17 @@ const ProblemFraming = () => {
               <div className="flex gap-4">
                 <button
                   onClick={handlePrev}
-                  className="w-12 h-12 border-2 border-[#1A1A1A] rounded-full flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
+                  className="w-12 h-12 border-2 border-[#FF6B35] rounded-full flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
                   aria-label="Previous problem"
                 >
-                  <ChevronLeft className="w-6 h-6 text-[#1A1A1A] group-hover:text-white" />
+                  <ChevronLeft className="w-6 h-6 text-[#FF6B35] group-hover:text-white" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="w-12 h-12 border-2 border-[#1A1A1A] rounded-full flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
+                  className="w-12 h-12 border-2 border-[#FF6B35] rounded-full flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
                   aria-label="Next problem"
                 >
-                  <ChevronRight className="w-6 h-6 text-[#1A1A1A] group-hover:text-white" />
+                  <ChevronRight className="w-6 h-6 text-[#FF6B35] group-hover:text-white" />
                 </button>
               </div>
             </motion.div>
@@ -253,17 +253,17 @@ const ProblemFraming = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="bg-white border-4 border-[#1A1A1A] p-10 lg:p-12 relative"
+                  className="bg-white border-4 border-[#FF6B35] p-10 lg:p-12 relative"
                 >
                   {/* Number Badge - Top Left */}
-                  <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#FF6B35] border-4 border-[#1A1A1A] flex items-center justify-center">
+                  <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#FF6B35] border-4 border-[#FF6B35] flex items-center justify-center">
                     <span className="font-mono text-2xl font-black text-white">
                       {problems[activeIndex].number}
                     </span>
                   </div>
 
                   {/* Icon - Top Right */}
-                  <div className="absolute -top-6 -right-6 w-20 h-20 bg-white border-4 border-[#1A1A1A] flex items-center justify-center">
+                  <div className="absolute -top-6 -right-6 w-20 h-20 bg-white border-4 border-[#FF6B35] flex items-center justify-center">
                     {activeIndex === 0 && <X className="w-10 h-10 text-[#FF6B35]" />}
                     {activeIndex === 1 && <FileText className="w-10 h-10 text-[#FF6B35]" />}
                     {activeIndex === 2 && <User className="w-10 h-10 text-[#FF6B35]" />}
