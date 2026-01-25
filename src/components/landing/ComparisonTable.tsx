@@ -35,7 +35,7 @@ const ComparisonTable = () => {
             <p className={`eyebrow-accent ${isMobile ? 'text-xs' : ''}`}>THE DIFFERENCE</p>
           </div>
           <h2 className={`font-display font-bold text-foreground uppercase ${
-            isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
+            isMobile ? 'text-2xl' : 'text-3xl md:text-4xl'
           }`}>
             Traditional Farming
             <br />

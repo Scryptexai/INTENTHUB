@@ -247,7 +247,7 @@ const SupportedDapps = () => {
     <section 
       id="dapps" 
       ref={sectionRef}
-      className="relative w-full min-h-screen bg-[#FAFAF8] overflow-hidden py-12 lg:py-32"
+      className="relative w-full min-h-screen bg-[#FAFAF8] overflow-hidden py-12 lg:py-20"
     >
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -289,7 +289,7 @@ const SupportedDapps = () => {
 
           {/* Large Headline */}
           <h2 
-            className="text-[48px] lg:text-[64px] xl:text-[72px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase max-w-3xl mx-auto"
+            className="text-[36px] lg:text-[44px] xl:text-[52px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase max-w-3xl mx-auto"
             style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
           >
             dApps Interactions
