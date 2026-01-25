@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Twitter, CheckCircle2, Loader2, ArrowRight, ExternalLink } from "lucide-react";
+import { useResponsive } from "@/contexts/ResponsiveContext";
 import earlyAccessBadge from "@/assets/early-access-badge.png";
 
 interface WaitlistFormProps {
@@ -9,6 +10,7 @@ interface WaitlistFormProps {
 }
 
 const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
+  const { isMobile } = useResponsive();
   const [step, setStep] = useState<"tasks" | "address" | "minting" | "complete">("tasks");
   const [twitterFollowed, setTwitterFollowed] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
@@ -64,9 +66,13 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md"
+            className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full ${
+              isMobile ? 'max-w-[90vw] mx-4' : 'max-w-md'
+            }`}
           >
-            <div className="bg-card border-2 border-foreground p-6 relative">
+            <div className={`bg-card border-2 border-foreground relative ${
+              isMobile ? 'p-4' : 'p-6'
+            } max-h-[90vh] overflow-y-auto`}>
               {/* Corner Brackets */}
               <div className="corner-bracket-tl" />
               <div className="corner-bracket-tr" />
@@ -82,18 +88,22 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
               </button>
 
               {/* Header */}
-              <div className="mb-6">
-                <div className="orange-square mb-4" />
-                <h3 className="font-display text-2xl font-bold uppercase">
+              <div className={isMobile ? 'mb-4' : 'mb-6'}>
+                <div className="orange-square mb-3" />
+                <h3 className={`font-display font-bold uppercase ${
+                  isMobile ? 'text-lg' : 'text-2xl'
+                }`}>
                   Join Waitlist
                 </h3>
-                <p className="text-sm text-muted-foreground mt-2 font-mono">
+                <p className={`text-muted-foreground mt-1 font-mono ${
+                  isMobile ? 'text-xs' : 'text-sm'
+                }`}>
                   Complete tasks to mint your Early Access badge
                 </p>
               </div>
 
               {/* Progress */}
-              <div className="flex gap-2 mb-8">
+              <div className={`flex gap-2 ${isMobile ? 'mb-4' : 'mb-8'}`}>
                 {["tasks", "address", "minting", "complete"].map((s, i) => (
                   <div
                     key={s}
@@ -117,10 +127,10 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                     <div
                       className={`p-4 border ${
                         twitterFollowed ? "border-primary bg-primary/10" : "border-foreground"
-                      } flex items-center gap-4 cursor-pointer hover:bg-foreground/5 transition-colors`}
+                      } flex items-center gap-3 cursor-pointer hover:bg-foreground/5 transition-colors`}
                       onClick={handleFollowTwitter}
                     >
-                      <div className={`w-10 h-10 flex items-center justify-center ${
+                      <div className={`w-10 h-10 flex-shrink-0 flex items-center justify-center ${
                         twitterFollowed ? "bg-primary" : "bg-foreground"
                       }`}>
                         {twitterFollowed ? (
@@ -129,24 +139,30 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                           <Twitter className="w-5 h-5 text-background" />
                         )}
                       </div>
-                      <div className="flex-1">
-                        <p className="font-mono text-sm font-bold uppercase">
+                      <div className="flex-1 min-w-0">
+                        <p className={`font-mono font-bold uppercase ${
+                          isMobile ? 'text-xs' : 'text-sm'
+                        }`}>
                           Follow on X (Twitter)
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className={`text-muted-foreground mt-0.5 ${
+                          isMobile ? 'text-[10px]' : 'text-xs'
+                        }`}>
                           @intent_network
                         </p>
                       </div>
-                      <ExternalLink className="w-4 h-4 text-muted-foreground" />
+                      <ExternalLink className={`text-muted-foreground flex-shrink-0 ${
+                        isMobile ? 'w-3.5 h-3.5' : 'w-4 h-4'
+                      }`} />
                     </div>
                   </div>
 
                   <button
                     onClick={() => twitterFollowed && setStep("address")}
                     disabled={!twitterFollowed}
-                    className={`mt-6 w-full btn-primary inline-flex items-center justify-center gap-2 ${
+                    className={`w-full btn-primary inline-flex items-center justify-center gap-2 ${
                       !twitterFollowed ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
+                    } ${isMobile ? 'mt-4 py-2 text-xs' : 'mt-6 py-3'}`}
                   >
                     Continue
                     <ArrowRight className="w-4 h-4" />
@@ -163,7 +179,9 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                 >
                   <form onSubmit={handleAddressSubmit}>
                     <label className="block">
-                      <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+                      <span className={`font-mono text-muted-foreground uppercase tracking-wider ${
+                        isMobile ? 'text-[10px]' : 'text-xs'
+                      }`}>
                         Wallet Address
                       </span>
                       <input
@@ -171,18 +189,22 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                         value={walletAddress}
                         onChange={(e) => setWalletAddress(e.target.value)}
                         placeholder="0x..."
-                        className="mt-2 w-full px-4 py-3 bg-background border-2 border-foreground font-mono text-sm focus:outline-none focus:border-primary transition-colors"
+                        className={`mt-2 w-full px-4 py-2 bg-background border-2 border-foreground font-mono focus:outline-none focus:border-primary transition-colors ${
+                          isMobile ? 'text-xs' : 'text-sm'
+                        }`}
                       />
                     </label>
-                    <p className="text-xs text-muted-foreground mt-2">
+                    <p className={`text-muted-foreground mt-2 ${
+                      isMobile ? 'text-[10px]' : 'text-xs'
+                    }`}>
                       Enter your EVM wallet address to receive your badge
                     </p>
                     <button
                       type="submit"
                       disabled={walletAddress.length < 10}
-                      className={`mt-6 w-full btn-primary inline-flex items-center justify-center gap-2 ${
+                      className={`w-full btn-primary inline-flex items-center justify-center gap-2 ${
                         walletAddress.length < 10 ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      } ${isMobile ? 'mt-4 py-2 text-xs' : 'mt-6 py-3'}`}
                     >
                       Mint Badge
                       <ArrowRight className="w-4 h-4" />
@@ -196,9 +218,11 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8"
+                  className={`text-center ${isMobile ? 'py-4' : 'py-8'}`}
                 >
-                  <div className="relative w-32 h-32 mx-auto mb-6">
+                  <div className={`relative mx-auto mb-6 ${
+                    isMobile ? 'w-24 h-24' : 'w-32 h-32'
+                  }`}>
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
@@ -210,8 +234,12 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                       className="w-full h-full object-contain p-4"
                     />
                   </div>
-                  <p className="font-mono text-sm uppercase tracking-wider flex items-center justify-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                  <p className={`font-mono uppercase tracking-wider flex items-center justify-center gap-2 ${
+                    isMobile ? 'text-xs' : 'text-sm'
+                  }`}>
+                    <Loader2 className={`animate-spin ${
+                      isMobile ? 'w-3.5 h-3.5' : 'w-4 h-4'
+                    }`} />
                     Minting your badge...
                   </p>
                 </motion.div>
@@ -222,13 +250,15 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-4"
+                  className={`text-center ${isMobile ? 'py-2' : 'py-4'}`}
                 >
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                    className="w-40 h-40 mx-auto mb-6 relative"
+                    className={`mx-auto mb-4 relative ${
+                      isMobile ? 'w-28 h-28' : 'w-40 h-40'
+                    }`}
                   >
                     <img
                       src={earlyAccessBadge}
@@ -243,24 +273,36 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                     />
                   </motion.div>
                   
-                  <div className="orange-square mx-auto mb-4" />
-                  <h4 className="font-display text-xl font-bold uppercase mb-2">
+                  <div className="orange-square mx-auto mb-3" />
+                  <h4 className={`font-display font-bold uppercase mb-1 ${
+                    isMobile ? 'text-lg' : 'text-xl'
+                  }`}>
                     Welcome to INTENT
                   </h4>
-                  <p className="text-sm text-muted-foreground font-mono mb-6">
+                  <p className={`text-muted-foreground font-mono mb-4 ${
+                    isMobile ? 'text-[10px]' : 'text-sm'
+                  }`}>
                     Your Early Access badge has been minted!
                   </p>
 
-                  <div className="p-4 bg-background border border-foreground">
-                    <p className="text-xs font-mono text-muted-foreground uppercase mb-2">
+                  <div className={`p-3 bg-background border border-foreground ${
+                    isMobile ? 'text-xs' : 'text-sm'
+                  }`}>
+                    <p className={`font-mono text-muted-foreground uppercase mb-1 ${
+                      isMobile ? 'text-[9px]' : 'text-xs'
+                    }`}>
                       Your Address
                     </p>
-                    <p className="font-mono text-sm break-all">{walletAddress}</p>
+                    <p className={`font-mono break-all ${
+                      isMobile ? 'text-[10px]' : 'text-sm'
+                    }`}>{walletAddress}</p>
                   </div>
 
                   <button
                     onClick={handleClose}
-                    className="mt-6 w-full btn-secondary"
+                    className={`w-full btn-secondary ${
+                      isMobile ? 'mt-4 py-2 text-xs' : 'mt-6 py-3'
+                    }`}
                   >
                     Done
                   </button>
