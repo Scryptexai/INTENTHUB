@@ -1,16 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "f                {[...Array(4)].map((_, index) => (
-                <span
-                  key={index}
-                  className="inline-block px-12 text-[48px] font-normal text-[#000000] opacity-10 uppercase tracking-tight select-none"
-                  style={{ 
-                    fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
-                    fontWeight: 400
-                  }}
-                >
-                  BEYOND ONCHAIN
-                </span>
-              ))}";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Hero3DElement from "./Hero3DElement";
@@ -90,7 +79,7 @@ const HeroSection = () => {
               {[...Array(4)].map((_, index) => (
                 <span
                   key={index}
-                  className="inline-block px-12 text-[80px] font-normal text-[#000000] opacity-10 uppercase tracking-tight select-none"
+                  className="inline-block px-12 text-[48px] font-normal text-[#000000] opacity-10 uppercase tracking-tight select-none"
                   style={{ 
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 400
