@@ -100,28 +100,34 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* LAYER 4: Headline + Tagline Overlay - Responsive positioning */}
-        <div className={`absolute z-30 w-full px-4 sm:px-8 ${
+        {/* LAYER 4: Headline + Tagline Overlay - Unified Responsive */}
+        <div className={`absolute z-30 w-full ${
           isMobile 
-            ? 'top-1/2 -translate-y-1/2 md:bottom-[33.33vh] md:left-[8.33vw] md:w-[33.33vw] md:max-w-[500px] md:px-0' 
+            ? 'bottom-0 left-0 right-0 p-6 bg-[#FAFAF8]/95 backdrop-blur-sm border-t-2 border-[#1A1A1A]' 
             : 'bottom-[33.33vh] left-[8.33vw] w-[33.33vw] max-w-[500px]'
         }`}>
-          {/* Content Card with Grid Border (NO background) */}
+          {/* Content Card with Grid Border (Desktop only) */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+            className={`relative ${isMobile ? '' : ''}`}
           >
-            {/* Thick Grid Border */}
-            <div className="absolute -inset-5 border-4 border-[#1A1A1A] pointer-events-none" />
+            {/* Thick Grid Border (Desktop only) */}
+            {!isMobile && (
+              <div className="absolute -inset-5 border-4 border-[#1A1A1A] pointer-events-none" />
+            )}
 
             {/* Content */}
-            <div className="relative p-6 space-y-4">
+            <div className={`relative space-y-4 ${isMobile ? 'px-0 py-0' : 'p-6'}`}>
               
               {/* Headline - Orange */}
               <h1 
-                className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] font-black leading-[0.85] tracking-tight text-[#FF6B35] uppercase"
+                className={`font-black leading-[0.85] tracking-tight text-[#FF6B35] uppercase ${
+                  isMobile 
+                    ? 'text-3xl' 
+                    : 'text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px]'
+                }`}
                 style={{ 
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                   fontWeight: 900
@@ -132,11 +138,13 @@ const HeroSection = () => {
               </h1>
 
               {/* Small Orange Line Divider */}
-              <div className="w-16 h-1 bg-[#FF6B35]" />
+              <div className={`bg-[#FF6B35] ${isMobile ? 'w-8 h-0.5' : 'w-16 h-1'}`} />
 
               {/* Tagline - Black */}
               <p 
-                className="text-lg lg:text-xl font-normal text-[#1A1A1A] leading-tight"
+                className={`font-normal text-[#1A1A1A] leading-tight ${
+                  isMobile ? 'text-sm' : 'text-lg lg:text-xl'
+                }`}
                 style={{ 
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                 }}
@@ -150,33 +158,17 @@ const HeroSection = () => {
               <div className="pt-4">
                 <Button
                   onClick={() => setIsWaitlistOpen(true)}
-                  className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base uppercase tracking-wider px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className={`bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono uppercase tracking-wider rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
+                    isMobile 
+                      ? 'w-full text-sm py-3 px-4' 
+                      : 'text-base px-8 py-4'
+                  }`}
                 >
-                  JOIN WAITLIST →
+                  {isMobile ? 'APPLY NOW →' : 'JOIN WAITLIST →'}
                 </Button>
               </div>
             </div>
           </motion.div>
-        </div>
-
-        {/* Mobile Version - Different Layout */}
-        <div className="lg:hidden absolute bottom-0 left-0 right-0 z-30 p-6 bg-[#FAFAF8]/95 backdrop-blur-sm border-t-2 border-[#1A1A1A]">
-          <div className="space-y-4">
-            <h1 className="text-4xl font-black leading-tight text-[#FF6B35] uppercase">
-              PROOF OF<br />PARTICIPATION
-            </h1>
-            <div className="w-12 h-0.5 bg-[#FF6B35]" />
-            <p className="text-sm text-[#1A1A1A] leading-snug">
-              Verify on-chain actions. Generate unique content. 
-              Build portable reputation.
-            </p>
-            <Button
-              onClick={() => setIsWaitlistOpen(true)}
-              className="w-full bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase py-4"
-            >
-              APPLY NOW →
-            </Button>
-          </div>
         </div>
       </section>
 
