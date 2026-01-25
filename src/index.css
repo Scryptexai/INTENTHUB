@@ -90,3 +90,119 @@
     margin-right: auto;
   }
 }
+
+/* Mobile Safe Area */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .safe-area-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-area-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+
+  .safe-area {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+}
+
+/* Touch targets (minimum 44x44px for iOS) */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Mobile viewport height (excluding URL bar) */
+.mobile-viewport {
+  /* Use 100dvh (dynamic viewport height) for mobile */
+  height: 100dvh;
+}
+
+/* Disable text selection on long press (mobile) */
+.no-select-on-press {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Smooth scrolling on mobile */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent zoom on input focus (iOS) */
+.prevent-zoom input,
+.prevent-zoom textarea,
+.prevent-zoom select {
+  font-size: 16px;
+}
+
+/* Mobile bottom navigation spacing */
+.pb-nav {
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .pb-nav {
+    padding-bottom: 0;
+  }
+}
+
+/* Mobile top navigation spacing */
+.pt-nav {
+  padding-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  .pt-nav {
+    padding-top: 0;
+  }
+}
+
+/* Horizontal scroll snap for mobile carousels */
+.scroll-snap-container {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+}
+
+.scroll-snap-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  flex-shrink: 0;
+}
+
+/* Prevent default mobile behaviors */
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Allow selection for specific elements */
+input,
+textarea,
+select,
+.user-select {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Mobile landscape orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hide-on-small-landscape {
+    display: none;
+  }
+}
