@@ -11,7 +11,9 @@ interface WaitlistFormProps {
 }
 
 const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
-  const { isMobile } = useResponsive();
+  const { isMobile: responsiveIsMobile } = useResponsive();
+  // Direct window check - more reliable
+  const isMobile = window.innerWidth < 768;
   const [step, setStep] = useState<"tasks" | "address" | "minting" | "complete">("tasks");
   const [twitterFollowed, setTwitterFollowed] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
@@ -19,8 +21,10 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
 
   // Debug log
   if (isOpen) {
-    console.log('WaitlistForm is open, isMobile:', isMobile);
-    console.log('Window dimensions:', { width: window.innerWidth, height: window.innerHeight });
+    console.log('WaitlistForm is open:');
+    console.log('- responsiveIsMobile:', responsiveIsMobile);
+    console.log('- window.innerWidth:', window.innerWidth);
+    console.log('- isMobile (direct):', isMobile);
   }
 
   const handleFollowTwitter = () => {
@@ -92,7 +96,12 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
           >
             <div className={`bg-card border-2 border-foreground relative ${
               isMobile ? 'p-4' : 'p-6'
-            } max-h-[90vh] overflow-y-auto`}>
+            } max-h-[90vh] overflow-y-auto`}
+            style={{
+              outline: isMobile ? '2px solid red' : 'none',
+              boxShadow: isMobile ? '0 0 0 10000px rgba(0,0,255,0.1)' : 'none',
+            }}
+            >
               {/* Corner Brackets */}
               <div className="corner-bracket-tl" />
               <div className="corner-bracket-tr" />
