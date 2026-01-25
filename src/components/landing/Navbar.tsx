@@ -46,24 +46,25 @@ const Navbar = () => {
 
   const formatNumber = (num: number) => num.toString().padStart(2, "0");
 
-  // Mobile Layout
+  // Mobile Layout - Optimized for touch targets and readability
   if (isMobile) {
     return (
       <>
-        {/* Mobile Logo + Hamburger */}
+        {/* Mobile Top Bar - Logo + Hamburger */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between"
+          className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-white/95 backdrop-blur-xl border-b-2 border-[#1A1A1A] safe-area-top"
         >
+          {/* Logo */}
           <a
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("hero");
             }}
-            className="w-12 h-12 border-2 border-[#1A1A1A] rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0"
+            className="touch-target w-12 h-12 border-2 border-[#1A1A1A] rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0 hover:shadow-xl transition-shadow active:scale-95"
           >
             <img
               src={intentLogo}
@@ -72,67 +73,101 @@ const Navbar = () => {
             />
           </a>
           
+          {/* Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-12 h-12 flex items-center justify-center border-2 border-[#1A1A1A] rounded-full bg-white shadow-lg hover:bg-[#FF6B35] transition-all"
+            className="touch-target w-12 h-12 flex items-center justify-center border-2 border-[#1A1A1A] rounded-full bg-white hover:bg-[#FF6B35] transition-all duration-300 active:scale-95"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
           >
-            <span className="text-2xl font-bold">{mobileMenuOpen ? "✕" : "☰"}</span>
+            <motion.span
+              animate={{ rotate: mobileMenuOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="text-2xl font-bold leading-none"
+            >
+              {mobileMenuOpen ? "✕" : "☰"}
+            </motion.span>
           </button>
         </motion.div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Full-Screen Menu - Slide-in Overlay */}
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-20 left-4 right-4 z-40 bg-white/95 backdrop-blur-xl border-2 border-[#1A1A1A] rounded-2xl shadow-2xl p-4 space-y-2"
-          >
-            <button
-              onClick={() => scrollToSection("problem")}
-              className="w-full px-4 py-3 text-left font-mono font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-lg transition-all"
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 pt-20"
+            />
+
+            {/* Menu Panel */}
+            <motion.nav
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-20 right-0 bottom-0 w-full max-w-xs z-40 bg-white/98 backdrop-blur-xl border-l-2 border-[#1A1A1A] shadow-2xl overflow-y-auto pt-2 pb-24 px-4 space-y-3"
             >
-              Explore
-            </button>
-            <button
-              onClick={() => scrollToSection("how-it-works")}
-              className="w-full px-4 py-3 text-left font-mono font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-lg transition-all"
-            >
-              Build
-            </button>
-            <button
-              onClick={() => scrollToSection("dapps")}
-              className="w-full px-4 py-3 text-left font-mono font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-lg transition-all"
-            >
-              Integrate
-            </button>
-            <button
-              disabled
-              className="w-full px-4 py-3 bg-[#FF6B35] text-white font-mono font-bold rounded-lg disabled:opacity-70"
-            >
-              Launch App →
-            </button>
-          </motion.div>
+              <button
+                onClick={() => scrollToSection("problem")}
+                className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
+              >
+                Explore
+              </button>
+
+              <div className="h-px bg-[#E5E5E0]" />
+
+              <button
+                onClick={() => scrollToSection("how-it-works")}
+                className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
+              >
+                Build
+              </button>
+
+              <div className="h-px bg-[#E5E5E0]" />
+
+              <button
+                onClick={() => scrollToSection("dapps")}
+                className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
+              >
+                Integrate
+              </button>
+
+              <div className="h-px bg-[#E5E5E0] mt-4" />
+
+              <button
+                disabled
+                className="touch-target w-full mt-4 px-6 py-4 bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-lg font-bold rounded-xl transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg active:scale-95"
+              >
+                Launch App →
+              </button>
+            </motion.nav>
+          </>
         )}
 
-        {/* Mobile Bottom Navigation - Mini Version */}
+        {/* Mobile Bottom Countdown Bar */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed bottom-4 left-4 right-4 z-40"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t-2 border-[#1A1A1A] safe-area-bottom"
         >
-          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-white/95 backdrop-blur-xl border-2 border-[#1A1A1A] rounded-full shadow-2xl text-[10px]">
-            <div className="flex items-center gap-1">
-              <span className="font-mono font-bold text-[#9B9B9B]">In</span>
-              <span className="font-mono font-bold text-[#1A1A1A]">
-                {formatNumber(countdown.days)}d
-              </span>
+          <div className="flex items-center justify-center gap-4 px-4 py-3 text-sm">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs font-bold text-[#9B9B9B] uppercase">Launch In</span>
+              <div className="flex items-center gap-1 font-mono font-bold text-[#1A1A1A]">
+                <span>{formatNumber(countdown.days)}</span>
+                <span className="text-[#9B9B9B] text-xs">d</span>
+                <span className="text-[#E5E5E0] mx-1">:</span>
+                <span>{formatNumber(countdown.hours)}</span>
+                <span className="text-[#9B9B9B] text-xs">h</span>
+                <span className="text-[#E5E5E0] mx-1">:</span>
+                <span>{formatNumber(countdown.minutes)}</span>
+                <span className="text-[#9B9B9B] text-xs">m</span>
+              </div>
             </div>
-            <div className="w-px h-4 bg-[#E5E5E0]" />
-            <span className="font-mono text-[#9B9B9B]">
-              {formatNumber(countdown.hours)}:{formatNumber(countdown.minutes)}
-            </span>
           </div>
         </motion.div>
       </>
