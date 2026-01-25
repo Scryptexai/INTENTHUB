@@ -5,66 +5,53 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Hero3DElement from "./Hero3DElement";
 import WaitlistForm from "./WaitlistForm";
-import aaveLogo from "@/assets/logos/aave.svg";
-import curveLogo from "@/assets/logos/curve.svg";
-import acrossLogo from "@/assets/logos/across.svg";
+import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const dapps = [
-  { name: "Aave", logo: aaveLogo },
-  { name: "Curve", logo: curveLogo },
-  { name: "Across", logo: acrossLogo },
-];
-
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLDivElement>(null);
-  const partnersRef = useRef<HTMLDivElement>(null);
+  const runningTextRef = useRef<HTMLDivElement>(null);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax effect on 3D element
-      gsap.to(".hero-3d-container", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
+      // 3D Element slow float animation
+      gsap.to(".hero-3d-element", {
+        y: 20,
+        rotation: 5,
+        duration: 5,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
       });
 
-      // Fade out headline on scroll
-      gsap.to(headlineRef.current, {
-        opacity: 0,
-        y: -50,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "20% top",
-          end: "50% top",
-          scrub: true,
-        },
-      });
-
-      // Partners slide in
-      if (partnersRef.current) {
-        gsap.from(partnersRef.current.querySelectorAll('.partner-item'), {
-          y: 40,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: partnersRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
+      // Running text scroll animation (behind 3D)
+      if (runningTextRef.current) {
+        gsap.to(runningTextRef.current, {
+          x: "-50%",
+          duration: 50,
+          ease: "none",
+          repeat: -1,
         });
       }
+
+      // Stats counter animation
+      const stats = document.querySelectorAll('.stat-number');
+      stats.forEach((stat) => {
+        const target = parseInt(stat.getAttribute('data-target') || '0');
+        gsap.to(stat, {
+          textContent: target,
+          duration: 2,
+          ease: "power1.out",
+          snap: { textContent: 1 },
+          scrollTrigger: {
+            trigger: stat,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -72,111 +59,120 @@ const HeroSection = () => {
 
   return (
     <>
-      <section id="hero" ref={sectionRef} className="min-h-screen relative overflow-hidden grid-pattern">
-        {/* Grid Lines Overlay */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-foreground/10" />
-          <div className="absolute top-0 left-2/4 w-px h-full bg-foreground/10" />
-          <div className="absolute top-0 left-3/4 w-px h-full bg-foreground/10" />
+      <section 
+        id="hero" 
+        ref={sectionRef} 
+        className="relative w-full h-screen bg-[#00000] overflow-hidden"
+      >
+        {/* LAYER 1: Background Base - Already set in className */}
+
+        {/* LAYER 2: Running Text (BEHIND 3D) - Top 1/3 of hero */}
+        <div className="absolute top-0 left-0 w-full h-[33.33vh] flex items-center overflow-hidden z-10 pointer-events-none">
+          <div
+            ref={runningTextRef}
+            className="flex whitespace-nowrap"
+            style={{ willChange: 'transform' }}
+          >
+            {/* Repeat for seamless loop */}
+            {[...Array(4)].map((_, index) => (
+              <span
+                key={index}
+                className="inline-block px-12 text-[80px] lg:text-[100px] xl:text-[120px] font-normal text-[#00000] opacity-10 uppercase tracking-tight select-none"
+                style={{ 
+                  fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
+                  fontWeight: 400
+                }}
+              >
+                BEYOND ONCHAIN
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* 3D Element */}
-        <div className="hero-3d-container absolute right-0 top-0 w-full lg:w-1/2 h-full">
-          <Hero3DElement />
+        {/* LAYER 3: 3D Animation - FULL HERO SIZE */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center">
+          <div className="hero-3d-element w-full h-full max-w-full max-h-full">
+            <Hero3DElement />
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="container-custom pt-32 pb-16 relative z-10">
-          <div ref={headlineRef} className="grid lg:grid-cols-2 gap-8 items-center min-h-[80vh]">
-            {/* Left Column - Text Content */}
-            <div>
-              {/* Orange Square Decorator */}
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className="orange-square mb-8"
-              />
+        {/* LAYER 4: Headline + Tagline Overlay - Left Bottom (1/3 from left, 1/3 from bottom) */}
+        <div className="absolute bottom-[33.33vh] left-[8.33vw] z-30 w-[33.33vw] max-w-[500px]">
+          {/* Content Card with Grid Border (NO background) */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative"
+          >
+            {/* Thick Grid Border */}
+            <div className="absolute -inset-5 border-4 border-[#1A1A1A] pointer-events-none" />
 
-              {/* Main Headline - Stacked Typography */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-8"
+            {/* Content */}
+            <div className="relative p-6 space-y-4">
+              
+              {/* Headline - Orange */}
+              <h1 
+                className="text-[48px] lg:text-[56px] xl:text-[64px] font-black leading-[0.85] tracking-tight text-[#FF6B35] uppercase"
+                style={{ 
+                  fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
+                  fontWeight: 900
+                }}
               >
-                <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] tracking-tight uppercase">
-                  BACKING
-                </h1>
-                <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] tracking-tight uppercase">
-                  TOMORROW
-                </h1>
-              </motion.div>
+                PROOF OF<br />
+                PARTICIPATION
+              </h1>
 
-              {/* Sub-headline */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg md:text-xl text-muted-foreground max-w-md mb-10 leading-relaxed"
+              {/* Small Orange Line Divider */}
+              <div className="w-16 h-1 bg-[#FF6B35]" />
+
+              {/* Tagline - Black */}
+              <p 
+                className="text-lg lg:text-xl font-normal text-[#1A1A1A] leading-tight"
+                style={{ 
+                  fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
+                }}
               >
-                Backing the very best web3 builders - transforming visionary ideas into real-world growth.
-              </motion.p>
+                Verify on-chain actions.<br />
+                Generate unique content.<br />
+                Build portable reputation.
+              </p>
 
               {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <button 
+              <div className="pt-4">
+                <Button
                   onClick={() => setIsWaitlistOpen(true)}
-                  className="btn-primary inline-flex items-center gap-3 group"
+                  className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base uppercase tracking-wider px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  JOIN WAITLIST
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-              </motion.div>
+                  JOIN WAITLIST →
+                </Button>
+              </div>
             </div>
-
-            {/* Right Column - Space for 3D */}
-            <div className="hidden lg:block" />
-          </div>
-
-          {/* Bottom Section - Live dApps */}
-          <div ref={partnersRef} className="mt-16 border-t border-foreground pt-8">
-            <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "hsl(142, 76%, 36%)" }} />
-              Live on Arc Network
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              {dapps.map((dapp) => (
-                <div
-                  key={dapp.name}
-                  className="partner-item px-4 py-2 border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-mono text-sm cursor-pointer flex items-center gap-3"
-                >
-                  <img src={dapp.logo} alt={dapp.name} className="w-5 h-5" />
-                  {dapp.name}
-                </div>
-              ))}
-            </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Social Links - Fixed Right */}
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-30 hidden lg:flex flex-col gap-2">
-          {["X", "TG", "M", "IN"].map((social) => (
-            <a
-              key={social}
-              href="#"
-              className="w-10 h-10 border border-foreground bg-background flex items-center justify-center font-mono text-xs hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+        {/* Mobile Version - Different Layout */}
+        <div className="lg:hidden absolute bottom-0 left-0 right-0 z-30 p-6 bg-[#FAFAF8]/95 backdrop-blur-sm border-t-2 border-[#1A1A1A]">
+          <div className="space-y-4">
+            <h1 className="text-4xl font-black leading-tight text-[#FF6B35] uppercase">
+              PROOF OF<br />PARTICIPATION
+            </h1>
+            <div className="w-12 h-0.5 bg-[#FF6B35]" />
+            <p className="text-sm text-[#1A1A1A] leading-snug">
+              Verify on-chain actions. Generate unique content. 
+              Build portable reputation.
+            </p>
+            <Button
+              onClick={() => setIsWaitlistOpen(true)}
+              className="w-full bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase py-4"
             >
-              {social}
-            </a>
-          ))}
+              APPLY NOW →
+            </Button>
+          </div>
         </div>
       </section>
 
+      {/* Waitlist Modal */}
       <WaitlistForm isOpen={isWaitlistOpen} onClose={() => setIsWaitlistOpen(false)} />
     </>
   );

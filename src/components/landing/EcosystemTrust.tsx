@@ -2,18 +2,51 @@ import { useEffect, useRef } from "react";
 import { ExternalLink } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Logo from "./Logo";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const partners = [
-  "Arc Network",
-  "ArcFlow Finance",
-  "Aave",
-  "Across Protocol",
-  "Alchemy",
-  "Chainlink",
-  "thirdweb",
-  "Blockdaemon",
+  {
+    name: "Arc Network",
+    logo: "/assets/logos/chains/arc-network.jpg",
+    shortName: "Arc"
+  },
+  {
+    name: "ArcFlow Finance",
+    logo: "/assets/logos/arc/arcflow-finance.jpg",
+    shortName: "ArcFlow"
+  },
+  {
+    name: "Aave",
+    logo: "/assets/logos/arc/aave.jpg",
+    shortName: "Aave"
+  },
+  {
+    name: "Across Protocol",
+    logo: "/assets/Across.jpg",
+    shortName: "Across"
+  },
+  {
+    name: "Alchemy",
+    logo: "/assets/Alchemy.jpg",
+    shortName: "Alchemy"
+  },
+  {
+    name: "Chainlink",
+    logo: "/assets/Chainlink.jpg",
+    shortName: "Chainlink"
+  },
+  {
+    name: "thirdweb",
+    logo: "/assets/Thirweb.jpg",
+    shortName: "thirdweb"
+  },
+  {
+    name: "Blockdaemon",
+    logo: "/assets/Blockdaemon.jpg",
+    shortName: "Blockdaemon"
+  },
 ];
 
 const EcosystemTrust = () => {
@@ -47,7 +80,7 @@ const EcosystemTrust = () => {
   }, []);
 
   return (
-    <section id="ecosystem" ref={sectionRef} className="section-padding">
+    <section id="ecosystem" ref={sectionRef} className="section-padding-sm">
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -69,19 +102,28 @@ const EcosystemTrust = () => {
         >
           {partners.map((partner, index) => (
             <div
-              key={partner}
+              key={index}
               className={`partner-card p-6 flex items-center justify-center cursor-pointer transition-colors hover:bg-primary hover:text-primary-foreground group ${
                 index < partners.length - (partners.length <= 4 ? 0 : 4) ? "border-b border-foreground" : ""
               } ${(index + 1) % 4 !== 0 ? "border-r border-foreground" : ""}`}
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 border border-foreground group-hover:border-primary-foreground flex items-center justify-center bg-background-secondary group-hover:bg-transparent">
-                  <span className="font-display font-bold text-sm">
-                    {partner.charAt(0)}
-                  </span>
+                <div className="w-10 h-10 border border-foreground group-hover:border-primary-foreground flex items-center justify-center bg-background-secondary group-hover:bg-transparent overflow-hidden">
+                  {partner.logo ? (
+                    <Logo
+                      src={partner.logo}
+                      alt={partner.name}
+                      fallback={partner.shortName}
+                      className="w-full h-full"
+                    />
+                  ) : (
+                    <span className="font-display font-bold text-sm">
+                      {partner.name.charAt(0)}
+                    </span>
+                  )}
                 </div>
                 <span className="font-mono text-sm font-medium text-foreground group-hover:text-primary-foreground">
-                  {partner}
+                  {partner.name}
                 </span>
               </div>
             </div>

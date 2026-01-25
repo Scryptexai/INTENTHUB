@@ -43,7 +43,7 @@ const FinalCTA = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-foreground text-background">
+    <section ref={sectionRef} className="section-padding-sm relative overflow-hidden bg-foreground text-background">
       {/* Grid Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{

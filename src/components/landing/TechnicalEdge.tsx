@@ -75,7 +75,7 @@ const TechnicalEdge = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding">
+    <section ref={sectionRef} className="section-padding-sm">
       <div className="container-custom">
         {/* Section Header */}
         <div ref={headerRef} className="mb-16">

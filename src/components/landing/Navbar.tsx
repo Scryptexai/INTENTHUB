@@ -1,57 +1,42 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
-
-const navLinks = [
-  { label: "Our Ecosystem", href: "#ecosystem", hasDropdown: true },
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "dApps", href: "#dapps" },
-];
+import intentLogo from "/assets/intent-logo.jpg";
 
 // 7-day countdown target
 const LAUNCH_DATE = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0 });
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 100);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Countdown timer
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date();
       const diff = LAUNCH_DATE.getTime() - now.getTime();
-
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        setCountdown({ days, hours, minutes, seconds });
+        setCountdown({ days, hours, minutes });
       }
     };
-
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
     }
   };
 
@@ -59,147 +44,152 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
+      {/* Logo - Fixed Top Left */}
+      <motion.a
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-background border-b border-foreground"
-            : "bg-transparent"
+        href="#hero"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("hero");
+        }}
+        className="fixed top-8 left-8 z-50 flex items-center gap-4 group"
+      >
+        <div className="w-16 h-16 border-4 border-[#1A1A1A] rounded-full overflow-hidden bg-white shadow-lg">
+          <img
+            src={intentLogo}
+            alt="INTENT"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <span 
+          className="font-black text-2xl uppercase tracking-tight text-[#1A1A1A] group-hover:text-[#FF6B35] transition-colors duration-300 hidden lg:block"
+          style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
+        >
+          INTENT
+        </span>
+      </motion.a>
+
+      {/* Center Navigation Pill - ALWAYS PILL SHAPE */}
+      <motion.nav
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className={`fixed top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
+          scrolled ? "shadow-2xl" : "shadow-lg"
         }`}
       >
-        <div className="container-custom">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <a 
-              href="#hero" 
-              onClick={(e) => scrollToSection(e, "#hero")}
-              className="font-display text-xl font-bold text-foreground uppercase tracking-wider"
-            >
-              INTENT
-            </a>
+        <div 
+          className="flex items-center gap-2 px-8 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#1A1A1A] rounded-full"
+          style={{ backdropFilter: "blur(24px)" }}
+        >
+          <button
+            onClick={() => scrollToSection("problem")}
+            className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#1A1A1A] rounded-full transition-all duration-300"
+          >
+            Explore
+          </button>
+          
+          <div className="w-px h-6 bg-[#E5E5E0]" />
+          
+          <button
+            onClick={() => scrollToSection("how-it-works")}
+            className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#1A1A1A] rounded-full transition-all duration-300"
+          >
+            Integrate
+          </button>
+          
+          <div className="w-px h-6 bg-[#E5E5E0]" />
+          
+          <button
+            onClick={() => scrollToSection("dapps")}
+            className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#1A1A1A] rounded-full transition-all duration-300"
+          >
+            Build
+          </button>
+          
+          <div className="w-px h-6 bg-[#E5E5E0]" />
+          
+          <button
+            disabled
+            className="px-8 py-3 bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base font-bold rounded-full transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg"
+          >
+            Launch App →
+          </button>
+        </div>
+      </motion.nav>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-mono font-medium text-foreground hover:bg-foreground hover:text-background transition-colors"
-                >
-                  {link.label}
-                  {link.hasDropdown && <ChevronDown className="w-3 h-3" />}
-                </a>
-              ))}
-            </nav>
-
-            {/* Desktop CTA - Launch App with Countdown */}
-            <div className="hidden md:flex items-center gap-3">
-              {/* Countdown */}
-              <div className="flex items-center gap-1 font-mono text-xs">
-                <span className="text-muted-foreground">Launch in:</span>
-                <div className="flex gap-1">
-                  <span className="px-2 py-1 bg-foreground text-background">{formatNumber(countdown.days)}d</span>
-                  <span className="px-2 py-1 bg-foreground text-background">{formatNumber(countdown.hours)}h</span>
-                  <span className="px-2 py-1 bg-foreground text-background">{formatNumber(countdown.minutes)}m</span>
-                  <span className="px-2 py-1 bg-foreground text-background">{formatNumber(countdown.seconds)}s</span>
-                </div>
-              </div>
-              
-              {/* Launch App Button - Blurred */}
-              <div className="relative group">
-                <button 
-                  disabled
-                  className="btn-primary text-xs px-6 py-3 inline-flex items-center gap-2 opacity-70 cursor-not-allowed relative overflow-hidden"
-                >
-                  <span className="blur-[2px]">LAUNCH APP</span>
-                </button>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-mono text-xs font-bold text-primary-foreground bg-foreground/80 px-2 py-1">
-                    COMING SOON
-                  </span>
-                </div>
-              </div>
+      {/* Countdown - Fixed Top Right */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="fixed top-8 right-8 z-50 hidden lg:block"
+      >
+        <div className="flex items-center gap-4 px-6 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#1A1A1A] rounded-full shadow-lg">
+          <span className="font-mono text-sm font-bold text-[#9B9B9B] uppercase tracking-wider">
+            Launch in
+          </span>
+          <div className="flex items-center gap-2">
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-2xl font-black text-[#1A1A1A]">
+                {formatNumber(countdown.days)}
+              </span>
+              <span className="font-mono text-[10px] text-[#9B9B9B] uppercase">
+                Days
+              </span>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-10 h-10 border border-foreground flex items-center justify-center"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
+            <span className="font-mono text-2xl font-black text-[#E5E5E0]">:</span>
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-2xl font-black text-[#1A1A1A]">
+                {formatNumber(countdown.hours)}
+              </span>
+              <span className="font-mono text-[10px] text-[#9B9B9B] uppercase">
+                Hours
+              </span>
+            </div>
+            <span className="font-mono text-2xl font-black text-[#E5E5E0]">:</span>
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-2xl font-black text-[#1A1A1A]">
+                {formatNumber(countdown.minutes)}
+              </span>
+              <span className="font-mono text-[10px] text-[#9B9B9B] uppercase">
+                Mins
+              </span>
+            </div>
           </div>
         </div>
-      </motion.header>
+      </motion.div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 md:hidden bg-background"
+      {/* Mobile Navigation - Bottom Fixed */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed bottom-6 left-6 right-6 z-50 lg:hidden"
+      >
+        <div className="flex items-center justify-between gap-2 px-6 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#1A1A1A] rounded-full shadow-2xl">
+          <button
+            onClick={() => scrollToSection("problem")}
+            className="flex-1 px-4 py-3 font-mono text-sm font-bold text-[#1A1A1A] hover:bg-[#F5F5F2] rounded-full transition-all duration-300"
           >
-            <nav className="pt-20 px-4">
-              <div className="border border-foreground">
-                {navLinks.map((link, index) => (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={(e) => scrollToSection(e, link.href)}
-                    className="block text-lg font-mono font-bold text-foreground py-4 px-4 border-b border-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
-
-              {/* Mobile Countdown */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-4 p-4 border border-foreground"
-              >
-                <p className="font-mono text-xs text-muted-foreground uppercase mb-2">Launch Countdown</p>
-                <div className="flex gap-2 font-mono text-sm">
-                  <span className="px-3 py-2 bg-foreground text-background">{formatNumber(countdown.days)}d</span>
-                  <span className="px-3 py-2 bg-foreground text-background">{formatNumber(countdown.hours)}h</span>
-                  <span className="px-3 py-2 bg-foreground text-background">{formatNumber(countdown.minutes)}m</span>
-                  <span className="px-3 py-2 bg-foreground text-background">{formatNumber(countdown.seconds)}s</span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mt-4"
-              >
-                <button 
-                  disabled
-                  className="btn-primary w-full inline-flex items-center justify-center gap-2 opacity-70 cursor-not-allowed relative overflow-hidden"
-                >
-                  <span className="blur-[2px]">LAUNCH APP</span>
-                  <span className="absolute font-mono text-xs font-bold">COMING SOON</span>
-                </button>
-              </motion.div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Explore
+          </button>
+          <button
+            onClick={() => scrollToSection("how-it-works")}
+            className="flex-1 px-4 py-3 font-mono text-sm font-bold text-[#1A1A1A] hover:bg-[#F5F5F2] rounded-full transition-all duration-300"
+          >
+            Build
+          </button>
+          <button
+            disabled
+            className="flex-1 px-4 py-3 bg-[#FF6B35] text-white font-mono text-sm font-bold rounded-full disabled:opacity-70"
+          >
+            Launch →
+          </button>
+        </div>
+      </motion.div>
     </>
   );
 };

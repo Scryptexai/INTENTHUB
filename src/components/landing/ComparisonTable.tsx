@@ -13,7 +13,7 @@ const comparisons = [
 
 const ComparisonTable = () => {
   return (
-    <section className="section-padding border-y border-foreground bg-card">
+    <section className="section-padding-sm border-y border-foreground bg-card">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div

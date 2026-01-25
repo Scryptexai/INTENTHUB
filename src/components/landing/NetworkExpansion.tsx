@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Logo from "./Logo";
 
 const networks = [
   {
@@ -6,36 +7,46 @@ const networks = [
     status: "live",
     stats: { tvl: "$12M", txs: "2.5M+", users: "180K" },
     launch: null,
+    logo: "/src/assets/logos/chains/arc-network.jpg",
+    shortName: "Arc"
   },
   {
     name: "Rise Chain",
     status: "auto",
     stats: { tvl: "$23M", txs: "3M+", users: "180K" },
     launch: "Q2 2025",
+    logo: "/src/assets/logos/chains/risechain.jpg",
+    shortName: "Rise"
   },
   {
     name: "Pharos",
     status: "auto",
     stats: { tvl: "$45M", txs: "68+", users: "326K" },
     launch: "Q2 2025",
+    logo: "/src/assets/logos/chains/PharosNetwork.jpg",
+    shortName: "Pharos"
   },
   {
     name: "Sonelium",
     status: "soon",
     stats: null,
     launch: "Q3 2025",
+    logo: "/src/assets/logos/chains/soneium.jpg",
+    shortName: "Sonelium"
   },
   {
     name: "Base",
     status: "soon",
     stats: null,
     launch: "Q3 2025",
+    logo: "/src/assets/logos/chains/base.jpg",
+    shortName: "Base"
   },
 ];
 
 const NetworkExpansion = () => {
   return (
-    <section className="section-padding border-y border-foreground bg-card">
+    <section className="section-padding-sm border-y border-foreground bg-card">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -87,10 +98,19 @@ const NetworkExpansion = () => {
               </div>
 
               {/* Logo */}
-              <div className="w-16 h-16 mx-auto border border-foreground group-hover:border-primary-foreground flex items-center justify-center mb-4 bg-background-secondary group-hover:bg-transparent">
-                <span className="text-2xl font-display font-bold">
-                  {network.name.charAt(0)}
-                </span>
+              <div className="w-16 h-16 mx-auto border border-foreground group-hover:border-primary-foreground flex items-center justify-center mb-4 bg-background-secondary group-hover:bg-transparent overflow-hidden">
+                {network.logo ? (
+                  <Logo
+                    src={network.logo}
+                    alt={network.name}
+                    fallback={network.shortName}
+                    className="w-full h-full"
+                  />
+                ) : (
+                  <span className="text-2xl font-display font-bold">
+                    {network.name.charAt(0)}
+                  </span>
+                )}
               </div>
 
               <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary-foreground mb-3 uppercase">

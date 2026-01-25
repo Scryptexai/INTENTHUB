@@ -10,36 +10,36 @@
     --background: 0 0% 90%;
     --background-secondary: 0 0% 95%;
     --foreground: 0 0% 8%;
-    
+
     --card: 0 0% 100%;
     --card-foreground: 0 0% 8%;
     --card-border: 0 0% 0%;
-    
+
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
-    
+
     /* Orange accent like ChainGPT Labs */
     --primary: 24 100% 56%;
     --primary-foreground: 0 0% 100%;
-    
+
     --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 100%;
-    
+
     --muted: 0 0% 45%;
     --muted-foreground: 0 0% 40%;
-    
+
     --accent: 24 100% 56%;
     --accent-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
+
     --border: 0 0% 0%;
     --input: 0 0% 85%;
     --ring: 24 100% 56%;
-    
+
     --radius: 0px;
-    
+
     /* Sidebar tokens */
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 8%;
@@ -52,205 +52,41 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
-  }
-  
-  code, .font-mono {
-    font-family: 'Roboto Mono', monospace;
-  }
-}
-
-@layer components {
-  /* Brutalist Grid Card */
-  .brutalist-card {
-    @apply bg-card border border-foreground transition-all duration-200;
-  }
-  
-  .brutalist-card-hover {
-    @apply brutalist-card;
-  }
-  
-  .brutalist-card-hover:hover {
-    @apply bg-primary text-primary-foreground;
-  }
-  
-  .brutalist-card-hover:hover h3,
-  .brutalist-card-hover:hover p,
-  .brutalist-card-hover:hover span {
-    @apply text-primary-foreground;
-  }
-  
-  /* Grid Module */
-  .grid-module {
-    @apply border border-foreground bg-card;
-  }
-  
-  /* Primary Button - Brutalist Style */
-  .btn-primary {
-    @apply relative px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 border-2 border-foreground;
-    font-family: 'Roboto Mono', monospace;
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-  }
-  
-  .btn-primary:hover {
-    background: hsl(var(--foreground));
-    color: hsl(var(--background));
-  }
-  
-  /* Secondary Button */
-  .btn-secondary {
-    @apply px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 bg-transparent border-2 border-foreground;
-    font-family: 'Roboto Mono', monospace;
-    color: hsl(var(--foreground));
-  }
-  
-  .btn-secondary:hover {
-    background: hsl(var(--foreground));
-    color: hsl(var(--background));
-  }
-  
-  /* Eyebrow Text */
-  .eyebrow {
-    @apply text-xs uppercase tracking-[0.2em] font-mono font-bold;
-    color: hsl(var(--muted));
-  }
-  
-  .eyebrow-accent {
-    @apply eyebrow;
-    color: hsl(var(--primary));
-  }
-  
-  /* Section Styling */
-  .section-padding {
-    @apply py-16 md:py-24;
-  }
-  
-  .container-custom {
-    @apply max-w-7xl mx-auto px-4 lg:px-6;
-  }
-  
-  /* Grid Pattern Background */
-  .grid-pattern {
-    background-image: 
-      linear-gradient(hsl(var(--foreground) / 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--foreground) / 0.08) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  
-  /* Orange Square Decorator */
-  .orange-square {
-    @apply w-2 h-2 bg-primary;
-  }
-  
-  /* Corner Brackets Decorator */
-  .corner-bracket {
-    @apply absolute w-4 h-4 border-foreground;
-  }
-  
-  .corner-bracket-tl {
-    @apply corner-bracket top-0 left-0 border-t-2 border-l-2;
-  }
-  
-  .corner-bracket-tr {
-    @apply corner-bracket top-0 right-0 border-t-2 border-r-2;
-  }
-  
-  .corner-bracket-bl {
-    @apply corner-bracket bottom-0 left-0 border-b-2 border-l-2;
-  }
-  
-  .corner-bracket-br {
-    @apply corner-bracket bottom-0 right-0 border-b-2 border-r-2;
-  }
-  
-  /* Status Badges - Brutalist */
-  .badge-live {
-    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground;
-    background: hsl(142 76% 36%);
-    color: white;
-  }
-  
-  .badge-auto {
-    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground;
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-  }
-  
-  .badge-soon {
-    @apply px-3 py-1 text-xs font-mono font-bold uppercase border border-foreground bg-muted text-foreground;
-  }
-  
-  /* Category Badge */
-  .category-badge {
-    @apply px-2 py-0.5 text-xs font-mono font-bold uppercase border border-foreground bg-card;
-  }
-  
-  /* X Marker Decorator */
-  .x-marker {
-    @apply text-primary font-bold text-lg;
-  }
-  
-  /* Spaced Letters Effect */
-  .spaced-letters {
-    letter-spacing: 0.3em;
-  }
-}
-
 @layer utilities {
-  /* Animation Delays */
-  .animation-delay-100 { animation-delay: 100ms; }
-  .animation-delay-200 { animation-delay: 200ms; }
-  .animation-delay-300 { animation-delay: 300ms; }
-  .animation-delay-500 { animation-delay: 500ms; }
-  .animation-delay-700 { animation-delay: 700ms; }
-}
+  .glow-text {
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  }
 
-/* Keyframe Animations */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+  /* Custom utilities for better spacing */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
 
-@keyframes marquee-reverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
+  
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
 
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
+  .section-padding-lg {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
+  .section-padding-sm {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 
-.animate-marquee-reverse {
-  animation: marquee-reverse 30s linear infinite;
-}
+  .tight-content {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.animate-pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-/* Selection Color */
-::selection {
-  background: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  .wide-content {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

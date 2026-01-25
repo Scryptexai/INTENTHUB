@@ -73,7 +73,7 @@ const OutputShowcase = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding bg-card border-y border-foreground">
+    <section ref={sectionRef} className="section-padding-sm bg-card border-y border-foreground">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div

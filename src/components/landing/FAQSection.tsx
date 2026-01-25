@@ -39,7 +39,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="features" className="section-padding border-y border-foreground bg-card">
+    <section id="features" className="section-padding-sm border-y border-foreground bg-card">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div

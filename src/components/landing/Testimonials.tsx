@@ -23,7 +23,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="section-padding">
+    <section className="section-padding-sm">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
