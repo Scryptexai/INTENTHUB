@@ -153,127 +153,74 @@ const HeroSection = () => {
         </section>
       )}
 
-      {/* Mobile Hero Layout - Optimized for small screens */}
+      {/* Mobile Hero Layout - Fullwidth Animation with Overlay */}
       {isMobile && (
         <section 
           id="hero" 
           ref={sectionRef} 
-          className="relative w-full min-h-screen bg-[#FAFAF8] overflow-hidden pt-16 pb-8 px-4 flex flex-col justify-between"
+          className="relative w-screen h-screen bg-[#FAFAF8] overflow-hidden -mx-4 left-2"
         >
-          {/* Top Section: Tagline + CTA - Compact & Clean */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col items-center gap-3 pt-4"
-          >
+          {/* FULLWIDTH BACKGROUND ANIMATION */}
+          <div className="hero-3d-element absolute inset-0 w-full h-full">
+            <Hero3DElement />
+          </div>
+
+          {/* OVERLAY: Tagline + Headline + CTA + Description (No Background) */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10">
             {/* Tagline */}
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#9B9B9B] font-bold">
-              On-chain verification
-            </p>
-
-            {/* CTA Button - Centered, not full width */}
-            <Button
-              onClick={() => setIsWaitlistOpen(true)}
-              className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm font-bold uppercase tracking-wider px-6 py-2.5 rounded-lg transition-all duration-300 active:scale-95"
+            <motion.p
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#FF6B35] font-bold mb-2"
             >
-              JOIN WAITLIST →
-            </Button>
-          </motion.div>
+              On-chain verification
+            </motion.p>
 
-          {/* Middle Section: Headline - Center Focused */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex-1 flex flex-col items-center justify-center gap-4 py-4 min-h-[180px]"
-          >
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-4"
+            >
+              <Button
+                onClick={() => setIsWaitlistOpen(true)}
+                className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-xs font-bold uppercase tracking-wider px-5 py-2 rounded-lg transition-all duration-300 active:scale-95 shadow-lg"
+              >
+                JOIN WAITLIST →
+              </Button>
+            </motion.div>
+
             {/* Main Headline */}
-            <h1 
-              className="text-[36px] font-black leading-[1.1] tracking-tight text-[#FF6B35] uppercase text-center"
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-[40px] font-black leading-[1.0] tracking-tight text-white text-center uppercase mb-3 drop-shadow-lg"
               style={{ 
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
-                fontWeight: 900
+                fontWeight: 900,
+                textShadow: '0 4px 12px rgba(0,0,0,0.3)'
               }}
             >
               PROOF OF<br />
               PARTICIPATION
-            </h1>
-
-            {/* Orange Divider */}
-            <div className="w-10 h-0.5 bg-[#FF6B35]" />
+            </motion.h1>
 
             {/* Description */}
-            <p 
-              className="text-[15px] font-normal leading-[1.5] text-[#1A1A1A] text-center max-w-xs"
-              style={{ 
-                fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-[14px] font-normal leading-[1.4] text-white text-center max-w-xs drop-shadow-md"
+              style={{
+                textShadow: '0 2px 8px rgba(0,0,0,0.3)'
               }}
             >
               Verify on-chain actions. Generate content. Build reputation.
-            </p>
-          </motion.div>
-
-          {/* Bottom Section: Animation + Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col items-center gap-6 pb-4"
-          >
-            {/* 3D Animation - Compact Size */}
-            <div className="hero-3d-element w-56 h-64 max-w-full flex-shrink-0">
-              <Hero3DElement />
-            </div>
-
-            {/* Stats - 2 Column Layout */}
-            <div className="w-full grid grid-cols-2 gap-4">
-              {/* Stat 1: Campaigns */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="text-center"
-              >
-                <div className="text-2xl font-black text-[#FF6B35] font-mono">
-                  <span className="stat-number" data-target="50">0</span>+
-                </div>
-                <p className="text-[11px] uppercase tracking-widest text-[#9B9B9B] font-mono font-bold mt-1">
-                  Campaigns
-                </p>
-              </motion.div>
-
-              {/* Stat 2: Proofs */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="text-center"
-              >
-                <div className="text-2xl font-black text-[#FF6B35] font-mono">
-                  <span className="stat-number" data-target="500">0</span>K
-                </div>
-                <p className="text-[11px] uppercase tracking-widest text-[#9B9B9B] font-mono font-bold mt-1">
-                  Proofs
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Stat 3: Transactions - Centered Below */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-center"
-            >
-              <div className="text-2xl font-black text-[#FF6B35] font-mono">
-                <span className="stat-number" data-target="2">0</span>M+
-              </div>
-              <p className="text-[11px] uppercase tracking-widest text-[#9B9B9B] font-mono font-bold mt-1">
-                Transactions
-              </p>
-            </motion.div>
-          </motion.div>
+            </motion.p>
+          </div>
         </section>
       )}
 

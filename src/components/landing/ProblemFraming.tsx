@@ -112,16 +112,8 @@ const ProblemFraming = () => {
       ref={sectionRef}
       className="relative w-full min-h-[66.67vh] bg-[#F5F5F2] overflow-hidden py-8 lg:py-14"
     >
-          {/* Grid Background Pattern */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-px h-[66.67%] bg-[#1A1A1A]" />
-        <div className="absolute top-0 left-2/4 w-px h-[66.67%] bg-[#1A1A1A]" />
-        <div className="absolute top-0 left-3/4 w-px h-[66.67%] bg-[#1A1A1A]" />
-        <div className="absolute top-1/3 left-0 w-full h-px bg-[#1A1A1A]" />
-        <div className="absolute top-2/3 left-0 w-full h-px bg-[#1A1A1A]" />
-      </div>
-
-      {/* Decorative Ornaments */}
+          {/* Grid Background Pattern - REMOVED */}
+      {/* Decorative Ornaments - KEPT */}
       <div className="absolute top-20 right-20 w-32 h-32 ornament-float-1 pointer-events-none">
         <div className="w-full h-full border-2 border-[#FF6B35] opacity-10 rounded-full" />
         <div className="absolute inset-4 border border-[#FF6B35] opacity-20 rounded-full" />

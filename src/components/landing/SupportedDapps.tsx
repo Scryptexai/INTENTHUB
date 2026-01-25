@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Loader2, TrendingUp, Users, Activity } from "lucide-react";
+import { ArrowUpRight, Loader2, TrendingUp, Users, Activity, ChevronLeft, ChevronRight } from "lucide-react";
+import { useResponsive } from "@/contexts/ResponsiveContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Logo from "./Logo";
@@ -175,7 +176,14 @@ const baseDapps = [
 
 const SupportedDapps = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { isMobile } = useResponsive();
   const [activeNetwork, setActiveNetwork] = useState("arc");
+  const [mobileDappIndex, setMobileDappIndex] = useState(0);
+
+  useEffect(() => {
+    // Reset mobile dApp index when network changes
+    setMobileDappIndex(0);
+  }, [activeNetwork]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -263,258 +271,226 @@ const SupportedDapps = () => {
 
       <div className="container max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
         
-        {/* Section Header with Visual */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-          
-          {/* Left: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            {/* Eyebrow */}
-            <div className="border-b-2 border-[#FF6B35] pb-4">
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#9B9B9B] font-bold">
-                OUR ECOSYSTEM
-              </p>
-            </div>
-
-            {/* Large Headline */}
-            <h2 
-              className="text-[48px] lg:text-[64px] xl:text-[72px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
-              style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
-            >
-              ECOSYSTEM
-            </h2>
-
-            {/* Orange Divider */}
-            <div className="w-20 h-1 bg-[#FF6B35]" />
-
-            {/* Description */}
-            <p className="font-mono text-base lg:text-lg text-[#6B6B6B] leading-relaxed max-w-lg">
-              Generate proof-of-activity from verified dApps across multiple chains. 
-              Every interaction automatically indexed and verified.
-            </p>
-          </motion.div>
-
-          {/* Right: 3D Visual/Network Graphic */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[400px] flex items-center justify-center"
-          >
-            {/* Network Visualization Placeholder */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              {/* Central Node */}
-              <div className="absolute w-32 h-32 border-4 border-[#FF6B35] rounded-full bg-white flex items-center justify-center z-10">
-                <img
-                  src="/assets/intent-logo.jpg"
-                  alt="INTENT Logo"
-                  className="w-20 h-20 object-contain"
-                />
-              </div>
-
-              {/* Rotating Chain Logos Container */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {networks.map((network, index) => {
-                  const angle = (index * 72) * (Math.PI / 180);
-                  const radius = 100;
-
-                  return (
-                    <motion.div
-                      key={network.id}
-                      className="chain-logo absolute w-10 h-10 border-2 border-[#FF6B35] rounded-full bg-white flex items-center justify-center z-20"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(-50%, -50%) translateX(${radius * Math.cos(angle)}px) translateY(${radius * Math.sin(angle)}px)`
-                      }}
-                    >
-                      <img
-                        src={network.logo}
-                        alt={`${network.name} Logo`}
-                        className="w-6 h-6 object-contain"
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Connecting Lines + Nodes */}
-              {[0, 1, 2, 3, 4, 5].map((i) => {
-                const angle = (i * 60) * (Math.PI / 180);
-                const radius = 140;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
-
-                return (
-                  <div key={i}>
-                    {/* Line */}
-                    <div
-                      className="absolute w-px h-28 bg-[#FF6B35] opacity-20 origin-bottom"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transform: `rotate(${i * 60}deg) translateY(-70px)`
-                      }}
-                    />
-                    {/* Outer Node */}
-                    <div
-                      className="absolute w-12 h-12 border border-[#FF6B35] rounded-full bg-[#FAFAF8] opacity-30"
-                      style={{
-                        left: `calc(50% + ${x}px)`,
-                        top: `calc(50% + ${y}px)`,
-                        transform: 'translate(-50%, -50%)'
-                      }}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Network Tabs - Status Cards */}
+        {/* Section Header - Simplified for Arc Focus */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12"
+          className="text-center mb-12 space-y-6"
         >
-          {networks.map((network) => (
-            <button
-              key={network.id}
-              onClick={() => setActiveNetwork(network.id)}
-              className={`relative p-6 border-4 transition-all duration-300 ${
-                activeNetwork === network.id
-                  ? "border-[#FF6B35] bg-white"
-                  : "border-[#E5E5E0] bg-[#F5F5F2] hover:border-[#FF6B35]"
-              }`}
-            >
-              {/* Status Badge */}
-              <div className={`absolute -top-3 -right-3 px-3 py-1 text-xs font-mono font-bold border-2 ${
-                network.badge === "LIVE"
-                  ? "bg-[#00FF88] border-[#00FF88] text-black"
-                  : network.badge === "SOON"
-                  ? "bg-[#FF6B35] border-[#FF6B35] text-white"
-                  : "bg-[#00D9FF] border-[#00D9FF] text-white"
-              }`}>
-                {network.badge}
-              </div>
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-4">
+            <span className="orange-square" />
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#9B9B9B] font-bold">
+              VERIFIED INTERACTIONS
+            </p>
+          </div>
 
-              {/* Network Logo */}
-              <div className="mb-3 flex justify-center">
-                <img
-                  src={network.logo}
-                  alt={`${network.name} Logo`}
-                  className="w-8 h-8 object-contain"
-                />
-              </div>
+          {/* Large Headline */}
+          <h2 
+            className="text-[48px] lg:text-[64px] xl:text-[72px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase max-w-3xl mx-auto"
+            style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
+          >
+            dApps Interactions
+          </h2>
 
-              {/* Network Name */}
-              <h3 className="font-mono text-sm font-bold text-[#1A1A1A] mb-4 uppercase">
-                {network.name}
-              </h3>
+          {/* Orange Divider */}
+          <div className="w-20 h-1 bg-[#FF6B35] mx-auto" />
 
-              {/* Stats */}
-              <div className="space-y-2 text-left">
-                <div className="flex items-center gap-2 text-xs">
-                  <TrendingUp className="w-3 h-3 text-[#FF6B35]" />
-                  <span className="text-[#6B6B6B] font-mono">{network.stats.tvl}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <Activity className="w-3 h-3 text-[#FF6B35]" />
-                  <span className="text-[#6B6B6B] font-mono">{network.stats.txs}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <Users className="w-3 h-3 text-[#FF6B35]" />
-                  <span className="text-[#6B6B6B] font-mono">{network.stats.users}</span>
-                </div>
-              </div>
-            </button>
-          ))}
+          {/* Description */}
+          <p className="font-mono text-base lg:text-lg text-[#6B6B6B] leading-relaxed max-w-2xl mx-auto">
+            Verify your on-chain activity across Arc dApps. Every interaction is automatically indexed and transformed into verifiable proof.
+          </p>
         </motion.div>
 
-        {/* dApps Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeNetwork}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
-          >
-            {activeDapps.map((dapp, index) => (
+        {/* No Network Selection - Arc Only - Skip straight to dApps */}
+
+        {/* Desktop: dApps Grid */}
+        {!isMobile && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeNetwork}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
+            >
+              {activeDapps.map((dapp, index) => (
+                <motion.div
+                  key={dapp.name}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="group bg-gradient-to-br from-white to-[#FFF8F5] border-2 border-[#E5E5E0] p-6 hover:border-[#FF6B35] hover:shadow-xl transition-all duration-300 cursor-pointer"
+                >
+                  {/* Logo */}
+                  <div className="w-16 h-16 border border-[#FF6B35] group-hover:border-[#FF6B35] bg-[#FAFAF8] flex items-center justify-center mb-4 overflow-hidden transition-all duration-300">
+                    {dapp.logo ? (
+                      <Logo
+                        src={dapp.logo}
+                        alt={dapp.name}
+                        fallback={dapp.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-2xl font-black text-[#1A1A1A]">
+                        {dapp.name.charAt(0)}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Category Badge */}
+                  <div className="inline-block mb-3">
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-[#9B9B9B] group-hover:text-[#FF6B35] bg-[#F5F5F2] group-hover:bg-[#FF6B35]/10 px-2 py-1 border border-[#E5E5E0] group-hover:border-[#FF6B35] transition-all duration-300">
+                      {dapp.category}
+                    </span>
+                  </div>
+
+                  {/* Name */}
+                  <h3 
+                    className="text-lg font-black text-[#1A1A1A] group-hover:text-[#FF6B35] mb-2 uppercase transition-colors duration-300"
+                    style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
+                  >
+                    {dapp.name}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-xs text-[#6B6B6B] font-mono leading-relaxed mb-4">
+                    {dapp.description}
+                  </p>
+
+                  {/* Action */}
+                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-[#1A1A1A] group-hover:text-[#FF6B35] transition-colors duration-300">
+                    <span>USE</span>
+                    <ArrowUpRight className="w-3 h-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* More Coming Card */}
               <motion.div
-                key={dapp.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group bg-gradient-to-br from-white to-[#FFF8F5] border-2 border-[#E5E5E0] p-6 hover:border-[#FF6B35] hover:shadow-xl transition-all duration-300 cursor-pointer"
+                transition={{ duration: 0.3, delay: activeDapps.length * 0.05 }}
+                className="bg-[#F5F5F2] border-2 border-[#E5E5E0] border-dashed p-6 flex flex-col items-center justify-center text-center"
               >
-                {/* Logo */}
-                <div className="w-16 h-16 border border-[#FF6B35] group-hover:border-[#FF6B35] bg-[#FAFAF8] flex items-center justify-center mb-4 overflow-hidden transition-all duration-300">
-                  {dapp.logo ? (
+                <Loader2 className="w-8 h-8 text-[#FF6B35] animate-spin mb-3" />
+                <h3 className="text-lg font-black text-[#1A1A1A] uppercase mb-1">+ More</h3>
+                <p className="text-xs text-[#9B9B9B] font-mono">Coming Soon</p>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        {/* Mobile: Carousel View */}
+        {isMobile && (
+          <div className="space-y-4">
+            {/* Featured Card - Current dApp */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={mobileDappIndex}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3 }}
+                className="group bg-gradient-to-br from-white to-[#FFF8F5] border-2 border-[#FF6B35] p-6"
+              >
+                {/* Logo Large */}
+                <div className="w-20 h-20 border-2 border-[#FF6B35] bg-[#FAFAF8] flex items-center justify-center mb-4 mx-auto overflow-hidden">
+                  {activeDapps[mobileDappIndex]?.logo ? (
                     <Logo
-                      src={dapp.logo}
-                      alt={dapp.name}
-                      fallback={dapp.name}
+                      src={activeDapps[mobileDappIndex].logo}
+                      alt={activeDapps[mobileDappIndex].name}
+                      fallback={activeDapps[mobileDappIndex].name}
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <span className="text-2xl font-black text-[#1A1A1A]">
-                      {dapp.name.charAt(0)}
+                    <span className="text-4xl font-black text-[#1A1A1A]">
+                      {activeDapps[mobileDappIndex]?.name.charAt(0)}
                     </span>
                   )}
                 </div>
 
                 {/* Category Badge */}
-                <div className="inline-block mb-3">
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-[#9B9B9B] group-hover:text-[#FF6B35] bg-[#F5F5F2] group-hover:bg-[#FF6B35]/10 px-2 py-1 border border-[#E5E5E0] group-hover:border-[#FF6B35] transition-all duration-300">
-                    {dapp.category}
+                <div className="text-center mb-3">
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-[#FF6B35] bg-[#FF6B35]/10 px-3 py-1 border border-[#FF6B35]">
+                    {activeDapps[mobileDappIndex]?.category}
                   </span>
                 </div>
 
                 {/* Name */}
                 <h3 
-                  className="text-lg font-black text-[#1A1A1A] group-hover:text-[#FF6B35] mb-2 uppercase transition-colors duration-300"
+                  className="text-xl font-black text-[#1A1A1A] mb-2 uppercase text-center"
                   style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
                 >
-                  {dapp.name}
+                  {activeDapps[mobileDappIndex]?.name}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs text-[#6B6B6B] font-mono leading-relaxed mb-4">
-                  {dapp.description}
+                <p className="text-xs text-[#6B6B6B] font-mono leading-relaxed mb-4 text-center">
+                  {activeDapps[mobileDappIndex]?.description}
                 </p>
 
-                {/* Action */}
-                <div className="flex items-center gap-2 font-mono text-xs font-bold text-[#1A1A1A] group-hover:text-[#FF6B35] transition-colors duration-300">
-                  <span>USE</span>
-                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                </div>
+                {/* Use Button */}
+                <button className="w-full border border-[#FF6B35] bg-[#FF6B35] text-white py-2 px-4 font-mono text-xs font-bold uppercase hover:bg-[#1A1A1A] hover:border-[#1A1A1A] transition-all">
+                  <div className="flex items-center justify-center gap-2">
+                    <span>USE</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </div>
+                </button>
               </motion.div>
-            ))}
+            </AnimatePresence>
 
-            {/* More Coming Card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: activeDapps.length * 0.05 }}
-              className="bg-[#F5F5F2] border-2 border-[#E5E5E0] border-dashed p-6 flex flex-col items-center justify-center text-center"
-            >
-              <Loader2 className="w-8 h-8 text-[#FF6B35] animate-spin mb-3" />
-              <h3 className="text-lg font-black text-[#1A1A1A] uppercase mb-1">+ More</h3>
-              <p className="text-xs text-[#9B9B9B] font-mono">Coming Soon</p>
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
+            {/* Navigation */}
+            <div className="flex items-center justify-between gap-3">
+              <button
+                onClick={() => setMobileDappIndex((prev) => (prev - 1 + activeDapps.length) % activeDapps.length)}
+                className="w-10 h-10 border border-[#FF6B35] flex items-center justify-center hover:bg-[#FF6B35] hover:text-white transition-all"
+                aria-label="Previous dApp"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Dot Indicators */}
+              <div className="flex justify-center gap-1.5 flex-1">
+                {activeDapps.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setMobileDappIndex(index)}
+                    className={`transition-all ${
+                      index === mobileDappIndex
+                        ? 'w-3 h-3 bg-[#FF6B35] rounded-full'
+                        : 'w-2 h-2 bg-[#D0D0CB] rounded-full hover:bg-[#FF6B35]'
+                    }`}
+                    aria-label={`Go to dApp ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={() => setMobileDappIndex((prev) => (prev + 1) % activeDapps.length)}
+                className="w-10 h-10 border border-[#FF6B35] flex items-center justify-center hover:bg-[#FF6B35] hover:text-white transition-all"
+                aria-label="Next dApp"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* dApp Counter */}
+            <div className="text-center">
+              <p className="font-mono text-xs text-[#9B9B9B]">
+                {mobileDappIndex + 1} / {activeDapps.length} dApps
+              </p>
+            </div>
+
+            {/* View All Button */}
+            <button className="w-full border border-[#E5E5E0] bg-[#F5F5F2] py-3 px-4 font-mono text-xs font-bold uppercase hover:border-[#FF6B35] hover:bg-[#FF6B35] hover:text-white transition-all">
+              View All {activeDapps.length} {activeNetworkData?.name} dApps
+            </button>
+          </div>
+        )}
 
         {/* Bottom Caption */}
         <motion.div
