@@ -189,6 +189,8 @@ body {
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Allow selection for specific elements */

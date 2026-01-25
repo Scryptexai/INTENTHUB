@@ -59,7 +59,15 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-foreground/50 z-50"
+            className="fixed inset-0 bg-foreground/50"
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 9998,
+            }}
           />
 
           {/* Modal */}
@@ -72,9 +80,10 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              zIndex: 50,
+              zIndex: 9999,
+              width: isMobile ? 'calc(100vw - 32px)' : 'auto',
+              maxWidth: isMobile ? '90vw' : '28rem',
             }}
-            className={isMobile ? 'w-[calc(100vw-32px)] max-w-[90vw]' : 'w-full max-w-md'}
           >
             <div className={`bg-card border-2 border-foreground relative ${
               isMobile ? 'p-4' : 'p-6'
