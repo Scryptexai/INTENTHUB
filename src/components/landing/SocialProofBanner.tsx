@@ -66,13 +66,13 @@ const SocialProofBanner = () => {
         <div className="arc-logos-scroll flex items-center" style={{ willChange: 'transform' }}>
           {/* Duplicate for seamless loop */}
           {arcDapps.concat(arcDapps).map((logo, index) => (
-            <div 
-              key={index} 
-              className="flex-shrink-0 mx-6"
+            <div
+              key={index}
+              className="flex-shrink-0 mx-4 lg:mx-6"
             >
               <div className="group relative">
                 {/* Logo Container with Border */}
-                <div className="w-20 h-20 border-4 border-[#1A1A1A] bg-white rounded-xl flex items-center justify-center p-2 transition-all duration-300 hover:border-[#FF6B35] hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 border-4 border-[#1A1A1A] bg-white rounded-xl flex items-center justify-center p-2 transition-all duration-300 hover:border-[#FF6B35] hover:shadow-xl hover:-translate-y-1">
                   <img
                     src={`/assets/logos/arc/${logo}`}
                     alt={`Arc dApp ${index + 1}`}

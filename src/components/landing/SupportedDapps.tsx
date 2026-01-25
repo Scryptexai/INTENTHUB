@@ -55,122 +55,122 @@ const arcDapps = [
     name: "ArcFlow Finance",
     category: "DEX",
     description: "Native DEX & liquidity hub",
-    logo: "/src/assets/logos/arc/arcflow-finance.jpg"
+    logo: "/assets/logos/arc/arcflow-finance.jpg"
   },
   {
     name: "Curve",
     category: "Stablecoin DEX",
     description: "Deep liquidity for stables",
-    logo: "/src/assets/logos/arc/curve.jpg"
+    logo: "/assets/logos/arc/curve.jpg"
   },
   {
     name: "MintAura",
     category: "NFT",
     description: "NFT Marketplace",
-    logo: "/src/assets/logos/arc/mintaura.jpg"
+    logo: "/assets/logos/arc/mintaura.jpg"
   },
   {
     name: "Infinity Name",
     category: "Domains",
     description: "Web3 Domain Service",
-    logo: "/src/assets/logos/arc/infinity-name.jpg"
+    logo: "/assets/logos/arc/infinity-name.jpg"
   },
   {
     name: "Watchoor",
     category: "Analytics",
     description: "Portfolio Tracker",
-    logo: "/src/assets/logos/arc/watchoor.jpg"
+    logo: "/assets/logos/arc/watchoor.jpg"
   },
   {
     name: "Synthra",
     category: "DeFi",
     description: "Synthetic Assets",
-    logo: "/src/assets/logos/arc/synthra.jpg"
+    logo: "/assets/logos/arc/synthra.jpg"
   },
   {
     name: "Superface",
     category: "Social",
     description: "Social Platform",
-    logo: "/src/assets/logos/arc/superface.jpg"
+    logo: "/assets/logos/arc/superface.jpg"
   },
   {
     name: "Para",
     category: "Wallet",
     description: "Wallet Infrastructure",
-    logo: "/src/assets/logos/arc/para.jpg"
+    logo: "/assets/logos/arc/para.jpg"
   },
   {
     name: "Crossmint",
     category: "Payments",
     description: "NFT Checkout",
-    logo: "/src/assets/logos/arc/crossmint.jpg"
+    logo: "/assets/logos/arc/crossmint.jpg"
   },
   {
     name: "ArcDex",
     category: "DEX",
     description: "Decentralized Exchange",
-    logo: "/src/assets/logos/arc/arcdex.jpg"
+    logo: "/assets/logos/arc/arcdex.jpg"
   },
   {
     name: "Aave",
     category: "Lending",
     description: "Decentralized Lending Protocol",
-    logo: "/src/assets/logos/arc/aave.jpg"
+    logo: "/assets/logos/arc/aave.jpg"
   },
   {
     name: "Across",
     category: "Bridge",
     description: "Cross-chain Bridge Protocol",
-    logo: "/src/assets/logos/arc/accros.jpg"
+    logo: "/assets/logos/arc/accros.jpg"
   }
 ];
 
 const riseDapps = [
-  { name: "B3X", category: "DeFi", description: "Decentralized Exchange", logo: "/src/assets/logos/rise/B3X.jpg" },
-  { name: "Boom", category: "Gaming", description: "Gaming Platform", logo: "/src/assets/logos/rise/boom.jpg" },
-  { name: "Centauri", category: "DeFi", description: "Lending Protocol", logo: "/src/assets/logos/rise/centuari.jpg" },
-  { name: "For The Kingdom", category: "Gaming", description: "Strategy Game", logo: "/src/assets/logos/rise/for the kingdom.jpg" },
-  { name: "GasPump", category: "Tools", description: "Gas Optimization", logo: "/src/assets/logos/rise/gaspump.jpg" },
-  { name: "Haifu", category: "NFT", description: "NFT Marketplace", logo: "/src/assets/logos/rise/haifu.jpg" },
-  { name: "Icarus", category: "DeFi", description: "Yield Optimization", logo: "/src/assets/logos/rise/icarus.jpg" },
-  { name: "Inari", category: "DeFi", description: "Lending Protocol", logo: "/src/assets/logos/rise/inari.jpg" },
-  { name: "Meteoro", category: "Gaming", description: "GameFi Platform", logo: "/src/assets/logos/rise/meteoro.jpg" }
+  { name: "B3X", category: "DeFi", description: "Decentralized Exchange", logo: "/assets/logos/rise/B3X.jpg" },
+  { name: "Boom", category: "Gaming", description: "Gaming Platform", logo: "/assets/logos/rise/boom.jpg" },
+  { name: "Centauri", category: "DeFi", description: "Lending Protocol", logo: "/assets/logos/rise/centuari.jpg" },
+  { name: "For The Kingdom", category: "Gaming", description: "Strategy Game", logo: "/assets/logos/rise/for the kingdom.jpg" },
+  { name: "GasPump", category: "Tools", description: "Gas Optimization", logo: "/assets/logos/rise/gaspump.jpg" },
+  { name: "Haifu", category: "NFT", description: "NFT Marketplace", logo: "/assets/logos/rise/haifu.jpg" },
+  { name: "Icarus", category: "DeFi", description: "Yield Optimization", logo: "/assets/logos/rise/icarus.jpg" },
+  { name: "Inari", category: "DeFi", description: "Lending Protocol", logo: "/assets/logos/rise/inari.jpg" },
+  { name: "Meteoro", category: "Gaming", description: "GameFi Platform", logo: "/assets/logos/rise/meteoro.jpg" }
 ];
 
 const pharosDapps = [
-  { name: "Aquaflux", category: "DeFi", description: "Liquidity Protocol", logo: "/src/assets/logos/pharos/aquaflux.jpg" },
-  { name: "Aseto", category: "DeFi", description: "Asset Management", logo: "/src/assets/logos/pharos/aseto.jpg" },
-  { name: "GrandLine", category: "Trading", description: "Trading Platform", logo: "/src/assets/logos/pharos/grandline.jpg" },
-  { name: "Paraswap", category: "DEX", description: "DEX Aggregator", logo: "/src/assets/logos/pharos/paroswap.jpg" },
-  { name: "PNS", category: "Domains", description: "Domain Service", logo: "/src/assets/logos/pharos/pns.jpg" },
-  { name: "Porto", category: "DeFi", description: "Yield Farming", logo: "/src/assets/logos/pharos/porto.jpg" },
-  { name: "Spout", category: "DeFi", description: "Liquid Staking", logo: "/src/assets/logos/pharos/spout.jpg" },
-  { name: "TopNod", category: "Infrastructure", description: "Node Operations", logo: "/src/assets/logos/pharos/topnod.jpg" },
-  { name: "ZAN", category: "Tools", description: "Analytics Platform", logo: "/src/assets/logos/pharos/zan.jpg" }
+  { name: "Aquaflux", category: "DeFi", description: "Liquidity Protocol", logo: "/assets/logos/pharos/aquaflux.jpg" },
+  { name: "Aseto", category: "DeFi", description: "Asset Management", logo: "/assets/logos/pharos/aseto.jpg" },
+  { name: "GrandLine", category: "Trading", description: "Trading Platform", logo: "/assets/logos/pharos/grandline.jpg" },
+  { name: "Paraswap", category: "DEX", description: "DEX Aggregator", logo: "/assets/logos/pharos/paroswap.jpg" },
+  { name: "PNS", category: "Domains", description: "Domain Service", logo: "/assets/logos/pharos/pns.jpg" },
+  { name: "Porto", category: "DeFi", description: "Yield Farming", logo: "/assets/logos/pharos/porto.jpg" },
+  { name: "Spout", category: "DeFi", description: "Liquid Staking", logo: "/assets/logos/pharos/spout.jpg" },
+  { name: "TopNod", category: "Infrastructure", description: "Node Operations", logo: "/assets/logos/pharos/topnod.jpg" },
+  { name: "ZAN", category: "Tools", description: "Analytics Platform", logo: "/assets/logos/pharos/zan.jpg" }
 ];
 
 const soneliumDapps = [
-  { name: "2P2E", category: "Gaming", description: "Play-to-Earn Game", logo: "/src/assets/logos/sonieum/2P2E.jpg" },
-  { name: "Evermoon", category: "Gaming", description: "RPG Game", logo: "/src/assets/logos/sonieum/Evermoon.jpg" },
-  { name: "Kyo Finance", category: "DeFi", description: "DeFi Platform", logo: "/src/assets/logos/sonieum/KyoFinance.jpg" },
-  { name: "Layer3", category: "Infrastructure", description: "Layer 3 Solution", logo: "/src/assets/logos/sonieum/layer3.jpg" },
-  { name: "MorphoVaults", category: "DeFi", description: "Vault Strategy", logo: "/src/assets/logos/sonieum/MorphoVaults.jpg" },
-  { name: "RubyScore", category: "Tools", description: "Reputation System", logo: "/src/assets/logos/sonieum/RubyScore.jpg" },
-  { name: "SakeFinance", category: "DeFi", description: "Lending Protocol", logo: "/src/assets/logos/sonieum/SakeFinance.jpg" },
-  { name: "SoneFi", category: "DeFi", description: "DeFi Protocol", logo: "/src/assets/logos/sonieum/SoneFi.jpg" },
-  { name: "SoneX", category: "NFT", description: "NFT Marketplace", logo: "/src/assets/logos/sonieum/SoneX.jpg" },
-  { name: "UntitledBank", category: "DeFi", description: "DeFi Banking", logo: "/src/assets/logos/sonieum/UntitledBank.jpg" }
+  { name: "2P2E", category: "Gaming", description: "Play-to-Earn Game", logo: "/assets/logos/sonieum/2P2E.jpg" },
+  { name: "Evermoon", category: "Gaming", description: "RPG Game", logo: "/assets/logos/sonieum/Evermoon.jpg" },
+  { name: "Kyo Finance", category: "DeFi", description: "DeFi Platform", logo: "/assets/logos/sonieum/KyoFinance.jpg" },
+  { name: "Layer3", category: "Infrastructure", description: "Layer 3 Solution", logo: "/assets/logos/sonieum/layer3.jpg" },
+  { name: "MorphoVaults", category: "DeFi", description: "Vault Strategy", logo: "/assets/logos/sonieum/MorphoVaults.jpg" },
+  { name: "RubyScore", category: "Tools", description: "Reputation System", logo: "/assets/logos/sonieum/RubyScore.jpg" },
+  { name: "SakeFinance", category: "DeFi", description: "Lending Protocol", logo: "/assets/logos/sonieum/SakeFinance.jpg" },
+  { name: "SoneFi", category: "DeFi", description: "DeFi Protocol", logo: "/assets/logos/sonieum/SoneFi.jpg" },
+  { name: "SoneX", category: "NFT", description: "NFT Marketplace", logo: "/assets/logos/sonieum/SoneX.jpg" },
+  { name: "UntitledBank", category: "DeFi", description: "DeFi Banking", logo: "/assets/logos/sonieum/UntitledBank.jpg" }
 ];
 
 const baseDapps = [
-  { name: "Aerodrome", category: "DEX", description: "Decentralized Exchange", logo: "/src/assets/logos/base/Aerodrome.jpg" },
-  { name: "BasePaint", category: "NFT", description: "NFT Art Platform", logo: "/src/assets/logos/base/BasePaint.jpg" },
-  { name: "Drakula", category: "DeFi", description: "DeFi Protocol", logo: "/src/assets/logos/base/Drakula.jpg" },
-  { name: "Farcaster", category: "Social", description: "Social Protocol", logo: "/src/assets/logos/base/Farcaster.jpg" },
-  { name: "Moonwell", category: "DeFi", description: "Lending Protocol", logo: "/src/assets/logos/base/Moonwell.jpg" },
-  { name: "Seamless", category: "DeFi", description: "Cross-chain Protocol", logo: "/src/assets/logos/base/Seamless.jpg" },
-  { name: "Uniswap", category: "DEX", description: "DEX Protocol", logo: "/src/assets/logos/base/uniswap.jpg" },
-  { name: "Aave", category: "Lending", description: "Lending Protocol", logo: "/src/assets/logos/base/aave.jpg" }
+  { name: "Aerodrome", category: "DEX", description: "Decentralized Exchange", logo: "/assets/logos/base/Aerodrome.jpg" },
+  { name: "BasePaint", category: "NFT", description: "NFT Art Platform", logo: "/assets/logos/base/BasePaint.jpg" },
+  { name: "Drakula", category: "DeFi", description: "DeFi Protocol", logo: "/assets/logos/base/Drakula.jpg" },
+  { name: "Farcaster", category: "Social", description: "Social Protocol", logo: "/assets/logos/base/Farcaster.jpg" },
+  { name: "Moonwell", category: "DeFi", description: "Lending Protocol", logo: "/assets/logos/base/Moonwell.jpg" },
+  { name: "Seamless", category: "DeFi", description: "Cross-chain Protocol", logo: "/assets/logos/base/Seamless.jpg" },
+  { name: "Uniswap", category: "DEX", description: "DEX Protocol", logo: "/assets/logos/base/uniswap.jpg" },
+  { name: "Aave", category: "Lending", description: "Lending Protocol", logo: "/assets/logos/base/aave.jpg" }
 ];
 
 const SupportedDapps = () => {
@@ -239,7 +239,7 @@ const SupportedDapps = () => {
     <section 
       id="dapps" 
       ref={sectionRef}
-      className="relative w-full min-h-screen bg-[#FAFAF8] overflow-hidden py-20 lg:py-32"
+      className="relative w-full min-h-screen bg-[#FAFAF8] overflow-hidden py-12 lg:py-32"
     >
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -448,7 +448,7 @@ const SupportedDapps = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
           >
             {activeDapps.map((dapp, index) => (
               <motion.div
