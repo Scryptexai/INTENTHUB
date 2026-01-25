@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { useResponsive } from "@/contexts/ResponsiveContext";
 
 const footerLinks = {
   product: ["Features", "How It Works", "dApps", "Roadmap"],
@@ -8,18 +10,205 @@ const footerLinks = {
 };
 
 const Footer = () => {
+  const { isMobile } = useResponsive();
+  const [openSections, setOpenSections] = useState<string[]>(isMobile ? [] : ["product", "resources", "community"]);
+
+  const toggleSection = (section: string) => {
+    setOpenSections((prev) =>
+      prev.includes(section) ? prev.filter((s) => s !== section) : [...prev, section]
+    );
+  };
+
+  const SocialIcons = () => (
+    <div className={`flex ${isMobile ? 'gap-3' : 'gap-2'}`}>
+      {/* X (Twitter) */}
+      <a
+        href="#"
+        className={`border border-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors ${
+          isMobile ? 'touch-target w-12 h-12' : 'w-10 h-10'
+        }`}
+        aria-label="X (Twitter)"
+      >
+        <svg viewBox="0 0 24 24" className={isMobile ? "w-6 h-6" : "w-5 h-5"} fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
+
+      {/* Discord */}
+      <a
+        href="#"
+        className={`border border-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors ${
+          isMobile ? 'touch-target w-12 h-12' : 'w-10 h-10'
+        }`}
+        aria-label="Discord"
+      >
+        <svg viewBox="0 0 24 24" className={isMobile ? "w-6 h-6" : "w-5 h-5"} fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+      </a>
+
+      {/* Telegram */}
+      <a
+        href="#"
+        className={`border border-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors ${
+          isMobile ? 'touch-target w-12 h-12' : 'w-10 h-10'
+        }`}
+        aria-label="Telegram"
+      >
+        <svg viewBox="0 0 24 24" className={isMobile ? "w-6 h-6" : "w-5 h-5"} fill="currentColor">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
+      </a>
+    </div>
+  );
+
   return (
-    <footer className="border-t border-foreground bg-background">
-      <div className="px-4 lg:px-6 py-16">
-        {/* Main Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {/* Brand Column */}
-          <div className="lg:col-span-1">
+    <footer className={`border-t border-foreground bg-background ${isMobile ? 'px-4' : 'px-4 lg:px-6'}`}>
+      <div className={`py-${isMobile ? '12' : '16'}`}>
+        {/* Desktop Grid Layout */}
+        {!isMobile && (
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+              {/* Brand Column */}
+              <div className="lg:col-span-1">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <img
+                      src="/assets/intent-logo.jpg"
+                      alt="INTENT Logo"
+                      className="w-8 h-8"
+                    />
+                    <h3 className="font-display text-xl font-bold text-foreground uppercase">
+                      INTENT
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    Proof of Structured Participation on Arc Network
+                  </p>
+                  <SocialIcons />
+                </motion.div>
+              </div>
+
+              {/* Product Column */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  <h4 className="font-mono text-xs font-bold text-foreground mb-4 uppercase tracking-wider">
+                    Product
+                  </h4>
+                  <ul className="space-y-3">
+                    {footerLinks.product.map((link) => (
+                      <li key={link}>
+                        <a
+                          href="#"
+                          className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group"
+                        >
+                          {link}
+                          <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </div>
+
+              {/* Resources Column */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <h4 className="font-mono text-xs font-bold text-foreground mb-4 uppercase tracking-wider">
+                    Resources
+                  </h4>
+                  <ul className="space-y-3">
+                    {footerLinks.resources.map((link) => (
+                      <li key={link}>
+                        <a
+                          href="#"
+                          className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group"
+                        >
+                          {link}
+                          <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </div>
+
+              {/* Community Column */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h4 className="font-mono text-xs font-bold text-foreground mb-4 uppercase tracking-wider">
+                    Community
+                  </h4>
+                  <ul className="space-y-3">
+                    {footerLinks.community.map((link) => (
+                      <li key={link}>
+                        <a
+                          href="#"
+                          className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group"
+                        >
+                          {link}
+                          <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Bottom Bar - Desktop */}
+            <div className="pt-8 border-t border-foreground flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-xs font-mono text-muted-foreground uppercase">
+                © 2025 INTENT. Built on Arc Network.
+              </p>
+              <div className="flex items-center gap-6 text-xs font-mono text-muted-foreground uppercase">
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Terms
+                </a>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Cookies
+                </a>
+              </div>
+              <p className="text-xs font-mono text-muted-foreground">
+                Built with <span className="text-primary">♥</span> for Arc Ecosystem
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Accordion Layout */}
+        {isMobile && (
+          <div className="space-y-4">
+            {/* Brand Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
+              className="pb-4 border-b border-foreground"
             >
               <div className="flex items-center gap-3 mb-4">
                 <img
@@ -27,153 +216,176 @@ const Footer = () => {
                   alt="INTENT Logo"
                   className="w-8 h-8"
                 />
-                <h3 className="font-display text-xl font-bold text-foreground uppercase">
+                <h3 className="font-display text-lg font-bold text-foreground uppercase">
                   INTENT
                 </h3>
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              <p className="text-muted-foreground text-xs leading-relaxed mb-4">
                 Proof of Structured Participation on Arc Network
               </p>
-              <div className="flex gap-2">
-                {/* X (Twitter) */}
-                <a
-                  href="#"
-                  className="w-10 h-10 border border-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-                  aria-label="X (Twitter)"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                </a>
-
-                {/* Discord */}
-                <a
-                  href="#"
-                  className="w-10 h-10 border border-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-                  aria-label="Discord"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-                  </svg>
-                </a>
-
-                {/* Telegram */}
-                <a
-                  href="#"
-                  className="w-10 h-10 border border-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-                  aria-label="Telegram"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                  </svg>
-                </a>
-              </div>
+              <SocialIcons />
             </motion.div>
-          </div>
 
-          {/* Product Column */}
-          <div>
+            {/* Product Section - Accordion */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
+              className="border border-foreground"
             >
-              <h4 className="font-mono text-xs font-bold text-foreground mb-4 uppercase tracking-wider">
-                Product
-              </h4>
-              <ul className="space-y-3">
-                {footerLinks.product.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group"
-                    >
-                      {link}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <button
+                onClick={() => toggleSection("product")}
+                className="w-full flex items-center justify-between p-3 font-mono text-xs font-bold text-foreground uppercase hover:bg-foreground/5 transition-colors"
+              >
+                <span>Product</span>
+                <motion.div
+                  animate={{ rotate: openSections.includes("product") ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </motion.div>
+              </button>
+              <AnimatePresence>
+                {openSections.includes("product") && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden bg-foreground/5 border-t border-foreground"
+                  >
+                    <ul className="space-y-0">
+                      {footerLinks.product.map((link, idx) => (
+                        <li key={link} className={idx > 0 ? "border-t border-foreground/20" : ""}>
+                          <a
+                            href="#"
+                            className="block px-3 py-3 text-muted-foreground hover:text-primary transition-colors text-xs uppercase touch-target"
+                          >
+                            {link}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
-          </div>
 
-          {/* Resources Column */}
-          <div>
+            {/* Resources Section - Accordion */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              className="border border-foreground"
             >
-              <h4 className="font-mono text-xs font-bold text-foreground mb-4 uppercase tracking-wider">
-                Resources
-              </h4>
-              <ul className="space-y-3">
-                {footerLinks.resources.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group"
-                    >
-                      {link}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <button
+                onClick={() => toggleSection("resources")}
+                className="w-full flex items-center justify-between p-3 font-mono text-xs font-bold text-foreground uppercase hover:bg-foreground/5 transition-colors"
+              >
+                <span>Resources</span>
+                <motion.div
+                  animate={{ rotate: openSections.includes("resources") ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </motion.div>
+              </button>
+              <AnimatePresence>
+                {openSections.includes("resources") && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden bg-foreground/5 border-t border-foreground"
+                  >
+                    <ul className="space-y-0">
+                      {footerLinks.resources.map((link, idx) => (
+                        <li key={link} className={idx > 0 ? "border-t border-foreground/20" : ""}>
+                          <a
+                            href="#"
+                            className="block px-3 py-3 text-muted-foreground hover:text-primary transition-colors text-xs uppercase touch-target"
+                          >
+                            {link}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
-          </div>
 
-          {/* Community Column */}
-          <div>
+            {/* Community Section - Accordion */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
+              className="border border-foreground"
             >
-              <h4 className="font-mono text-xs font-bold text-foreground mb-4 uppercase tracking-wider">
-                Community
-              </h4>
-              <ul className="space-y-3">
-                {footerLinks.community.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group"
-                    >
-                      {link}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <button
+                onClick={() => toggleSection("community")}
+                className="w-full flex items-center justify-between p-3 font-mono text-xs font-bold text-foreground uppercase hover:bg-foreground/5 transition-colors"
+              >
+                <span>Community</span>
+                <motion.div
+                  animate={{ rotate: openSections.includes("community") ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </motion.div>
+              </button>
+              <AnimatePresence>
+                {openSections.includes("community") && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden bg-foreground/5 border-t border-foreground"
+                  >
+                    <ul className="space-y-0">
+                      {footerLinks.community.map((link, idx) => (
+                        <li key={link} className={idx > 0 ? "border-t border-foreground/20" : ""}>
+                          <a
+                            href="#"
+                            className="block px-3 py-3 text-muted-foreground hover:text-primary transition-colors text-xs uppercase touch-target"
+                          >
+                            {link}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
-          </div>
-        </div>
 
-  
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-foreground flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-mono text-muted-foreground uppercase">
-            © 2025 INTENT. Built on Arc Network.
-          </p>
-          <div className="flex items-center gap-6 text-xs font-mono text-muted-foreground uppercase">
-            <a href="#" className="hover:text-foreground transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              Terms
-            </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              Cookies
-            </a>
+            {/* Bottom Bar - Mobile */}
+            <div className="pt-4 border-t border-foreground space-y-3">
+              <p className="text-xs font-mono text-muted-foreground uppercase text-center">
+                © 2025 INTENT. Built on Arc Network.
+              </p>
+              <div className="flex flex-col gap-2 text-xs font-mono text-muted-foreground uppercase">
+                <a href="#" className="hover:text-foreground transition-colors touch-target block py-2">
+                  Privacy Policy
+                </a>
+                <a href="#" className="hover:text-foreground transition-colors touch-target block py-2">
+                  Terms
+                </a>
+                <a href="#" className="hover:text-foreground transition-colors touch-target block py-2">
+                  Cookies
+                </a>
+              </div>
+              <p className="text-xs font-mono text-muted-foreground text-center">
+                Built with <span className="text-primary">♥</span> for Arc Ecosystem
+              </p>
+            </div>
           </div>
-          <p className="text-xs font-mono text-muted-foreground">
-            Built with <span className="text-primary">♥</span> for Arc Ecosystem
-          </p>
-        </div>
+        )}
       </div>
     </footer>
   );
