@@ -81,8 +81,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
               left: '50%',
               transform: 'translate(-50%, -50%)',
               zIndex: 9999,
-              width: isMobile ? 'calc(100vw - 32px)' : 'auto',
-              maxWidth: isMobile ? '90vw' : '28rem',
+              width: isMobile ? 'min(calc(100vw - 32px), 90vw)' : '28rem',
             }}
           >
             <div className={`bg-card border-2 border-foreground relative ${
