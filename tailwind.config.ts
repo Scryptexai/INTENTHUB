@@ -5,11 +5,23 @@ export default {
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
+    screens: {
+      // Mobile-first breakpoints
+      xs: "360px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      "3xl": "1920px",
+    },
     container: {
       center: true,
       padding: {
-        DEFAULT: "1.5rem",
-        sm: "2rem",
+        DEFAULT: "1rem",    // Mobile default
+        xs: "1rem",
+        sm: "1.5rem",
+        md: "2rem",
         lg: "3rem",
         xl: "4rem",
         "2xl": "5rem",
@@ -28,6 +40,12 @@ export default {
         sans: ["Inter", "sans-serif"],
         display: ["Space Grotesk", "sans-serif"],
         mono: ["Roboto Mono", "monospace"],
+      },
+      spacing: {
+        "safe-top": "env(safe-area-inset-top)",
+        "safe-right": "env(safe-area-inset-right)",
+        "safe-bottom": "env(safe-area-inset-bottom)",
+        "safe-left": "env(safe-area-inset-left)",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -96,6 +114,12 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.3s ease-out",
         "accordion-up": "accordion-up 0.3s ease-out",
+      },
+      minHeight: {
+        "touch": "44px", // iOS minimum touch target
+      },
+      minWidth: {
+        "touch": "44px",
       },
     },
   },
