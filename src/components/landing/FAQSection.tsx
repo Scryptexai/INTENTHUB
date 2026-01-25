@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { useResponsive } from "@/contexts/ResponsiveContext";
 
 const faqs = [
   {
@@ -37,29 +38,34 @@ const faqs = [
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { isMobile } = useResponsive();
 
   return (
-    <section id="features" className="section-padding-sm border-y border-foreground bg-card">
-      <div className="container-custom">
+    <section id="features" className={`section-padding-sm border-y border-foreground bg-card ${
+      isMobile ? 'px-4' : ''
+    }`}>
+      <div className={`${isMobile ? 'w-full' : 'container-custom'}`}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className={`text-center ${isMobile ? 'mb-8' : 'mb-12'}`}
         >
           <div className="flex items-center justify-center gap-4 mb-6">
             <span className="orange-square" />
-            <p className="eyebrow-accent">COMMON QUESTIONS</p>
+            <p className={`eyebrow-accent ${isMobile ? 'text-xs' : ''}`}>COMMON QUESTIONS</p>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
+          <h2 className={`font-display font-bold text-foreground uppercase ${
+            isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
+          }`}>
             Everything You Need to Know
           </h2>
         </motion.div>
 
-        {/* FAQ Accordion - Brutalist */}
-        <div className="max-w-3xl mx-auto border border-foreground">
+        {/* FAQ Accordion - Mobile optimized */}
+        <div className={`max-w-3xl mx-auto border border-foreground`}>
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -69,31 +75,41 @@ const FAQSection = () => {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className={index < faqs.length - 1 ? "border-b border-foreground" : ""}
             >
+              {/* Question Button - Touch optimized */}
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className={`w-full flex items-center justify-between p-6 text-left transition-colors ${
-                  openIndex === index ? "bg-primary text-primary-foreground" : "hover:bg-foreground hover:text-background"
+                className={`w-full flex items-center justify-between ${
+                  isMobile ? 'p-4 gap-3' : 'p-6 gap-4'
+                } text-left transition-colors touch-target ${
+                  openIndex === index ? "bg-primary text-primary-foreground" : "hover:bg-foreground hover:text-background active:bg-foreground/90"
                 }`}
               >
-                <div className="flex items-center gap-4">
-                  <span className="font-mono text-sm font-bold">
+                <div className={`flex items-start gap-3 ${isMobile ? 'gap-2 flex-1' : ''}`}>
+                  <span className={`font-mono font-bold flex-shrink-0 ${
+                    isMobile ? 'text-xs' : 'text-sm'
+                  }`}>
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-display text-lg font-bold uppercase">
+                  <span className={`font-display font-bold uppercase leading-snug ${
+                    isMobile ? 'text-base text-left flex-1' : 'text-lg'
+                  }`}>
                     {faq.question}
                   </span>
                 </div>
-                <div className={`shrink-0 w-8 h-8 border flex items-center justify-center ${
+                <div className={`shrink-0 border flex items-center justify-center transition-colors ${
+                  isMobile ? 'w-10 h-10' : 'w-8 h-8'
+                } ${
                   openIndex === index ? "border-primary-foreground" : "border-foreground"
                 }`}>
                   {openIndex === index ? (
-                    <Minus className="w-4 h-4" />
+                    <Minus className={isMobile ? "w-5 h-5" : "w-4 h-4"} />
                   ) : (
-                    <Plus className="w-4 h-4" />
+                    <Plus className={isMobile ? "w-5 h-5" : "w-4 h-4"} />
                   )}
                 </div>
               </button>
 
+              {/* Answer - Animated collapse */}
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
@@ -103,7 +119,9 @@ const FAQSection = () => {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden bg-primary"
                   >
-                    <div className="px-6 pb-6 pt-0 text-primary-foreground/90 leading-relaxed pl-16">
+                    <div className={`text-primary-foreground/90 leading-relaxed ${
+                      isMobile ? 'px-4 pb-4 pt-0 text-sm' : 'px-6 pb-6 pt-0 pl-16'
+                    }`}>
                       {faq.answer}
                     </div>
                   </motion.div>
