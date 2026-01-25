@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
+import { useState } from "react";
 import { useResponsive } from "@/contexts/ResponsiveContext";
 
 const comparisons = [
@@ -14,6 +15,7 @@ const comparisons = [
 
 const ComparisonTable = () => {
   const { isMobile } = useResponsive();
+  const [mobileTab, setMobileTab] = useState<'all' | 'traditional' | 'intent'>('all');
 
   return (
     <section className={`section-padding-sm border-y border-foreground bg-card ${
@@ -87,46 +89,68 @@ const ComparisonTable = () => {
           </motion.div>
         )}
 
-        {/* Mobile Card Version */}
+        {/* Mobile Tab Version */}
         {isMobile && (
           <div className="space-y-4">
-            {comparisons.map((row, index) => (
-              <motion.div
-                key={row.feature}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="border border-foreground overflow-hidden"
+            {/* Tab Buttons */}
+            <div className="flex gap-2 mb-6 sticky top-4 z-10">
+              <button
+                onClick={() => setMobileTab('traditional')}
+                className={`flex-1 py-3 px-3 text-sm font-mono font-bold uppercase transition-all ${
+                  mobileTab === 'traditional'
+                    ? 'bg-foreground text-background border border-foreground'
+                    : 'bg-background text-foreground border border-foreground hover:bg-foreground/5'
+                }`}
               >
-                {/* Feature Name */}
-                <div className="bg-foreground text-background p-3 font-mono text-sm font-bold uppercase">
-                  {row.feature}
-                </div>
+                Traditional
+              </button>
+              <button
+                onClick={() => setMobileTab('intent')}
+                className={`flex-1 py-3 px-3 text-sm font-mono font-bold uppercase transition-all ${
+                  mobileTab === 'intent'
+                    ? 'bg-primary text-background border border-primary'
+                    : 'bg-background text-foreground border border-foreground hover:bg-primary/5'
+                }`}
+              >
+                INTENT
+              </button>
+            </div>
 
-                {/* Traditional Method */}
-                <div className="bg-background p-4 border-b border-foreground flex items-start gap-3">
-                  <div className="flex items-center gap-2 flex-1">
-                    <X className="w-4 h-4 text-destructive flex-shrink-0" />
-                    <div>
-                      <p className="font-mono text-xs text-muted-foreground uppercase">Traditional</p>
-                      <p className="text-sm font-medium text-foreground">{row.traditional}</p>
-                    </div>
+            {/* Single Column View */}
+            <div className="space-y-3">
+              {comparisons.map((row, index) => (
+                <motion.div
+                  key={row.feature}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.03 }}
+                  className="border border-foreground overflow-hidden"
+                >
+                  {/* Feature Name */}
+                  <div className="bg-foreground text-background p-3 font-mono text-xs font-bold uppercase">
+                    {row.feature}
                   </div>
-                </div>
 
-                {/* INTENT Method */}
-                <div className="bg-primary/10 p-4 flex items-start gap-3">
-                  <div className="flex items-center gap-2 flex-1">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-mono text-xs text-primary uppercase font-bold">INTENT</p>
-                      <p className="text-sm font-bold text-foreground">{row.intent}</p>
+                  {/* Traditional or INTENT - Single Column */}
+                  {mobileTab === 'traditional' ? (
+                    <div className="bg-background p-4 flex items-start gap-3">
+                      <X className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-sm text-foreground font-medium">{row.traditional}</p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                  ) : (
+                    <div className="bg-primary/10 p-4 flex items-start gap-3">
+                      <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-sm font-bold text-foreground">{row.intent}</p>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
           </div>
         )}
 
