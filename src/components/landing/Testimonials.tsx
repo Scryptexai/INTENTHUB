@@ -37,7 +37,7 @@ const Testimonials = () => {
             <span className="orange-square" />
             <p className="eyebrow-accent">COMMUNITY VOICES</p>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground uppercase">
             Builders Using INTENT
           </h2>
         </motion.div>
@@ -51,7 +51,7 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-8 group hover:bg-primary hover:text-primary-foreground transition-colors ${
+              className={`p-6 group hover:bg-primary hover:text-primary-foreground transition-colors ${
                 index < testimonials.length - 1 ? "border-b md:border-b-0 md:border-r border-foreground" : ""
               }`}
             >
@@ -60,7 +60,7 @@ const Testimonials = () => {
                 <span className="x-marker text-3xl">×</span>
               </div>
               
-              <p className="text-foreground group-hover:text-primary-foreground leading-relaxed mb-8 text-lg">
+              <p className="text-foreground group-hover:text-primary-foreground leading-relaxed mb-8 text-base">
                 "{testimonial.quote}"
               </p>
 

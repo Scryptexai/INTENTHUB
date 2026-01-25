@@ -60,7 +60,7 @@ const NetworkExpansion = () => {
             <span className="orange-square" />
             <p className="eyebrow-accent">ROADMAP</p>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground uppercase">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground uppercase">
             Expanding Verification
             <br />
             Infrastructure
