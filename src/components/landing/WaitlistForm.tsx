@@ -66,9 +66,14 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 ${
-              isMobile ? 'w-[calc(100%-32px)] max-w-[90vw]' : 'w-full max-w-md'
-            }`}
+            style={{
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 50,
+            }}
+            className={isMobile ? 'w-[calc(100vw-32px)] max-w-[90vw]' : 'w-full max-w-md'}
           >
             <div className={`bg-card border-2 border-foreground relative ${
               isMobile ? 'p-4' : 'p-6'
