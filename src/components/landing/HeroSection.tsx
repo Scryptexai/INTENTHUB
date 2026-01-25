@@ -158,47 +158,39 @@ const HeroSection = () => {
         <section 
           id="hero" 
           ref={sectionRef} 
-          className="relative w-full h-screen bg-[#FAFAF8] overflow-hidden pt-20 pb-24 flex flex-col"
+          className="relative w-full min-h-screen bg-[#FAFAF8] overflow-hidden pt-16 pb-8 px-4 flex flex-col justify-between"
         >
-          {/* Running Text - Reduced size for mobile */}
-          <div className="absolute top-16 left-0 w-full h-20 flex items-center overflow-hidden z-10 pointer-events-none">
-            <div
-              ref={runningTextRef}
-              className="flex whitespace-nowrap"
-              style={{ willChange: 'transform' }}
-            >
-              {[...Array(4)].map((_, index) => (
-                <span
-                  key={index}
-                  className="inline-block px-6 text-4xl font-normal text-[#000000] opacity-10 uppercase tracking-tight select-none"
-                  style={{ 
-                    fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
-                    fontWeight: 400
-                  }}
-                >
-                  BEYOND ONCHAIN
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* 3D Element - Smaller on mobile, centered */}
-          <div className="absolute inset-0 z-20 flex items-center justify-center pt-12">
-            <div className="hero-3d-element w-64 h-80 max-w-full">
-              <Hero3DElement />
-            </div>
-          </div>
-
-          {/* Mobile Bottom Panel - Touch-optimized */}
+          {/* Top Section: Tagline + CTA - Compact & Clean */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute bottom-0 left-0 right-0 z-30 p-6 bg-white/95 backdrop-blur-md border-t border-[#FF6B35] space-y-4 safe-area-bottom"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center gap-3 pt-4"
           >
-            {/* Headline */}
+            {/* Tagline */}
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#9B9B9B] font-bold">
+              On-chain verification
+            </p>
+
+            {/* CTA Button - Centered, not full width */}
+            <Button
+              onClick={() => setIsWaitlistOpen(true)}
+              className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm font-bold uppercase tracking-wider px-6 py-2.5 rounded-lg transition-all duration-300 active:scale-95"
+            >
+              JOIN WAITLIST →
+            </Button>
+          </motion.div>
+
+          {/* Middle Section: Headline - Center Focused */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex-1 flex flex-col items-center justify-center gap-4 py-4 min-h-[180px]"
+          >
+            {/* Main Headline */}
             <h1 
-              className="text-3xl font-black leading-tight text-[#FF6B35] uppercase"
+              className="text-[36px] font-black leading-[1.1] tracking-tight text-[#FF6B35] uppercase text-center"
               style={{ 
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                 fontWeight: 900
@@ -209,25 +201,78 @@ const HeroSection = () => {
             </h1>
 
             {/* Orange Divider */}
-            <div className="w-12 h-0.5 bg-[#FF6B35]" />
+            <div className="w-10 h-0.5 bg-[#FF6B35]" />
 
-            {/* Tagline */}
+            {/* Description */}
             <p 
-              className="text-sm leading-relaxed text-[#1A1A1A]"
+              className="text-[15px] font-normal leading-[1.5] text-[#1A1A1A] text-center max-w-xs"
               style={{ 
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
               }}
             >
-              Verify on-chain actions. Generate unique content. Build portable reputation.
+              Verify on-chain actions. Generate content. Build reputation.
             </p>
+          </motion.div>
 
-            {/* CTA Button - Full width touch target */}
-            <Button
-              onClick={() => setIsWaitlistOpen(true)}
-              className="touch-target w-full bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base font-bold uppercase tracking-wide py-3 rounded-lg transition-all duration-300 active:scale-95"
+          {/* Bottom Section: Animation + Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col items-center gap-6 pb-4"
+          >
+            {/* 3D Animation - Compact Size */}
+            <div className="hero-3d-element w-56 h-64 max-w-full flex-shrink-0">
+              <Hero3DElement />
+            </div>
+
+            {/* Stats - 2 Column Layout */}
+            <div className="w-full grid grid-cols-2 gap-4">
+              {/* Stat 1: Campaigns */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="text-center"
+              >
+                <div className="text-2xl font-black text-[#FF6B35] font-mono">
+                  <span className="stat-number" data-target="50">0</span>+
+                </div>
+                <p className="text-[11px] uppercase tracking-widest text-[#9B9B9B] font-mono font-bold mt-1">
+                  Campaigns
+                </p>
+              </motion.div>
+
+              {/* Stat 2: Proofs */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="text-center"
+              >
+                <div className="text-2xl font-black text-[#FF6B35] font-mono">
+                  <span className="stat-number" data-target="500">0</span>K
+                </div>
+                <p className="text-[11px] uppercase tracking-widest text-[#9B9B9B] font-mono font-bold mt-1">
+                  Proofs
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Stat 3: Transactions - Centered Below */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-center"
             >
-              APPLY NOW →
-            </Button>
+              <div className="text-2xl font-black text-[#FF6B35] font-mono">
+                <span className="stat-number" data-target="2">0</span>M+
+              </div>
+              <p className="text-[11px] uppercase tracking-widest text-[#9B9B9B] font-mono font-bold mt-1">
+                Transactions
+              </p>
+            </motion.div>
           </motion.div>
         </section>
       )}
