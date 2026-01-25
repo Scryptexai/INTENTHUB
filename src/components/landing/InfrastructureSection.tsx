@@ -155,7 +155,7 @@ const InfrastructureSection = () => {
         </>
       )}
 
-      <div className={`${isMobile ? 'px-4' : 'max-w-[1400px] mx-auto px-6 lg:px-12'} relative z-10`}>
+      <div className={`${isMobile ? 'px-4' : 'max-w-[1200px] mx-auto px-6 lg:px-12'} relative z-10`}>
         
         {/* Section Header */}
         <div className={`text-center space-y-8 ${isMobile ? 'mb-12' : 'mb-20 lg:mb-28'}`}>

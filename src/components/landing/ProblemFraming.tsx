@@ -133,7 +133,7 @@ const ProblemFraming = () => {
         <div className="w-full h-full border border-[#FF6B35] opacity-5" />
       </div>
 
-      <div className="container max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div className="container max-w-[1200px] mx-auto px-6 lg:px-12">
         
         {/* 2-Column Layout: Left Content + Right Carousel */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -164,7 +164,7 @@ const ProblemFraming = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <h2 
-                className="text-[48px] lg:text-[56px] xl:text-[64px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
+                className="text-[40px] lg:text-[48px] xl:text-[56px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
                 style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
               >
                 TRADITIONAL<br />

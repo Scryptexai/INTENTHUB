@@ -51,7 +51,7 @@ const SocialProofBanner = () => {
       </div>
 
       {/* Label */}
-      <div className="container max-w-[1400px] mx-auto px-6 lg:px-12 mb-6">
+      <div className="container max-w-[1200px] mx-auto px-6 lg:px-12 mb-6">
         <div className="flex items-center gap-4">
           <div className="w-12 h-px bg-[#FF6B35]" />
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#9B9B9B] font-bold">

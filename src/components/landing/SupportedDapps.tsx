@@ -261,7 +261,7 @@ const SupportedDapps = () => {
         <div className="w-full h-full border-4 border-[#FF6B35] opacity-5 rotate-12" />
       </div>
 
-      <div className="container max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+      <div className="container max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header with Visual */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
@@ -283,7 +283,7 @@ const SupportedDapps = () => {
 
             {/* Large Headline */}
             <h2 
-              className="text-[56px] lg:text-[72px] xl:text-[96px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
+              className="text-[48px] lg:text-[64px] xl:text-[72px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
               style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
             >
               ECOSYSTEM
