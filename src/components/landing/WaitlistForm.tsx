@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 import { Twitter, CheckCircle2, Loader2, ArrowRight, ExternalLink } from "lucide-react";
-import { useResponsive } from "@/contexts/ResponsiveContext";
 import earlyAccessBadge from "@/assets/early-access-badge.png";
 
 interface WaitlistFormProps {
@@ -11,21 +10,12 @@ interface WaitlistFormProps {
 }
 
 const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
-  const { isMobile: responsiveIsMobile } = useResponsive();
-  // Direct window check - more reliable
+  // Direct window check for more reliable mobile detection
   const isMobile = window.innerWidth < 768;
   const [step, setStep] = useState<"tasks" | "address" | "minting" | "complete">("tasks");
   const [twitterFollowed, setTwitterFollowed] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
   const [isMinting, setIsMinting] = useState(false);
-
-  // Debug log
-  if (isOpen) {
-    console.log('WaitlistForm is open:');
-    console.log('- responsiveIsMobile:', responsiveIsMobile);
-    console.log('- window.innerWidth:', window.innerWidth);
-    console.log('- isMobile (direct):', isMobile);
-  }
 
   const handleFollowTwitter = () => {
     window.open("https://twitter.com/intent_network", "_blank");
@@ -96,12 +86,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
           >
             <div className={`bg-card border-2 border-foreground relative ${
               isMobile ? 'p-4' : 'p-6'
-            } max-h-[90vh] overflow-y-auto`}
-            style={{
-              outline: isMobile ? '2px solid red' : 'none',
-              boxShadow: isMobile ? '0 0 0 10000px rgba(0,0,255,0.1)' : 'none',
-            }}
-            >
+            } max-h-[90vh] overflow-y-auto`}>
               {/* Corner Brackets */}
               <div className="corner-bracket-tl" />
               <div className="corner-bracket-tr" />
