@@ -158,7 +158,7 @@ const HeroSection = () => {
         <section 
           id="hero" 
           ref={sectionRef} 
-          className="relative w-screen h-screen bg-[#FAFAF8] overflow-hidden -mx-4 left-2"
+          className="relative w-screen h-screen bg-[#FAFAF8] overflow-hidden"
         >
           {/* FULLWIDTH BACKGROUND ANIMATION */}
           <div className="hero-3d-element absolute inset-0 w-full h-full">

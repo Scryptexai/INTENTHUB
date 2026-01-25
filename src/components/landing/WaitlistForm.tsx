@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { Twitter, CheckCircle2, Loader2, ArrowRight, ExternalLink } from "lucide-react";
 import { useResponsive } from "@/contexts/ResponsiveContext";
 import earlyAccessBadge from "@/assets/early-access-badge.png";
@@ -48,7 +49,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
     }, 300);
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -317,7 +318,8 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
