@@ -18,7 +18,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
   const [isMinting, setIsMinting] = useState(false);
 
   const handleFollowTwitter = () => {
-    window.open("https://twitter.com/intent_network", "_blank");
+    window.open("https://twitter.com/intent_sbs", "_blank");
     setTimeout(() => setTwitterFollowed(true), 1000);
   };
 
