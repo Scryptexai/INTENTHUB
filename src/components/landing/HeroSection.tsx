@@ -1,5 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "f                {[...Array(4)].map((_, index) => (
+                <span
+                  key={index}
+                  className="inline-block px-12 text-[48px] font-normal text-[#000000] opacity-10 uppercase tracking-tight select-none"
+                  style={{ 
+                    fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
+                    fontWeight: 400
+                  }}
+                >
+                  BEYOND ONCHAIN
+                </span>
+              ))}";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Hero3DElement from "./Hero3DElement";
@@ -99,7 +110,7 @@ const HeroSection = () => {
           </div>
 
           {/* LAYER 4: Headline + Tagline Overlay - Left Bottom Desktop */}
-          <div className="absolute bottom-[33.33vh] left-[8.33vw] z-30 w-[33.33vw] max-w-[450px]">
+          <div className="absolute bottom-[33.33vh] left-[8.33vw] z-30 w-[28vw] max-w-[380px]">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -113,7 +124,7 @@ const HeroSection = () => {
               <div className="relative p-6 space-y-4">
                 {/* Headline - Orange */}
                 <h1 
-                  className="text-[56px] font-black leading-[0.85] tracking-tight text-[#FF6B35] uppercase"
+                  className="text-[40px] font-black leading-[0.85] tracking-tight text-[#FF6B35] uppercase"
                   style={{ 
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 900

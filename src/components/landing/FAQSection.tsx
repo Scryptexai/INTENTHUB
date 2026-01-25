@@ -58,7 +58,7 @@ const FAQSection = () => {
             <p className={`eyebrow-accent ${isMobile ? 'text-xs' : ''}`}>COMMON QUESTIONS</p>
           </div>
           <h2 className={`font-display font-bold text-foreground uppercase ${
-            isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'
+            isMobile ? 'text-2xl' : 'text-3xl md:text-4xl'
           }`}>
             Everything You Need to Know
           </h2>

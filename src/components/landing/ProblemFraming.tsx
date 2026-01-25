@@ -110,7 +110,7 @@ const ProblemFraming = () => {
     <section
       id="problem"
       ref={sectionRef}
-      className="relative w-full min-h-[66.67vh] bg-[#F5F5F2] overflow-hidden py-8 lg:py-14"
+      className="relative w-full min-h-[60vh] bg-[#F5F5F2] overflow-hidden py-12 lg:py-16"
     >
           {/* Grid Background Pattern - REMOVED */}
       {/* Decorative Ornaments - KEPT */}
@@ -159,7 +159,7 @@ const ProblemFraming = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <h2 
-                  className="text-[40px] lg:text-[48px] xl:text-[56px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
+                  className="text-[36px] lg:text-[40px] xl:text-[48px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
                   style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
                 >
                   TRADITIONAL<br />

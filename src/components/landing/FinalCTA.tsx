@@ -63,7 +63,7 @@ const FinalCTA = () => {
             GET STARTED TODAY
           </p>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-6 uppercase leading-tight">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-background mb-6 uppercase leading-tight">
             Start Building
             <br />
             Verifiable On-Chain

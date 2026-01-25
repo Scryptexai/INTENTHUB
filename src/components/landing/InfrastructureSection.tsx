@@ -106,7 +106,7 @@ const InfrastructureSection = () => {
       id="how-it-works" 
       ref={sectionRef} 
       className={`relative w-full min-h-screen bg-white overflow-hidden transition-all ${
-        isMobile ? 'py-12' : 'py-20 lg:py-32'
+        isMobile ? 'py-12' : 'py-16 lg:py-24'
       }`}
     >
       {/* Background Grid Pattern - Desktop only */}

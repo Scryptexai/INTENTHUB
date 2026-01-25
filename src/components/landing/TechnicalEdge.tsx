@@ -83,7 +83,7 @@ const TechnicalEdge = () => {
             <span className="orange-square" />
             <p className="eyebrow-accent">TECHNICAL EDGE</p>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground uppercase leading-tight">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground uppercase leading-tight">
             Built on Verification
             <br />
             <span className="text-muted">Not Task Forms</span>
