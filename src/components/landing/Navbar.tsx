@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import intentLogo from "/assets/intent-logo.jpg";
+import { useResponsive } from "@/contexts/ResponsiveContext";
 
 // 7-day countdown target
 const LAUNCH_DATE = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -8,6 +9,8 @@ const LAUNCH_DATE = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 const Navbar = () => {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0 });
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isMobile } = useResponsive();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,11 +40,106 @@ const Navbar = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
     }
   };
 
   const formatNumber = (num: number) => num.toString().padStart(2, "0");
 
+  // Mobile Layout
+  if (isMobile) {
+    return (
+      <>
+        {/* Mobile Logo + Hamburger */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between"
+        >
+          <a
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("hero");
+            }}
+            className="w-12 h-12 border-2 border-[#1A1A1A] rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0"
+          >
+            <img
+              src={intentLogo}
+              alt="INTENT"
+              className="w-full h-full object-cover"
+            />
+          </a>
+          
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="w-12 h-12 flex items-center justify-center border-2 border-[#1A1A1A] rounded-full bg-white shadow-lg hover:bg-[#FF6B35] transition-all"
+          >
+            <span className="text-2xl font-bold">{mobileMenuOpen ? "✕" : "☰"}</span>
+          </button>
+        </motion.div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-20 left-4 right-4 z-40 bg-white/95 backdrop-blur-xl border-2 border-[#1A1A1A] rounded-2xl shadow-2xl p-4 space-y-2"
+          >
+            <button
+              onClick={() => scrollToSection("problem")}
+              className="w-full px-4 py-3 text-left font-mono font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-lg transition-all"
+            >
+              Explore
+            </button>
+            <button
+              onClick={() => scrollToSection("how-it-works")}
+              className="w-full px-4 py-3 text-left font-mono font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-lg transition-all"
+            >
+              Build
+            </button>
+            <button
+              onClick={() => scrollToSection("dapps")}
+              className="w-full px-4 py-3 text-left font-mono font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-lg transition-all"
+            >
+              Integrate
+            </button>
+            <button
+              disabled
+              className="w-full px-4 py-3 bg-[#FF6B35] text-white font-mono font-bold rounded-lg disabled:opacity-70"
+            >
+              Launch App →
+            </button>
+          </motion.div>
+        )}
+
+        {/* Mobile Bottom Navigation - Mini Version */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed bottom-4 left-4 right-4 z-40"
+        >
+          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-white/95 backdrop-blur-xl border-2 border-[#1A1A1A] rounded-full shadow-2xl text-[10px]">
+            <div className="flex items-center gap-1">
+              <span className="font-mono font-bold text-[#9B9B9B]">In</span>
+              <span className="font-mono font-bold text-[#1A1A1A]">
+                {formatNumber(countdown.days)}d
+              </span>
+            </div>
+            <div className="w-px h-4 bg-[#E5E5E0]" />
+            <span className="font-mono text-[#9B9B9B]">
+              {formatNumber(countdown.hours)}:{formatNumber(countdown.minutes)}
+            </span>
+          </div>
+        </motion.div>
+      </>
+    );
+  }
+
+  // Desktop Layout (unchanged)
   return (
     <>
       {/* Logo - Fixed Top Left */}
@@ -64,14 +162,14 @@ const Navbar = () => {
           />
         </div>
         <span 
-          className="font-black text-2xl uppercase tracking-tight text-[#1A1A1A] group-hover:text-[#FF6B35] transition-colors duration-300 hidden lg:block"
+          className="font-black text-2xl uppercase tracking-tight text-[#1A1A1A] group-hover:text-[#FF6B35] transition-colors duration-300"
           style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
         >
           INTENT
         </span>
       </motion.a>
 
-      {/* Center Navigation Pill - ALWAYS PILL SHAPE */}
+      {/* Center Navigation Pill */}
       <motion.nav
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -125,7 +223,7 @@ const Navbar = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="fixed top-8 right-8 z-50 hidden lg:block"
+        className="fixed top-8 right-8 z-50"
       >
         <div className="flex items-center gap-4 px-6 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#1A1A1A] rounded-full shadow-lg">
           <span className="font-mono text-sm font-bold text-[#9B9B9B] uppercase tracking-wider">
@@ -159,35 +257,6 @@ const Navbar = () => {
               </span>
             </div>
           </div>
-        </div>
-      </motion.div>
-
-      {/* Mobile Navigation - Bottom Fixed */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed bottom-6 left-6 right-6 z-50 lg:hidden"
-      >
-        <div className="flex items-center justify-between gap-2 px-6 py-4 bg-white/95 backdrop-blur-xl border-4 border-[#1A1A1A] rounded-full shadow-2xl">
-          <button
-            onClick={() => scrollToSection("problem")}
-            className="flex-1 px-4 py-3 font-mono text-sm font-bold text-[#1A1A1A] hover:bg-[#F5F5F2] rounded-full transition-all duration-300"
-          >
-            Explore
-          </button>
-          <button
-            onClick={() => scrollToSection("how-it-works")}
-            className="flex-1 px-4 py-3 font-mono text-sm font-bold text-[#1A1A1A] hover:bg-[#F5F5F2] rounded-full transition-all duration-300"
-          >
-            Build
-          </button>
-          <button
-            disabled
-            className="flex-1 px-4 py-3 bg-[#FF6B35] text-white font-mono text-sm font-bold rounded-full disabled:opacity-70"
-          >
-            Launch →
-          </button>
         </div>
       </motion.div>
     </>
