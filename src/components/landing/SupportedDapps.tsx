@@ -364,7 +364,7 @@ const SupportedDapps = () => {
                     />
                     {/* Outer Node */}
                     <div
-                      className="absolute w-12 h-12 border-2 border-[#FF6B35] rounded-full bg-[#FAFAF8] opacity-30"
+                      className="absolute w-12 h-12 border border-[#FF6B35] rounded-full bg-[#FAFAF8] opacity-30"
                       style={{
                         left: `calc(50% + ${x}px)`,
                         top: `calc(50% + ${y}px)`,
@@ -459,7 +459,7 @@ const SupportedDapps = () => {
                 className="group bg-gradient-to-br from-white to-[#FFF8F5] border-2 border-[#E5E5E0] p-6 hover:border-[#FF6B35] hover:shadow-xl transition-all duration-300 cursor-pointer"
               >
                 {/* Logo */}
-                <div className="w-16 h-16 border-2 border-[#FF6B35] group-hover:border-[#FF6B35] bg-[#FAFAF8] flex items-center justify-center mb-4 overflow-hidden transition-all duration-300">
+                <div className="w-16 h-16 border border-[#FF6B35] group-hover:border-[#FF6B35] bg-[#FAFAF8] flex items-center justify-center mb-4 overflow-hidden transition-all duration-300">
                   {dapp.logo ? (
                     <Logo
                       src={dapp.logo}

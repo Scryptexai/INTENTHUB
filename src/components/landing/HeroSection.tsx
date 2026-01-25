@@ -107,7 +107,7 @@ const HeroSection = () => {
               className="relative"
             >
               {/* Thick Grid Border */}
-              <div className="absolute -inset-5 border-4 border-[#FF6B35] pointer-events-none" />
+              <div className="absolute -inset-5 border-2 border-[#FF6B35] pointer-events-none" />
 
               {/* Content */}
               <div className="relative p-6 space-y-4">
@@ -194,7 +194,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute bottom-0 left-0 right-0 z-30 p-6 bg-white/95 backdrop-blur-md border-t-2 border-[#FF6B35] space-y-4 safe-area-bottom"
+            className="absolute bottom-0 left-0 right-0 z-30 p-6 bg-white/95 backdrop-blur-md border-t border-[#FF6B35] space-y-4 safe-area-bottom"
           >
             {/* Headline */}
             <h1 

@@ -43,7 +43,7 @@ const SocialProofBanner = () => {
   }, []);
 
   return (
-    <section className="relative border-t-2 border-b-2 border-[#FF6B35] bg-[#FAFAF8] py-8 overflow-hidden">
+    <section className="relative border-t border-b border-[#FF6B35] bg-[#FAFAF8] py-8 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-px bg-[#FF6B35]" />
@@ -72,7 +72,7 @@ const SocialProofBanner = () => {
             >
               <div className="group relative">
                 {/* Logo Container with Border */}
-                <div className="w-16 h-16 sm:w-20 sm:h-20 border-4 border-[#FF6B35] bg-white rounded-xl flex items-center justify-center p-2 transition-all duration-300 hover:border-[#FF6B35] hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-[#FF6B35] bg-white rounded-xl flex items-center justify-center p-2 transition-all duration-300 hover:border-[#FF6B35] hover:shadow-xl hover:-translate-y-1">
                   <img
                     src={`/assets/logos/arc/${logo}`}
                     alt={`Arc dApp ${index + 1}`}
