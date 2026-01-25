@@ -67,7 +67,7 @@ const HeroSection = () => {
         <section 
           id="hero" 
           ref={sectionRef} 
-          className="relative w-full h-screen bg-[#000000] overflow-hidden"
+          className="relative w-full h-screen bg-[#FAFAF8] overflow-hidden"
         >
           {/* LAYER 2: Running Text (BEHIND 3D) - Top 1/3 of hero */}
           <div className="absolute top-0 left-0 w-full h-[33.33vh] flex items-center overflow-hidden z-10 pointer-events-none">
@@ -158,7 +158,7 @@ const HeroSection = () => {
         <section 
           id="hero" 
           ref={sectionRef} 
-          className="relative w-full h-screen bg-[#000000] overflow-hidden pt-20 pb-24 flex flex-col"
+          className="relative w-full h-screen bg-[#FAFAF8] overflow-hidden pt-20 pb-24 flex flex-col"
         >
           {/* Running Text - Reduced size for mobile */}
           <div className="absolute top-16 left-0 w-full h-20 flex items-center overflow-hidden z-10 pointer-events-none">
