@@ -165,63 +165,53 @@ const HeroSection = () => {
             <Hero3DElement />
           </div>
 
-          {/* OVERLAY: Tagline + Headline + CTA + Description */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10">
-            {/* Background range for tagline and headline */}
-            <div className="absolute bottom-[20%] left-0 right-0 h-2/3 bg-gradient-to-b from-[#FF6B35]/5 via-[#FF6B35]/3 to-transparent" style={{ backdropFilter: 'blur(8px)' }} />
-            {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0, y: -15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#FF6B35] font-bold mb-2"
-            >
-              On-chain verification
-            </motion.p>
+          {/* OVERLAY: Tagline + Headline + CTA */}
+          <div className="absolute inset-0 flex items-start justify-start px-4 py-20 z-10">
+            {/* Background overlay with orange tint */}
+            <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#FF6B35]/10" />
 
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-4"
-            >
-              <Button
-                onClick={() => setIsWaitlistOpen(true)}
-                className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-xs font-bold uppercase tracking-wider px-5 py-2 rounded-lg transition-all duration-300 active:scale-95 shadow-lg"
+            {/* Content overlay */}
+            <div className="relative z-20">
+              {/* Tagline - Left positioned */}
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="font-mono text-[12px] uppercase tracking-[0.15em] text-[#FF6B35] font-bold mb-6"
               >
-                JOIN WAITLIST →
-              </Button>
-            </motion.div>
+                PROOF OF PARTICIPATION
+              </motion.p>
 
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[40px] font-black leading-[1.0] tracking-tight text-white text-center uppercase mb-3 drop-shadow-lg"
-              style={{ 
-                fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
-                fontWeight: 900,
-                textShadow: '0 4px 12px rgba(0,0,0,0.3)'
-              }}
-            >
-              PROOF OF<br />
-              PARTICIPATION
-            </motion.h1>
+              {/* Main Headline - Smaller size */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-[32px] font-black leading-[1.0] tracking-tight text-white mb-8"
+                style={{
+                  fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
+                  fontWeight: 900
+                }}
+              >
+                Verify on-chain actions.<br />
+                Generate unique content.<br />
+                Build portable reputation.
+              </motion.h1>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-[14px] font-normal leading-[1.4] text-white text-center max-w-xs drop-shadow-md"
-              style={{
-                textShadow: '0 2px 8px rgba(0,0,0,0.3)'
-              }}
-            >
-              Verify on-chain actions. Generate content. Build reputation.
-            </motion.p>
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <Button
+                  onClick={() => setIsWaitlistOpen(true)}
+                  className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-lg transition-all duration-300 active:scale-95 shadow-lg"
+                >
+                  JOIN WAITLIST →
+                </Button>
+              </motion.div>
+            </div>
           </div>
         </section>
       )}
