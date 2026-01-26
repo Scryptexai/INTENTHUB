@@ -21,8 +21,15 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Ensure countdown works on mobile by forcing a refresh
-    updateCountdown();
+    // Initial countdown update
+    const now = new Date();
+    const diff = LAUNCH_DATE.getTime() - now.getTime();
+    if (diff > 0) {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      setCountdown({ days, hours, minutes });
+    }
 
     const interval = setInterval(() => {
       // Force re-render to ensure mobile updates
