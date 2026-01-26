@@ -165,8 +165,10 @@ const HeroSection = () => {
             <Hero3DElement />
           </div>
 
-          {/* OVERLAY: Tagline + Headline + CTA + Description (No Background) */}
+          {/* OVERLAY: Tagline + Headline + CTA + Description */}
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10">
+            {/* Background range for tagline and headline */}
+            <div className="absolute bottom-[20%] left-0 right-0 h-2/3 bg-gradient-to-b from-[#FF6B35]/5 via-[#FF6B35]/3 to-transparent" style={{ backdropFilter: 'blur(8px)' }} />
             {/* Tagline */}
             <motion.p
               initial={{ opacity: 0, y: -15 }}

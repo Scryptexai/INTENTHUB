@@ -9,7 +9,6 @@ import TechnicalEdge from "@/components/landing/TechnicalEdge";
 import ComparisonTable from "@/components/landing/ComparisonTable";
 import FAQSection from "@/components/landing/FAQSection";
 import EcosystemTrust from "@/components/landing/EcosystemTrust";
-import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 
 const Index = () => {
@@ -27,7 +26,6 @@ const Index = () => {
         <ComparisonTable />
         <FAQSection />
         <EcosystemTrust />
-        <FinalCTA />
       </main>
       <Footer />
     </div>
