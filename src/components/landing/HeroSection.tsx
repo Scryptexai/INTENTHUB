@@ -187,7 +187,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-[32px] font-black leading-[1.0] tracking-tight text-white mb-8"
+                className="text-[32px] font-black leading-[1.0] tracking-tight text-[#8B7355] mb-8"
                 style={{
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                   fontWeight: 900
