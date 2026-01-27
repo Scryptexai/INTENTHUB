@@ -177,7 +177,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="font-mono text-[12px] uppercase tracking-[0.15em] text-[#FF6B35] font-bold mb-6"
+                className="font-mono text-[12px] uppercase tracking-[0.15em] text-[#8B7355] font-bold mb-6"
               >
                 PROOF OF PARTICIPATION
               </motion.p>
