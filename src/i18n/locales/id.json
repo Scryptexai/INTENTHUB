@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "badge": "Bukti Partisipasi",
+    "headline": "Berhenti Farming Buta. Mulai Gunakan ARC dengan Benar.",
+    "subheadline": "INTENT bantu kamu fokus ke aktivitas on-chain yang beneran dipakai tim ARC, bukan cuma spam transaksi.",
+    "cta": "Mulai Aktivitas ARC Harian"
+  },
+  "problem": {
+    "badge": "MASALAHNYA",
+    "headline": "Sebagian besar user farming tanpa tahu apa yang mereka lakukan"
+  },
+  "infrastructure": {
+    "badge": "YANG SEBENARNYA DILAKUKAN INTENT",
+    "headline": "INTENT bantu kamu pakai dApps ARC secara nyata, bukan cuma kelihatan aktif."
+  },
+  "dailyActivity": {
+    "badge": "AKTIVITAS ARC HARIAN",
+    "headline": "Aktivitas yang Direkomendasikan Hari Ini"
+  },
+  "whyDifferent": {
+    "badge": "KENAPA INI BERBEDA",
+    "headline": "Ini bukan platform quest. Ini panduan aktivitas on-chain."
+  },
+  "aboutProof": {
+    "badge": "TENTANG PROOF & BADGE",
+    "headline": "Badge di sini bukan koleksi, tapi bukti aktivitas."
+  },
+  "ecosystem": {
+    "badge": "ECOSYSTEM TRUST",
+    "headline": "Dibangun di ARC, dipercaya komunitas"
+  },
+  "finalCta": {
+    "badge": "CTA FINAL",
+    "headline": "Kalau mau farming, setidaknya lakukan dengan cara yang benar.",
+    "cta": "Mulai Gunakan ARC dengan INTENT",
+    "connectWallet": "Hubungkan Dompet"
+  }
+}

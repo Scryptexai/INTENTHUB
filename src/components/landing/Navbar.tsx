@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import intentLogo from "/assets/intent-logo.jpg";
 import { useResponsive } from "@/contexts/ResponsiveContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 // 7-day countdown target
 const LAUNCH_DATE = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -87,20 +88,23 @@ const Navbar = () => {
           </a>
           
           {/* Hamburger Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="touch-target w-12 h-12 flex items-center justify-center border border-[#FF6B35] rounded-full bg-white hover:bg-[#FF6B35] transition-all duration-300 active:scale-95"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileMenuOpen}
-          >
-            <motion.span
-              animate={{ rotate: mobileMenuOpen ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-2xl font-bold leading-none"
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="touch-target w-12 h-12 flex items-center justify-center border border-[#FF6B35] rounded-full bg-white hover:bg-[#FF6B35] transition-all duration-300 active:scale-95"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? "✕" : "☰"}
-            </motion.span>
-          </button>
+              <motion.span
+                animate={{ rotate: mobileMenuOpen ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-2xl font-bold leading-none"
+              >
+                {mobileMenuOpen ? "✕" : "☰"}
+              </motion.span>
+            </button>
+          </div>
         </motion.div>
 
         {/* Mobile Full-Screen Menu - Slide-in Overlay */}
@@ -266,13 +270,14 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Countdown - Fixed Top Right */}
+      {/* Countdown & Language Switcher - Fixed Top Right */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="fixed top-8 right-8 z-50"
+        className="fixed top-8 right-8 z-50 flex items-center gap-4"
       >
+        <LanguageSwitcher />
         <div className="flex items-center gap-4 px-6 py-4 bg-white/95 backdrop-blur-xl border-2 border-[#FF6B35] rounded-full shadow-lg">
           <span className="font-mono text-sm font-bold text-[#9B9B9B] uppercase tracking-wider">
             Launch in

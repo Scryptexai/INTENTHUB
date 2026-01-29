@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "badge": "Proof of Participation",
+    "headline": "Stop Farming Blind. Start Using ARC the Right Way.",
+    "subheadline": "INTENT helps you focus on on-chain activities that the ARC team actually uses, not just spamming transactions.",
+    "cta": "Start Daily ARC Activities"
+  },
+  "problem": {
+    "badge": "THE PROBLEM",
+    "headline": "Most users farm without knowing what they're doing"
+  },
+  "infrastructure": {
+    "badge": "WHAT INTENT ACTUALLY DOES",
+    "headline": "INTENT helps you use ARC dApps for real, not just appear active."
+  },
+  "dailyActivity": {
+    "badge": "DAILY ARC ACTIVITIES",
+    "headline": "Today's Recommended Activities"
+  },
+  "whyDifferent": {
+    "badge": "WHY THIS IS DIFFERENT",
+    "headline": "This isn't a quest platform. This is an on-chain activity guide."
+  },
+  "aboutProof": {
+    "badge": "ABOUT PROOF & BADGE",
+    "headline": "Badges here aren't collections, but proof of activity."
+  },
+  "ecosystem": {
+    "badge": "ECOSYSTEM TRUST",
+    "headline": "Built on ARC, trusted by the community"
+  },
+  "finalCta": {
+    "badge": "FINAL CTA",
+    "headline": "If you want to farm, at least do it the right way.",
+    "cta": "Start Using ARC with INTENT",
+    "connectWallet": "Connect Wallet"
+  }
+}

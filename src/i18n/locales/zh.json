@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "badge": "参与证明",
+    "headline": "停止盲目刷量。开始正确使用ARC。",
+    "subheadline": "INTENT帮助您专注于ARC团队实际使用的链上活动，而不仅仅是垃圾交易。",
+    "cta": "开始每日ARC活动"
+  },
+  "problem": {
+    "badge": "问题所在",
+    "headline": "大多数用户在不知道自己在做什么的情况下进行刷量"
+  },
+  "infrastructure": {
+    "badge": "INTENT的真正作用",
+    "headline": "INTENT帮助您真实地使用ARC dApps，而不仅仅是看起来活跃。"
+  },
+  "dailyActivity": {
+    "badge": "每日ARC活动",
+    "headline": "今日推荐活动"
+  },
+  "whyDifferent": {
+    "badge": "为什么与众不同",
+    "headline": "这不是任务平台。这是链上活动指南。"
+  },
+  "aboutProof": {
+    "badge": "关于证明与徽章",
+    "headline": "这里的徽章不是收藏品，而是活动证明。"
+  },
+  "ecosystem": {
+    "badge": "生态系统信任",
+    "headline": "建立在ARC上，受社区信任"
+  },
+  "finalCta": {
+    "badge": "最终行动号召",
+    "headline": "如果要刷量，至少要以正确的方式进行。",
+    "cta": "开始使用ARC与INTENT",
+    "connectWallet": "连接钱包"
+  }
+}

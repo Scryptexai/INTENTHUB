@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 import WaitlistForm from "./WaitlistForm";
 import { Button } from "@/components/ui/button";
 import { useResponsive } from "@/contexts/ResponsiveContext";
@@ -11,6 +12,7 @@ import Hero3DElement from "./Hero3DElement";
 gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const runningTextRef = useRef<HTMLDivElement>(null);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
@@ -88,7 +90,7 @@ const HeroSection = () => {
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/20 border border-[#FF6B35]/30 rounded-full mb-5 backdrop-blur-sm">
                   <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
                   <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-                    Proof of Participation
+                    {t('hero.badge')}
                   </span>
                 </div>
 
@@ -99,11 +101,8 @@ const HeroSection = () => {
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 900
                   }}
-                >
-                  Stop Farming Blind.<br />
-                  Start Using ARC<br />
-                  the Right Way.
-                </h1>
+                  dangerouslySetInnerHTML={{ __html: t('hero.headline').replace('. ', '.<br />') }}
+                />
 
                 {/* Orange Accent Line */}
                 <div className="w-20 h-1.5 bg-[#FF6B35] mb-6 shadow-lg mx-auto" />
@@ -115,7 +114,7 @@ const HeroSection = () => {
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                   }}
                 >
-                  INTENT bantu kamu fokus ke aktivitas on-chain yang beneran dipakai tim ARC, bukan cuma spam transaksi.
+                  {t('hero.subheadline')}
                 </p>
 
                 {/* CTA Button */}
@@ -123,7 +122,7 @@ const HeroSection = () => {
                   onClick={() => setIsWaitlistOpen(true)}
                   className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base lg:text-lg uppercase tracking-wider px-12 py-5 rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
                 >
-                  Start Daily ARC Activities
+                  {t('hero.cta')}
                   <span className="ml-2">→</span>
                 </Button>
               </motion.div>
