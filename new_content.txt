@@ -1,0 +1,145 @@
+🟠 HERO SECTION
+Headline
+
+Stop Farming Blind. Start Using ARC the Right Way.
+
+Subheadline
+
+INTENT bantu kamu fokus ke aktivitas on-chain yang beneran dipakai tim ARC,
+bukan cuma spam transaksi yang kelihatan aktif tapi nggak ada nilainya.
+
+CTA
+
+👉 Start Daily ARC Activities
+👉 Connect Wallet
+
+⚠️ SECTION — REAL PROBLEM (USER POV)
+Title
+
+Farming di testnet itu capek, tapi tetap nggak yakin hasilnya dihitung.
+
+Points (cards)
+
+❌ Kebanyakan transaksi, tapi nggak tau mana yang penting
+Swap kecil berkali-kali, bridge bolak-balik, tapi tetap ragu ini dihitung apa nggak.
+
+❌ Bukti aktivitas ribet & manual
+Screenshot, copy tx hash, isi form, nunggu centang.
+
+❌ Pola farming kelihatan banget
+Semua orang ngelakuin hal yang sama → gampang ke-flag sebagai bot.
+
+❌ Nggak ada arah yang jelas
+Hari ini ngapain? Besok ngapain? Semua cuma nebak.
+
+✅ SECTION — WHAT INTENT ACTUALLY DOES
+Title
+
+INTENT bantu kamu pakai dApps ARC secara nyata, bukan cuma kelihatan aktif.
+
+Steps
+
+1. Kamu pakai dApps seperti biasa
+Swap, LP, bridge, atau fitur lain di ecosystem ARC.
+
+2. INTENT baca transaksi kamu langsung dari chain
+Tanpa form, tanpa upload bukti, tanpa klaim manual.
+
+3. Aktivitas kamu langsung diverifikasi
+Bukan cuma “ada tx”, tapi benar-benar interaksi ke kontrak yang relevan.
+
+4. Bukti + konten otomatis dibuat
+Siap buat share, siap buat jadi history partisipasi kamu.
+
+🔥 SECTION — DAILY ARC ACTIVITY ROUTE
+Title
+
+Bukan task random. Ini jalur aktivitas yang masuk akal.
+
+Sub
+
+Setiap hari, INTENT rekomendasikan aktivitas berbeda supaya:
+✔ kamu explore lebih banyak dApps
+✔ nggak cuma ulangi tx yang sama
+✔ pola aktivitas kamu kelihatan natural
+
+Example list
+
+Today on ARC:
+
+Swap via ArcFlow
+
+Provide liquidity on XYZ Pool
+
+Bridge small amount via Across
+
+(akan terus berkembang sesuai ecosystem)
+
+🟡 SECTION — WHY THIS IS DIFFERENT
+Title
+
+Ini bukan platform quest. Ini panduan aktivitas on-chain.
+
+Comparison
+
+Platform quest biasa:
+
+Fokus ke checklist
+
+Task sama untuk semua orang
+
+Tujuan utama: claim reward
+
+INTENT:
+
+Fokus ke cara kamu pakai dApps
+
+Aktivitas bervariasi & berurutan
+
+Tujuan utama: partisipasi nyata di ecosystem
+
+INTENT bukan ngajarin kamu “cara cepat claim”,
+tapi bantu kamu bangun jejak penggunaan yang masuk akal.
+
+🟣 SECTION — ABOUT PROOF & BADGE
+Title
+
+Badge di sini bukan koleksi, tapi bukti aktivitas.
+
+Text
+
+Setiap proof di INTENT terhubung langsung ke transaksi kamu di chain.
+Bukan cuma NFT kosong, tapi catatan aktivitas yang bisa dicek ulang.
+
+Kalau nanti ada snapshot, campaign, atau retroactive reward,
+kamu punya history yang rapi dan bisa diverifikasi.
+
+🟢 SECTION — TRUST / BUILT ON ARC
+Title
+
+Dibangun khusus untuk ecosystem ARC.
+
+Points
+
+Aktivitas diverifikasi langsung dari ARC RPC
+
+Fokus ke dApps yang benar-benar ada di ecosystem
+
+Task disesuaikan dengan growth stage network
+
+INTENT bukan multi-chain farming tool.
+Saat ini fokus penuh bantu user aktif di ARC.
+
+🚀 FINAL CTA
+Title
+
+Kalau mau farming, setidaknya lakukan dengan cara yang benar.
+
+Sub
+
+Pakai dApps, bangun history, dan biarkan INTENT urus verifikasi + bukti.
+
+Buttons
+
+👉 Start Using ARC with INTENT
+👉 Connect Wallet

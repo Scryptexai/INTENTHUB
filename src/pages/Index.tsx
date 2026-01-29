@@ -3,12 +3,11 @@ import HeroSection from "@/components/landing/HeroSection";
 import SocialProofBanner from "@/components/landing/SocialProofBanner";
 import ProblemFraming from "@/components/landing/ProblemFraming";
 import InfrastructureSection from "@/components/landing/InfrastructureSection";
-import VideoDemo from "@/components/landing/VideoDemo";
-import SupportedDapps from "@/components/landing/SupportedDapps";
-import TechnicalEdge from "@/components/landing/TechnicalEdge";
-import ComparisonTable from "@/components/landing/ComparisonTable";
-import FAQSection from "@/components/landing/FAQSection";
+import DailyArcActivity from "@/components/landing/DailyArcActivity";
+import WhyDifferentSection from "@/components/landing/WhyDifferentSection";
+import AboutProofBadge from "@/components/landing/AboutProofBadge";
 import EcosystemTrust from "@/components/landing/EcosystemTrust";
+import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 
 const Index = () => {
@@ -20,12 +19,11 @@ const Index = () => {
         <SocialProofBanner />
         <ProblemFraming />
         <InfrastructureSection />
-        <VideoDemo />
-        <SupportedDapps />
-        <TechnicalEdge />
-        <ComparisonTable />
-        <FAQSection />
+        <DailyArcActivity />
+        <WhyDifferentSection />
+        <AboutProofBadge />
         <EcosystemTrust />
+        <FinalCTA />
       </main>
       <Footer />
     </div>

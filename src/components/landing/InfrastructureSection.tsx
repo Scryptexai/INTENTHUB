@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Search, CheckCircle, Palette, Loader2 } from "lucide-react";
+import { Search, CheckCircle, Palette, Loader2, ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useResponsive } from "@/contexts/ResponsiveContext";
@@ -11,23 +11,30 @@ const steps = [
   {
     number: "01",
     icon: Search,
-    headline: "ACTIVITY INDEXING",
-    text: "Reads wallet interactions with supported protocols in real-time. No manual submission required.",
-    tech: "RPC Monitoring"
+    headline: "Kamu pakai dApps seperti biasa",
+    text: "Swap, LP, bridge, atau fitur lain di ecosystem ARC.",
+    tech: "Normal Usage"
   },
   {
     number: "02",
     icon: CheckCircle,
-    headline: "PROTOCOL-LEVEL VALIDATION",
-    text: "Confirms real contract-level actions through RPC verification. Not UI clicks—actual on-chain execution.",
-    tech: "Smart Contract Events"
+    headline: "INTENT baca transaksi kamu langsung dari chain",
+    text: "Tanpa form, tanpa upload bukti, tanpa klaim manual.",
+    tech: "Direct RPC Reading"
   },
   {
     number: "03",
     icon: Palette,
-    headline: "PROOF & CONTENT GENERATION",
-    text: "Mints structured proof NFT and generates verifiable campaign content. Portable across ecosystems.",
-    tech: "AI + Blockchain"
+    headline: "Aktivitas kamu langsung diverifikasi",
+    text: "Bukan cuma \"ada tx\", tapi benar-benar interaksi ke kontrak yang relevan.",
+    tech: "Smart Contract Verification"
+  },
+  {
+    number: "04",
+    icon: Loader2,
+    headline: "Bukti + konten otomatis dibuat",
+    text: "Siap buat share, siap buat jadi history partisipasi kamu.",
+    tech: "Auto Generation"
   },
 ];
 
@@ -70,8 +77,8 @@ const InfrastructureSection = () => {
       gsap.to(".infra-step-card", {
         y: 0,
         opacity: 1,
-        stagger: 0.2,
-        duration: 1,
+        stagger: 0.15,
+        duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".infra-cards-container",
@@ -85,14 +92,14 @@ const InfrastructureSection = () => {
         gsap.to(".infra-connecting-line", {
           scaleX: 1,
           opacity: 1,
-          stagger: 0.2,
+          stagger: 0.15,
           duration: 0.8,
           delay: 0.6,
           ease: "power2.out",
           scrollTrigger: {
             trigger: ".infra-cards-container",
             start: "top 70%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         });
       }
@@ -102,16 +109,16 @@ const InfrastructureSection = () => {
   }, [isMobile]);
 
   return (
-    <section 
-      id="how-it-works" 
-      ref={sectionRef} 
+    <section
+      id="how-it-works"
+      ref={sectionRef}
       className={`relative w-full min-h-screen bg-white overflow-hidden transition-all ${
-        isMobile ? 'py-12' : 'py-16 lg:py-24'
+        isMobile ? 'py-16' : 'py-20 lg:py-32'
       }`}
     >
       {/* Background Grid Pattern - Desktop only */}
       {!isMobile && (
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div className="absolute top-0 left-[20%] w-px h-full bg-[#1A1A1A]" />
           <div className="absolute top-0 left-[40%] w-px h-full bg-[#1A1A1A]" />
           <div className="absolute top-0 left-[60%] w-px h-full bg-[#1A1A1A]" />
@@ -142,52 +149,37 @@ const InfrastructureSection = () => {
           <div className="absolute top-1/3 right-1/3 infra-ornament-rotate pointer-events-none">
             <div className="w-20 h-20 border-2 border-[#FF6B35] opacity-5 rotate-45" />
           </div>
-
-          {/* Large Background Text */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-            <p 
-              className="text-[180px] lg:text-[240px] font-black text-[#1A1A1A] opacity-[0.02] uppercase whitespace-nowrap"
-              style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
-            >
-              INTENT
-            </p>
-          </div>
         </>
       )}
 
-      <div className={`${isMobile ? 'px-4' : 'max-w-[1200px] mx-auto px-6 lg:px-12'} relative z-10`}>
-        
+      <div className={`${isMobile ? 'px-6' : 'max-w-[1400px] mx-auto px-6 lg:px-12'} relative z-10`}>
+
         {/* Section Header */}
-        <div className={`text-center space-y-8 ${isMobile ? 'mb-12' : 'mb-20 lg:mb-28'}`}>
-          
-          {/* Eyebrow with Decorative Elements */}
+        <div className={`text-center space-y-8 ${isMobile ? 'mb-16' : 'mb-24 lg:mb-32'}`}>
+
+          {/* Orange Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={`flex items-center justify-center gap-6 ${isMobile ? 'gap-3' : ''}`}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full"
           >
-            <div className={`${isMobile ? 'w-6 h-px' : 'w-12 h-px'} bg-[#FF6B35]`} />
-            <p className={`font-mono uppercase tracking-[0.25em] text-[#FF6B35] font-bold ${
-              isMobile ? 'text-[10px]' : 'text-xs'
-            }`}>
-              INFRASTRUCTURE LAYER
+            <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
+              WHAT INTENT ACTUALLY DOES
             </p>
-            <div className={`${isMobile ? 'w-6 h-px' : 'w-12 h-px'} bg-[#FF6B35]`} />
           </motion.div>
 
-          {/* Subtitle - Spaced Letters */}
+          {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <p 
-              className={`font-mono text-[#9B9B9B] uppercase tracking-[0.3em] ${
-                isMobile ? 'text-[11px]' : 'text-sm lg:text-base'
-              }`}
+            <p
+              className="font-mono text-[#9B9B9B] uppercase tracking-[0.3em]"
             >
               B E Y O N D · O N C H A I N
             </p>
@@ -203,11 +195,11 @@ const InfrastructureSection = () => {
           >
             <h2
               className={`font-black leading-[1.2] text-[#1A1A1A] uppercase ${
-                isMobile ? 'text-2xl' : 'text-[26px] lg:text-[48px] xl:text-[56px]'
+                isMobile ? 'text-2xl' : 'text-[32px] lg:text-[38px] xl:text-[42px]'
               }`}
-              style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", mastertext plain' }}
+              style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
             >
-              INTENT IS A BEHAVIOR VERIFICATION LAYER
+              INTENT bantu kamu pakai dApps ARC secara nyata, bukan cuma kelihatan aktif.
             </h2>
           </motion.div>
 
@@ -217,43 +209,29 @@ const InfrastructureSection = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className={`${isMobile ? 'w-16 h-0.5' : 'w-24 h-1'} bg-[#FF6B35] mx-auto`}
+            className="w-24 h-1.5 bg-[#FF6B35] mx-auto"
           />
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className={`font-mono text-[#6B6B6B] leading-relaxed ${
-              isMobile ? 'text-sm max-w-sm mx-auto' : 'text-base lg:text-lg max-w-3xl mx-auto'
-            }`}
-          >
-            It indexes protocol interactions, validates real usage, 
-            and issues structured proofs across campaigns and ecosystems.
-          </motion.p>
         </div>
 
-        {/* 3-Step Cards with Connecting Lines */}
+        {/* 4-Step Cards with Connecting Lines */}
         <div className="infra-cards-container relative">
-          
+
           {/* Cards Grid - Responsive */}
-          <div className={`grid gap-8 lg:gap-6 relative ${
-            isMobile ? 'grid-cols-1' : 'lg:grid-cols-3'
+          <div className={`grid gap-8 lg:gap-10 relative ${
+            isMobile ? 'grid-cols-1' : 'lg:grid-cols-4'
           }`}>
-            
-            {/* Connecting Lines - Desktop only, hidden on mobile */}
+
+            {/* Connecting Lines - Desktop only */}
             {!isMobile && (
               <>
-                {/* Line between card 1 and 2 */}
-                <div className="infra-connecting-line hidden lg:block absolute top-1/2 left-[33.33%] w-[8.33%] h-0.5 bg-[#FF6B35] -translate-y-1/2 z-0 opacity-0" style={{ transform: 'translateY(-50%) scaleX(0)' }}>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[10px] border-transparent border-l-[#FF6B35]" />
+                <div className="infra-connecting-line hidden lg:block absolute top-[20%] left-[25%] w-[12.5%] h-0.5 bg-[#FF6B35] z-0 opacity-0">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[8px] border-b-[8px] border-l-[12px] border-transparent border-l-[#FF6B35]" />
                 </div>
-
-                {/* Line between card 2 and 3 */}
-                <div className="infra-connecting-line hidden lg:block absolute top-1/2 left-[58.33%] w-[8.33%] h-0.5 bg-[#FF6B35] -translate-y-1/2 z-0 opacity-0" style={{ transform: 'translateY(-50%) scaleX(0)' }}>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[10px] border-transparent border-l-[#FF6B35]" />
+                <div className="infra-connecting-line hidden lg:block absolute top-[20%] left-[50%] w-[12.5%] h-0.5 bg-[#FF6B35] z-0 opacity-0">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[8px] border-b-[8px] border-l-[12px] border-transparent border-l-[#FF6B35]" />
+                </div>
+                <div className="infra-connecting-line hidden lg:block absolute top-[20%] left-[75%] w-[12.5%] h-0.5 bg-[#FF6B35] z-0 opacity-0">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[8px] border-b-[8px] border-l-[12px] border-transparent border-l-[#FF6B35]" />
                 </div>
               </>
             )}
@@ -261,46 +239,44 @@ const InfrastructureSection = () => {
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
-                initial={{ opacity: 0, y: 80 }}
+                initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.15 }}
                 className="infra-step-card relative z-10 group opacity-0"
-                style={{ y: 80 }}
+                style={{ y: 100 }}
               >
-                <div className="bg-[#FAFAF8] border-2 border-[#FF6B35] p-6 lg:p-8 h-full hover:bg-[#FF6B35] transition-all duration-500 relative overflow-hidden">
-                  {/* Loading Animation Overlay */}
-                  <div className="absolute inset-0 bg-[#FAFAF8] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-30">
-                    <Loader2 className="w-8 h-8 text-[#FF6B35] animate-spin" />
-                  </div>
-                  
-                  {/* Number Badge - Top Left Corner */}
-                  <div className="absolute -top-4 -left-4 w-14 h-14 lg:w-16 lg:h-16 bg-[#FF6B35] group-hover:bg-white border-2 border-white group-hover:border-[#FF6B35] flex items-center justify-center transition-all duration-500 z-10">
-                    <span className="font-mono text-lg lg:text-xl font-black text-white group-hover:text-[#FF6B35]">
+                <div className="bg-[#FAFAF8] border-2 border-[#E5E5E0] p-8 lg:p-10 h-full hover:border-[#FF6B35] hover:shadow-xl transition-all duration-500 relative overflow-hidden rounded-lg">
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/0 via-[#FF6B35]/0 to-[#FF6B35]/5 group-hover:from-[#FF6B35]/5 group-hover:via-[#FF6B35]/0 group-hover:to-[#FF6B35]/10 transition-all duration-500 pointer-events-none" />
+
+                  {/* Number Badge - Top Left */}
+                  <div className="absolute -top-4 -left-4 w-16 h-16 lg:w-20 lg:h-20 bg-[#FF6B35] border-4 border-white flex items-center justify-center shadow-lg">
+                    <span className="font-mono text-xl lg:text-2xl font-black text-white">
                       {step.number}
                     </span>
                   </div>
 
                   {/* Icon Container */}
-                  <div className="mb-6 pt-6 lg:pt-8">
-                    <div className="w-16 h-16 lg:w-20 lg:h-20 border-2 border-[#FF6B35] group-hover:border-white bg-white group-hover:bg-transparent flex items-center justify-center transition-all duration-500">
-                      <step.icon className="w-8 h-8 lg:w-10 lg:h-10 text-[#FF6B35] group-hover:text-white" />
+                  <div className="mb-8 pt-6">
+                    <div className="w-20 h-20 lg:w-24 lg:h-24 border-2 border-[#FF6B35] bg-white rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-[#FF6B35]">
+                      <step.icon className="w-10 h-10 lg:w-12 lg:h-12 text-[#FF6B35] group-hover:text-white transition-colors duration-500" />
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-4">
+                  <div className="space-y-5 relative z-10">
                     {/* Tech Badge */}
                     <div className="inline-block">
-                      <span className="font-mono text-xs uppercase tracking-wider text-[#9B9B9B] group-hover:text-white/70 bg-white group-hover:bg-white/10 px-3 py-1 border border-[#E5E5E0] group-hover:border-white/30">
+                      <span className="font-mono text-xs uppercase tracking-wider text-[#9B9B9B] bg-[#FAFAF8] px-4 py-2 border border-[#E5E5E0] rounded-full">
                         {step.tech}
                       </span>
                     </div>
 
                     {/* Headline */}
                     <h3
-                      className={`font-black text-[#1A1A1A] group-hover:text-white uppercase leading-tight transition-colors duration-500 ${
-                        isMobile ? 'text-lg' : 'text-xl lg:text-2xl'
+                      className={`font-black text-[#1A1A1A] uppercase leading-tight transition-colors duration-500 ${
+                        isMobile ? 'text-xl' : 'text-xl lg:text-2xl'
                       }`}
                       style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
                     >
@@ -308,25 +284,24 @@ const InfrastructureSection = () => {
                     </h3>
 
                     {/* Divider */}
-                    <div className="w-12 h-0.5 lg:w-16 lg:h-1 bg-[#FF6B35] group-hover:bg-white transition-colors duration-500" />
+                    <div className="w-16 h-1 bg-[#FF6B35] group-hover:w-24 transition-all duration-500" />
 
                     {/* Description */}
-                    <p className={`font-mono text-[#6B6B6B] group-hover:text-white/90 leading-relaxed transition-colors duration-500 ${
-                      isMobile ? 'text-xs' : 'text-sm lg:text-base'
+                    <p className={`font-mono text-[#6B6B6B] leading-relaxed ${
+                      isMobile ? 'text-sm' : 'text-sm lg:text-base'
                     }`}>
                       {step.text}
                     </p>
+
+                    {/* Arrow Icon on Hover */}
+                    <div className="flex items-center gap-2 text-[#FF6B35] opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      <span className="font-mono text-xs font-bold uppercase tracking-wider">Learn More</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
                   </div>
 
                   {/* Decorative Corner Element */}
-                  <div className="absolute bottom-0 right-0 w-16 h-16 lg:w-20 lg:h-20 border-t-2 border-l-2 border-[#FF6B35] group-hover:border-white opacity-10 group-hover:opacity-30 transition-all duration-500" />
-
-                  {/* Background Pattern on Hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none">
-                    <div className="w-full h-full" style={{
-                      backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, white 10px, white 11px)`
-                    }} />
-                  </div>
+                  <div className="absolute bottom-0 right-0 w-16 h-16 lg:w-20 lg:h-20 border-t-2 border-l-2 border-[#FF6B35] opacity-0 group-hover:opacity-20 transition-all duration-500" />
                 </div>
               </motion.div>
             ))}
@@ -337,14 +312,16 @@ const InfrastructureSection = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className={`text-center ${isMobile ? 'mt-8' : 'mt-16'}`}
+            transition={{ duration: 0.8, delay: 1 }}
+            className={`text-center ${isMobile ? 'mt-12' : 'mt-20'}`}
           >
-            <p className={`font-mono text-[#1A1A1A] font-bold uppercase tracking-wider ${
-              isMobile ? 'text-sm' : 'text-lg lg:text-xl'
-            }`}>
-              Infrastructure <span className="text-[#FF6B35]">&gt;</span> Manual Tasks
-            </p>
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-[#FAFAF8] border-2 border-[#FF6B35] rounded-lg">
+              <p className={`font-mono text-[#1A1A1A] font-bold uppercase tracking-wider ${
+                isMobile ? 'text-sm' : 'text-lg lg:text-xl'
+              }`}>
+                Infrastructure <span className="text-[#FF6B35]">&gt;</span> Manual Tasks
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>

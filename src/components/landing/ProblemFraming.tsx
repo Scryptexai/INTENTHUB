@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, FileText, User, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, FileText, User, ChevronLeft, ChevronRight, AlertCircle } from "lucide-react";
 import { useResponsive } from "@/contexts/ResponsiveContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,34 +11,45 @@ const problems = [
   {
     icon: X,
     number: "01",
-    headline: "FAKE PARTICIPATION",
-    text: "Tasks completed without real protocol usage. Bots and wash trading create noise instead of meaningful signal.",
+    headline: "Kebanyakan transaksi, tapi nggak tau mana yang penting",
+    text: "Swap kecil berkali-kali, bridge bolak-balik, tapi tetap ragu ini dihitung apa nggak.",
     details: [
-      "Screenshot farming",
-      "Bot activity",
-      "No verification layer"
+      "Transaksi random",
+      "Nggak fokus ke dApps yang beneran",
+      "Ragu hasilnya"
     ]
   },
   {
     icon: FileText,
     number: "02",
-    headline: "MANUAL PROOF",
-    text: "Screenshots, forms, and self-reported activity. No verification layer. Ecosystems forced to trust unverified claims.",
+    headline: "Bukti aktivitas ribet & manual",
+    text: "Screenshot, copy tx hash, isi form, nunggu centang.",
     details: [
-      "Time-consuming (30+ min)",
-      "Easily faked",
-      "No standardization"
+      "Proses panjang",
+      "Butuh manual work",
+      "Ribet dipake"
     ]
   },
   {
-    icon: User,
+    icon: AlertCircle,
     number: "03",
-    headline: "NO PORTABLE REPUTATION",
-    text: "Your actions don't build long-term on-chain identity. Each campaign starts from zero. No cumulative proof of expertise.",
+    headline: "Pola farming kelihatan banget",
+    text: "Semua orang ngelakuin hal yang sama → gampang ke-flag sebagai bot.",
     details: [
-      "Zero continuity",
-      "Repeated verification",
-      "Lost participation history"
+      "Pattern sama",
+      "Gampang detect",
+      "Dianggap bot"
+    ]
+  },
+  {
+    icon: X,
+    number: "04",
+    headline: "Nggak ada arah yang jelas",
+    text: "Hari ini ngapain? Besok ngapain? Semua cuma nebak.",
+    details: [
+      "Tidak ada roadmap",
+      "Random activity",
+      "Tujuannya nggak jelas"
     ]
   },
 ];
@@ -80,13 +91,13 @@ const ProblemFraming = () => {
     return () => ctx.revert();
   }, []);
 
-  // Auto-rotate carousel
+  // Auto-rotate carousel - faster speed
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % problems.length);
-    }, 5000);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
@@ -110,10 +121,9 @@ const ProblemFraming = () => {
     <section
       id="problem"
       ref={sectionRef}
-      className="relative w-full min-h-[60vh] bg-[#F5F5F2] overflow-hidden py-12 lg:py-16"
+      className="relative w-full min-h-[80vh] bg-[#F5F5F2] overflow-hidden py-16 lg:py-24"
     >
-          {/* Grid Background Pattern - REMOVED */}
-      {/* Decorative Ornaments - KEPT */}
+      {/* Decorative Ornaments */}
       <div className="absolute top-20 right-20 w-32 h-32 ornament-float-1 pointer-events-none">
         <div className="w-full h-full border-2 border-[#FF6B35] opacity-10 rounded-full" />
         <div className="absolute inset-4 border border-[#FF6B35] opacity-20 rounded-full" />
@@ -127,26 +137,25 @@ const ProblemFraming = () => {
         <div className="w-full h-full border border-[#FF6B35] opacity-5" />
       </div>
 
-      <div className={`mx-auto px-6 ${isMobile ? 'w-full' : 'container max-w-[1200px] lg:px-12'}`}>
-        
+      <div className={`mx-auto px-6 ${isMobile ? 'w-full' : 'max-w-[1400px]'}`}>
+
         {/* Desktop: 2-Column Layout */}
         {!isMobile && (
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            
-            {/* LEFT COLUMN - Fixed Content (40% width) */}
-            <div className="lg:col-span-5 space-y-8">
-              
-              {/* Eyebrow */}
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+            {/* LEFT COLUMN - Fixed Content */}
+            <div className="lg:col-span-5 space-y-8 sticky top-24">
+
+              {/* Orange Accent Badge */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="border-b-2 border-[#FF6B35] pb-4"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full"
               >
-                <p 
-                  className="font-mono text-xs uppercase tracking-[0.25em] text-[#9B9B9B] font-bold"
-                >
+                <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
                   THE CHALLENGE
                 </p>
               </motion.div>
@@ -158,13 +167,11 @@ const ProblemFraming = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <h2 
-                  className="text-[36px] lg:text-[40px] xl:text-[48px] font-black leading-[0.9] tracking-tight text-[#1A1A1A] uppercase"
+                <h2
+                  className="text-[40px] lg:text-[48px] font-black leading-[0.95] tracking-tight text-[#1A1A1A] uppercase"
                   style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
                 >
-                  TRADITIONAL<br />
-                  PARTICIPATION<br />
-                  FAILS
+                  Farming di testnet itu capek, tapi tetap nggak yakin hasilnya dihitung.
                 </h2>
               </motion.div>
 
@@ -174,7 +181,7 @@ const ProblemFraming = () => {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="w-16 h-1 bg-[#FF6B35] origin-left"
+                className="w-20 h-1.5 bg-[#FF6B35] origin-left"
               />
 
               {/* Description */}
@@ -183,7 +190,7 @@ const ProblemFraming = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="font-mono text-base lg:text-lg text-[#6B6B6B] leading-relaxed max-w-md border-b-2 border-[#E5E5E0] pb-6"
+                className="font-mono text-lg text-[#6B6B6B] leading-relaxed max-w-md border-l-4 border-[#FF6B35] pl-6"
               >
                 Ecosystems can't reward what they can't verify.
               </motion.p>
@@ -204,8 +211,8 @@ const ProblemFraming = () => {
                       onClick={() => handleDotClick(index)}
                       className={`transition-all duration-300 rounded-full ${
                         index === activeIndex
-                          ? "w-6 h-6 bg-[#FF6B35]"
-                          : "w-4 h-4 bg-[#D0D0CB] hover:bg-[#FF6B35]/50"
+                          ? "w-8 h-2 bg-[#FF6B35]"
+                          : "w-2 h-2 bg-[#D0D0CB] hover:bg-[#FF6B35]/50"
                       }`}
                       aria-label={`Go to problem ${index + 1}`}
                     />
@@ -216,14 +223,14 @@ const ProblemFraming = () => {
                 <div className="flex gap-4">
                   <button
                     onClick={handlePrev}
-                    className="w-12 h-12 border border-[#FF6B35] rounded-full flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
+                    className="w-14 h-14 border-2 border-[#FF6B35] rounded-lg flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
                     aria-label="Previous problem"
                   >
                     <ChevronLeft className="w-6 h-6 text-[#FF6B35] group-hover:text-white" />
                   </button>
                   <button
                     onClick={handleNext}
-                    className="w-12 h-12 border border-[#FF6B35] rounded-full flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
+                    className="w-14 h-14 border-2 border-[#FF6B35] rounded-lg flex items-center justify-center hover:bg-[#FF6B35] hover:border-[#FF6B35] transition-all duration-300 group"
                     aria-label="Next problem"
                   >
                     <ChevronRight className="w-6 h-6 text-[#FF6B35] group-hover:text-white" />
@@ -232,11 +239,11 @@ const ProblemFraming = () => {
               </motion.div>
             </div>
 
-            {/* RIGHT COLUMN - Carousel Cards (60% width) */}
-            <div className="lg:col-span-7 relative min-h-[500px]">
-              
+            {/* RIGHT COLUMN - Carousel Cards */}
+            <div className="lg:col-span-7 relative min-h-[550px]">
+
               {/* Card Container */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => setIsAutoPlaying(false)}
                 onMouseLeave={() => setIsAutoPlaying(true)}
@@ -244,76 +251,77 @@ const ProblemFraming = () => {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -100 }}
+                    initial={{ opacity: 0, x: 100, scale: 0.95 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -100, scale: 0.95 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="bg-white border-2 border-[#FF6B35] p-10 lg:p-12 relative"
+                    className="bg-white border-3 border-[#FF6B35] p-12 lg:p-16 relative shadow-2xl"
                   >
                     {/* Number Badge - Top Left */}
-                    <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#FF6B35] border-2 border-[#FF6B35] flex items-center justify-center">
-                      <span className="font-mono text-2xl font-black text-white">
+                    <div className="absolute -top-7 -left-7 w-20 h-20 bg-[#FF6B35] border-3 border-[#FF6B35] flex items-center justify-center shadow-lg">
+                      <span className="font-mono text-3xl font-black text-white">
                         {problems[activeIndex].number}
                       </span>
                     </div>
 
                     {/* Icon - Top Right */}
-                    <div className="absolute -top-6 -right-6 w-20 h-20 bg-white border-2 border-[#FF6B35] flex items-center justify-center">
-                      {activeIndex === 0 && <X className="w-10 h-10 text-[#FF6B35]" />}
-                      {activeIndex === 1 && <FileText className="w-10 h-10 text-[#FF6B35]" />}
-                      {activeIndex === 2 && <User className="w-10 h-10 text-[#FF6B35]" />}
+                    <div className="absolute -top-7 -right-7 w-24 h-24 bg-white border-3 border-[#FF6B35] flex items-center justify-center shadow-lg">
+                      {activeIndex === 0 && <X className="w-12 h-12 text-[#FF6B35]" />}
+                      {activeIndex === 1 && <FileText className="w-12 h-12 text-[#FF6B35]" />}
+                      {activeIndex === 2 && <AlertCircle className="w-12 h-12 text-[#FF6B35]" />}
+                      {activeIndex === 3 && <User className="w-12 h-12 text-[#FF6B35]" />}
                     </div>
 
                     {/* Content */}
                     <div className="pt-8 space-y-6">
                       {/* Headline */}
-                      <h3 
-                        className="text-3xl lg:text-4xl font-black text-[#1A1A1A] uppercase"
+                      <h3
+                        className="text-3xl lg:text-4xl font-black text-[#1A1A1A] uppercase leading-tight"
                         style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
                       >
                         {problems[activeIndex].headline}
                       </h3>
 
                       {/* Divider */}
-                      <div className="w-20 h-1 bg-[#FF6B35]" />
+                      <div className="w-24 h-1.5 bg-[#FF6B35]" />
 
                       {/* Description */}
-                      <p className="font-mono text-base lg:text-lg text-[#6B6B6B] leading-relaxed">
+                      <p className="font-mono text-lg text-[#6B6B6B] leading-relaxed">
                         {problems[activeIndex].text}
                       </p>
 
                       {/* Details List */}
-                      <div className="pt-4 space-y-3 border-t-2 border-[#E5E5E0]">
+                      <div className="pt-6 space-y-4 border-t-2 border-[#E5E5E0]">
                         {problems[activeIndex].details.map((detail, idx) => (
-                          <div key={idx} className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-[#FF6B35] rounded-full mt-2 flex-shrink-0" />
-                            <p className="font-mono text-sm text-[#6B6B6B]">{detail}</p>
+                          <div key={idx} className="flex items-start gap-4">
+                            <div className="w-2.5 h-2.5 bg-[#FF6B35] rounded-full mt-2 flex-shrink-0" />
+                            <p className="font-mono text-base text-[#1A1A1A] font-medium">{detail}</p>
                           </div>
                         ))}
                       </div>
                     </div>
 
                     {/* Decorative Corner */}
-                    <div className="absolute bottom-0 right-0 w-16 h-16 border-t-4 border-l-4 border-[#FF6B35] opacity-20" />
+                    <div className="absolute bottom-0 right-0 w-20 h-20 border-t-4 border-l-4 border-[#FF6B35] opacity-20" />
                   </motion.div>
                 </AnimatePresence>
               </div>
 
               {/* Progress Bar */}
-              <div className="mt-8 flex gap-2">
+              <div className="mt-10 flex gap-2">
                 {problems.map((_, index) => (
                   <div
                     key={index}
-                    className="h-1 flex-1 bg-[#E5E5E0] overflow-hidden"
+                    className="h-2 flex-1 bg-[#E5E5E0] overflow-hidden rounded-full"
                   >
                     <motion.div
-                      className="h-full bg-[#FF6B35]"
+                      className="h-full bg-[#FF6B35] rounded-full"
                       initial={{ width: 0 }}
                       animate={{
                         width: index === activeIndex && isAutoPlaying ? "100%" : index < activeIndex ? "100%" : "0%"
                       }}
                       transition={{
-                        duration: index === activeIndex && isAutoPlaying ? 5 : 0,
+                        duration: index === activeIndex && isAutoPlaying ? 3.5 : 0,
                         ease: "linear"
                       }}
                     />
@@ -326,20 +334,23 @@ const ProblemFraming = () => {
 
         {/* Mobile: Compact Card Stack */}
         {isMobile && (
-          <div className="space-y-4">
-            {/* Eyebrow + Headline */}
+          <div className="space-y-5">
+            {/* Orange Badge + Headline */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="space-y-3 mb-6"
+              className="space-y-4 mb-6"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#9B9B9B] font-bold border-b border-[#FF6B35] pb-2">
-                THE CHALLENGE
-              </p>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full">
+                <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full animate-pulse" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#FF6B35] font-bold">
+                  THE CHALLENGE
+                </p>
+              </div>
               <h2 className="text-2xl font-black text-[#1A1A1A] uppercase leading-tight">
-                Traditional Participation Fails
+                Farming di testnet itu capek, tapi tetap nggak yakin hasilnya dihitung.
               </h2>
             </motion.div>
 
@@ -359,20 +370,20 @@ const ProblemFraming = () => {
                   transition={{ duration: 0.4, delay: index * 0.08 }}
                   className={`w-full text-left transition-all ${
                     activeIndex === index
-                      ? 'bg-white border-2 border-[#FF6B35]'
+                      ? 'bg-white border-2 border-[#FF6B35] shadow-lg'
                       : 'border border-[#E5E5E0] hover:border-[#FF6B35]'
-                  }`}
+                  } rounded-lg overflow-hidden`}
                 >
-                  <div className="p-4 space-y-3">
+                  <div className="p-5 space-y-4">
                     {/* Header: Number + Icon + Headline */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-[#FF6B35] flex items-center justify-center flex-shrink-0 font-mono font-black text-white text-sm">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-[#FF6B35] flex items-center justify-center flex-shrink-0 rounded-lg font-mono font-black text-white text-sm">
                         {problem.number}
                       </div>
-                      <div className="flex-1 space-y-1">
+                      <div className="flex-1 space-y-2">
                         <div className="flex items-center gap-2">
                           <Icon className="w-5 h-5 text-[#FF6B35] flex-shrink-0" />
-                          <h3 className="font-bold text-sm uppercase text-[#1A1A1A]">
+                          <h3 className="font-bold text-sm uppercase text-[#1A1A1A] leading-tight">
                             {problem.headline}
                           </h3>
                         </div>
@@ -385,16 +396,16 @@ const ProblemFraming = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         transition={{ duration: 0.3 }}
-                        className="space-y-3 border-t border-[#E5E5E0] pt-3"
+                        className="space-y-4 border-t border-[#E5E5E0] pt-4"
                       >
-                        <p className="font-mono text-xs text-[#6B6B6B] leading-relaxed">
+                        <p className="font-mono text-sm text-[#6B6B6B] leading-relaxed">
                           {problem.text}
                         </p>
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                           {problem.details.map((detail, idx) => (
-                            <div key={idx} className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full mt-1.5 flex-shrink-0" />
-                              <p className="font-mono text-xs text-[#6B6B6B]">{detail}</p>
+                            <div key={idx} className="flex items-start gap-3">
+                              <div className="w-2 h-2 bg-[#FF6B35] rounded-full mt-1.5 flex-shrink-0" />
+                              <p className="font-mono text-sm text-[#1A1A1A]">{detail}</p>
                             </div>
                           ))}
                         </div>
@@ -411,7 +422,7 @@ const ProblemFraming = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex justify-center gap-2 mt-4"
+              className="flex justify-center gap-2 mt-6"
             >
               {problems.map((_, index) => (
                 <button
@@ -422,7 +433,7 @@ const ProblemFraming = () => {
                   }}
                   className={`transition-all ${
                     index === activeIndex
-                      ? 'w-3 h-3 bg-[#FF6B35] rounded-full'
+                      ? 'w-8 h-2 bg-[#FF6B35] rounded-full'
                       : 'w-2 h-2 bg-[#D0D0CB] rounded-full hover:bg-[#FF6B35]'
                   }`}
                   aria-label={`Go to problem ${index + 1}`}

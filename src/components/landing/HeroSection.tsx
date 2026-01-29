@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Hero3DElement from "./Hero3DElement";
 import WaitlistForm from "./WaitlistForm";
 import { Button } from "@/components/ui/button";
 import { useResponsive } from "@/contexts/ResponsiveContext";
 import { MOBILE_CONFIG } from "@/config/mobileConfig";
+import Hero3DElement from "./Hero3DElement";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,44 +17,22 @@ const HeroSection = () => {
   const { isMobile, width } = useResponsive();
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Responsive 3D animation - slower on mobile
-      gsap.to(".hero-3d-element", {
-        y: 20,
-        rotation: 5,
-        duration: 6, // Slightly slower for mobile
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
+    if (!sectionRef.current) return;
 
+    const ctx = gsap.context(() => {
       // Running text scroll animation with responsive speed
       if (runningTextRef.current) {
         const duration = isMobile ? MOBILE_CONFIG.animations.tickerSpeed.mobile : MOBILE_CONFIG.animations.tickerSpeed.desktop;
-        gsap.to(runningTextRef.current, {
-          x: "-50%",
-          duration: duration,
-          ease: "none",
-          repeat: -1,
-        });
+        gsap.fromTo(runningTextRef.current,
+          { x: "0%" },
+          {
+            x: "-50%",
+            duration: duration,
+            ease: "none",
+            repeat: -1,
+          }
+        );
       }
-
-      // Stats counter animation
-      const stats = document.querySelectorAll('.stat-number');
-      stats.forEach((stat) => {
-        const target = parseInt(stat.getAttribute('data-target') || '0');
-        gsap.to(stat, {
-          textContent: target,
-          duration: 2,
-          ease: "power1.out",
-          snap: { textContent: 1 },
-          scrollTrigger: {
-            trigger: stat,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -64,13 +42,19 @@ const HeroSection = () => {
     <>
       {/* Desktop Hero Layout */}
       {!isMobile && (
-        <section 
-          id="hero" 
-          ref={sectionRef} 
-          className="relative w-full h-screen bg-[#FAFAF8] overflow-hidden"
+        <section
+          id="hero"
+          ref={sectionRef}
+          className="relative w-full h-screen overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #FFFFFF 0%, #FFE8DC 30%, #FFD4BD 70%, #FF6B35 100%)'
+          }}
         >
-          {/* LAYER 2: Running Text (BEHIND 3D) - Top 1/3 of hero */}
-          <div className="absolute top-0 left-0 w-full h-[33.33vh] flex items-center overflow-hidden z-10 pointer-events-none">
+          {/* 3D Wave Animation Layer */}
+          <Hero3DElement />
+
+          {/* Running Text Background */}
+          <div className="absolute top-0 left-0 w-full h-[30vh] flex items-center overflow-hidden z-10 pointer-events-none">
             <div
               ref={runningTextRef}
               className="flex whitespace-nowrap"
@@ -79,8 +63,8 @@ const HeroSection = () => {
               {[...Array(4)].map((_, index) => (
                 <span
                   key={index}
-                  className="inline-block px-12 text-[48px] font-normal text-[#000000] opacity-10 uppercase tracking-tight select-none"
-                  style={{ 
+                  className="inline-block px-12 text-[40px] font-normal text-[#1A1A1A] opacity-10 uppercase tracking-tight select-none"
+                  style={{
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 400
                   }}
@@ -91,127 +75,151 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* LAYER 3: 3D Animation - FULL HERO SIZE */}
+          {/* Hero Content Overlay - Centered */}
           <div className="absolute inset-0 z-20 flex items-center justify-center">
-            <div className="hero-3d-element w-full h-full max-w-full max-h-full">
-              <Hero3DElement />
-            </div>
-          </div>
+            <div className="w-full max-w-[1400px] px-6 lg:px-12">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="w-full text-center"
+              >
+                {/* Orange Accent Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/20 border border-[#FF6B35]/30 rounded-full mb-5 backdrop-blur-sm">
+                  <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
+                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
+                    Proof of Participation
+                  </span>
+                </div>
 
-          {/* LAYER 4: Headline + Tagline Overlay - Left Bottom Desktop */}
-          <div className="absolute bottom-[33.33vh] left-[8.33vw] z-30 w-[28vw] max-w-[380px]">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
-            >
-              {/* Thick Grid Border */}
-              <div className="absolute -inset-5 border-2 border-[#FF6B35] pointer-events-none" />
-
-              {/* Content */}
-              <div className="relative p-6 space-y-4">
-                {/* Headline - Orange */}
-                <h1 
-                  className="text-[40px] font-black leading-[0.85] tracking-tight text-[#FF6B35] uppercase"
-                  style={{ 
+                {/* Main Headline */}
+                <h1
+                  className="text-[48px] lg:text-[64px] xl:text-[72px] font-black leading-[1.1] tracking-tight text-[#FF6B35] uppercase mb-6 drop-shadow-lg"
+                  style={{
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 900
                   }}
                 >
-                  PROOF OF<br />
-                  PARTICIPATION
+                  Stop Farming Blind.<br />
+                  Start Using ARC<br />
+                  the Right Way.
                 </h1>
 
-                {/* Small Orange Line Divider */}
-                <div className="w-16 h-1 bg-[#FF6B35]" />
+                {/* Orange Accent Line */}
+                <div className="w-20 h-1.5 bg-[#FF6B35] mb-6 shadow-lg mx-auto" />
 
-                {/* Tagline - Black */}
-                <p 
-                  className="text-lg font-normal text-[#1A1A1A] leading-tight"
-                  style={{ 
+                {/* Subheadline */}
+                <p
+                  className="text-xl lg:text-2xl text-[#1A1A1A] leading-relaxed mb-8 mx-auto max-w-3xl font-semibold drop-shadow-md"
+                  style={{
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                   }}
                 >
-                  Verify on-chain actions.<br />
-                  Generate unique content.<br />
-                  Build portable reputation.
+                  INTENT bantu kamu fokus ke aktivitas on-chain yang beneran dipakai tim ARC, bukan cuma spam transaksi.
                 </p>
 
                 {/* CTA Button */}
-                <div className="pt-4">
-                  <Button
-                    onClick={() => setIsWaitlistOpen(true)}
-                    className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base uppercase tracking-wider px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
-                  >
-                    JOIN WAITLIST →
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
+                <Button
+                  onClick={() => setIsWaitlistOpen(true)}
+                  className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base lg:text-lg uppercase tracking-wider px-12 py-5 rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
+                >
+                  Start Daily ARC Activities
+                  <span className="ml-2">→</span>
+                </Button>
+              </motion.div>
+            </div>
           </div>
         </section>
       )}
 
-      {/* Mobile Hero Layout - Fullwidth Animation with Overlay */}
+      {/* Mobile Hero Layout */}
       {isMobile && (
-        <section 
-          id="hero" 
-          ref={sectionRef} 
-          className="relative w-screen h-screen bg-[#FAFAF8] overflow-hidden"
+        <section
+          id="hero"
+          ref={sectionRef}
+          className="relative w-screen h-screen overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #FFFFFF 0%, #FFE8DC 30%, #FFD4BD 70%, #FF6B35 100%)'
+          }}
         >
-          {/* FULLWIDTH BACKGROUND ANIMATION */}
-          <div className="hero-3d-element absolute inset-0 w-full h-full">
+          {/* 3D Wave Animation Layer - Mobile optimized */}
+          <div className="absolute bottom-0 left-0 right-0 h-[40vh] pointer-events-none">
             <Hero3DElement />
           </div>
 
-          {/* OVERLAY: Tagline + Headline + CTA */}
-          <div className="absolute inset-0 flex items-start justify-start px-4 py-20 z-10">
-            {/* Background overlay with orange tint */}
-            <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#FF6B35]/10" />
-
-            {/* Content overlay */}
-            <div className="relative z-20">
-              {/* Tagline - Left positioned */}
-              <motion.p
+          {/* Content */}
+          <div className="absolute inset-0 flex items-center justify-center px-6 z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="w-full text-center"
+            >
+              {/* Orange Accent Badge */}
+              <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="font-mono text-[12px] uppercase tracking-[0.15em] text-[#8B7355] font-bold mb-6"
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FF6B35]/20 border border-[#FF6B35]/30 rounded-full mb-4 backdrop-blur-sm"
               >
-                PROOF OF PARTICIPATION
-              </motion.p>
+                <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full animate-pulse" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#FF6B35] font-bold">
+                  Proof of Participation
+                </span>
+              </motion.div>
 
-              {/* Main Headline - Smaller size */}
+              {/* Main Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-[32px] font-black leading-[1.0] tracking-tight text-[#8B7355] mb-8"
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-[32px] lg:text-[40px] font-black leading-[1.1] tracking-tight text-[#FF6B35] uppercase mb-5 drop-shadow-lg"
                 style={{
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                   fontWeight: 900
                 }}
               >
-                Verify on-chain actions.<br />
-                Generate unique content.<br />
-                Build portable reputation.
+                Stop Farming Blind.<br />
+                Start Using ARC<br />
+                the Right Way.
               </motion.h1>
+
+              {/* Orange Accent Line */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="w-16 h-1.5 bg-[#FF6B35] mb-5 origin-left shadow-lg"
+              />
+
+              {/* Subheadline */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-lg lg:text-xl text-[#1A1A1A] leading-relaxed mb-6 font-semibold drop-shadow-md"
+                style={{
+                  fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
+                }}
+              >
+                INTENT bantu kamu fokus ke aktivitas on-chain yang beneran dipakai tim ARC.
+              </motion.p>
 
               {/* CTA Button */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <Button
                   onClick={() => setIsWaitlistOpen(true)}
-                  className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-lg transition-all duration-300 active:scale-95 shadow-lg"
+                  className="w-full bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase tracking-wider px-10 py-4 rounded-xl transition-all duration-300 shadow-2xl active:scale-95"
                 >
-                  JOIN WAITLIST →
+                  Start Daily ARC Activities
+                  <span className="ml-2">→</span>
                 </Button>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
         </section>
       )}
