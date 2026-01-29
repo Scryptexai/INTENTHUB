@@ -100,7 +100,7 @@ const ProblemFraming = () => {
     <section
       id="problem"
       ref={sectionRef}
-      className="relative w-full min-h-[80vh] bg-[#F5F5F2] overflow-hidden py-16 lg:py-24"
+      className="relative w-full min-h-[80vh] bg-[#F5F5F2] overflow-hidden py-12 lg:py-24"
     >
       {/* Decorative Ornaments */}
       <div className="absolute top-20 right-20 w-32 h-32 ornament-float-1 pointer-events-none">
@@ -318,7 +318,7 @@ const ProblemFraming = () => {
                   {t('problem.badge')}
                 </p>
               </div>
-              <h2 className="text-2xl font-black text-[#1A1A1A] uppercase leading-tight">
+              <h2 className="text-xl font-black text-[#1A1A1A] uppercase leading-tight">
                 {t('problem.headline')}
               </h2>
             </motion.div>
@@ -343,16 +343,16 @@ const ProblemFraming = () => {
                       : 'border border-[#E5E5E0] hover:border-[#FF6B35]'
                   } rounded-lg overflow-hidden`}
                 >
-                  <div className="p-5 space-y-4">
+                  <div className="p-4 space-y-4">
                     {/* Header: Number + Icon + Headline */}
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#FF6B35] flex items-center justify-center flex-shrink-0 rounded-lg font-mono font-black text-white text-sm">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#FF6B35] flex items-center justify-center flex-shrink-0 rounded-lg font-mono font-black text-white text-xs">
                         {problem.number}
                       </div>
                       <div className="flex-1 space-y-2">
                         <div className="flex items-center gap-2">
-                          <Icon className="w-5 h-5 text-[#FF6B35] flex-shrink-0" />
-                          <h3 className="font-bold text-sm uppercase text-[#1A1A1A] leading-tight">
+                          <Icon className="w-4 h-4 text-[#FF6B35] flex-shrink-0" />
+                          <h3 className="font-bold text-xs uppercase text-[#1A1A1A] leading-tight">
                             {problem.headline}
                           </h3>
                         </div>

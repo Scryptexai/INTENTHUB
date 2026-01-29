@@ -128,7 +128,7 @@ const DailyArcActivity = () => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isDappAutoPlaying, maxStartIndex]);
+  }, [isDappAutoPlaying, maxStartIndex, isMobile]);
 
   const handlePrev = () => {
     setIsDappAutoPlaying(false);
@@ -362,14 +362,18 @@ const DailyArcActivity = () => {
               <div className="flex-1 overflow-hidden">
                 <div
                   className="flex gap-6 transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${dappStartIndex * (100 / visibleDAppsCount)}%)` }}
+                  style={{
+                    transform: isMobile
+                      ? `translateX(-${dappStartIndex * 100}%)`
+                      : `translateX(-${dappStartIndex * (100 / visibleDAppsCount)}%)`
+                  }}
                 >
                   {dApps.map((dapp, index) => (
                     <motion.div
                       key={`${dappStartIndex}-${index}`}
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: (index - dappStartIndex) * 0.1 }}
+                      transition={{ duration: 0.4 }}
                       className={`relative flex-shrink-0 bg-white border-2 border-[#E5E5E0] hover:border-[#FF6B35] rounded-xl shadow-lg hover:shadow-xl transition-all ${
                         isMobile
                           ? 'w-full p-6'

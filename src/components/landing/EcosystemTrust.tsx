@@ -20,28 +20,6 @@ const EcosystemTrust = () => {
     { icon: Shield, label: t('ecosystem.stats.rate'), value: "99.9%", color: "text-green-500" },
   ];
 
-  const protocols = [
-    { name: "ArcFlow Finance", category: "DEX Aggregator" },
-    { name: "Across Protocol", category: "Bridging" },
-    { name: "Aave ARC", category: "Lending" },
-    { name: "Uniswap ARC", category: "DEX" },
-    { name: "Balancer", category: "AMM" },
-    { name: "Curve", category: "DEX & AMM" },
-    { name: "Axelar", category: "Bridging" },
-    { name: "Crossmint", category: "NFT Infrastructure" },
-    { name: "Oku", category: "DEX Aggregator" },
-    { name: "Hinkal", category: "Privacy" },
-    { name: "MintAura", category: "NFT Platform" },
-    { name: "Superface", category: "Identity" },
-    { name: "Synthra", category: "Derivatives" },
-    { name: "OnchainGM", category: "Gaming" },
-    { name: "Watchoor", category: "Analytics" },
-    { name: "ZKCodex", category: "Developer Tools" },
-    { name: "BlockRadar", category: "Analytics" },
-    { name: "Infinity Name", category: "Naming Service" },
-    { name: "Para", category: "DeFi" },
-  ];
-
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate trust cards
@@ -180,44 +158,6 @@ const EcosystemTrust = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Protocols Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-12 p-8 lg:p-10 bg-white border-2 border-[#E5E5E0] rounded-xl max-w-5xl mx-auto"
-        >
-          <h4 className="font-black text-xl lg:text-2xl text-[#1A1A1A] mb-6 uppercase text-center">
-            {t('ecosystem.protocolsTitle')}
-          </h4>
-          <div className={`grid gap-4 ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'}`}>
-            {protocols.map((protocol, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="flex items-center gap-4 p-4 border-2 border-[#E5E5E0] rounded-lg hover:border-[#FF6B35] hover:bg-[#FF6B35]/5 transition-all duration-300"
-              >
-                <div className="w-10 h-10 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 text-[#FF6B35]" />
-                </div>
-                <div className="flex-1">
-                  <p className="font-mono text-sm font-bold text-[#1A1A1A] uppercase">
-                    {protocol.name}
-                  </p>
-                  <p className="font-mono text-xs text-[#6B6B6B]">
-                    {protocol.category}
-                  </p>
-                </div>
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
 
         {/* Trust Points Grid */}

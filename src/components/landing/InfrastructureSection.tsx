@@ -197,7 +197,7 @@ const InfrastructureSection = () => {
           >
             <h2
               className={`font-black leading-[1.2] text-[#1A1A1A] uppercase ${
-                isMobile ? 'text-2xl' : 'text-[32px] lg:text-[38px] xl:text-[42px]'
+                isMobile ? 'text-xl' : 'text-[32px] lg:text-[38px] xl:text-[42px]'
               }`}
               style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
             >
@@ -248,29 +248,39 @@ const InfrastructureSection = () => {
                 className="infra-step-card relative z-10 group opacity-0"
                 style={{ y: 100 }}
               >
-                <div className="bg-[#FAFAF8] border-2 border-[#E5E5E0] p-8 lg:p-10 h-full hover:border-[#FF6B35] hover:shadow-xl transition-all duration-500 relative overflow-hidden rounded-lg">
+                <div className="bg-[#FAFAF8] border-2 border-[#E5E5E0] p-6 lg:p-10 h-full hover:border-[#FF6B35] hover:shadow-xl transition-all duration-500 relative overflow-hidden rounded-lg">
                   {/* Gradient Overlay on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/0 via-[#FF6B35]/0 to-[#FF6B35]/5 group-hover:from-[#FF6B35]/5 group-hover:via-[#FF6B35]/0 group-hover:to-[#FF6B35]/10 transition-all duration-500 pointer-events-none" />
 
                   {/* Number Badge - Top Left */}
-                  <div className="absolute -top-4 -left-4 w-16 h-16 lg:w-20 lg:h-20 bg-[#FF6B35] border-4 border-white flex items-center justify-center shadow-lg">
-                    <span className="font-mono text-xl lg:text-2xl font-black text-white">
+                  <div className={`absolute bg-[#FF6B35] border-4 border-white flex items-center justify-center shadow-lg ${
+                    isMobile ? '-top-3 -left-3 w-12 h-12' : '-top-4 -left-4 w-16 h-16 lg:w-20 lg:h-20'
+                  }`}>
+                    <span className={`font-mono font-black text-white ${
+                      isMobile ? 'text-sm' : 'text-xl lg:text-2xl'
+                    }`}>
                       {step.number}
                     </span>
                   </div>
 
                   {/* Icon Container */}
-                  <div className="mb-8 pt-6">
-                    <div className="w-20 h-20 lg:w-24 lg:h-24 border-2 border-[#FF6B35] bg-white rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-[#FF6B35]">
-                      <step.icon className="w-10 h-10 lg:w-12 lg:h-12 text-[#FF6B35] group-hover:text-white transition-colors duration-500" />
+                  <div className={`mb-6 lg:mb-8 ${isMobile ? 'pt-4' : 'pt-6'}`}>
+                    <div className={`border-2 border-[#FF6B35] bg-white rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-[#FF6B35] ${
+                      isMobile ? 'w-16 h-16' : 'w-20 h-20 lg:w-24 lg:h-24'
+                    }`}>
+                      <step.icon className={`text-[#FF6B35] group-hover:text-white transition-colors duration-500 ${
+                        isMobile ? 'w-8 h-8' : 'w-10 h-10 lg:w-12 lg:h-12'
+                      }`} />
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-5 relative z-10">
+                  <div className="space-y-4 lg:space-y-5 relative z-10">
                     {/* Tech Badge */}
                     <div className="inline-block">
-                      <span className="font-mono text-xs uppercase tracking-wider text-[#9B9B9B] bg-[#FAFAF8] px-4 py-2 border border-[#E5E5E0] rounded-full">
+                      <span className={`font-mono uppercase tracking-wider text-[#9B9B9B] bg-[#FAFAF8] border border-[#E5E5E0] rounded-full ${
+                        isMobile ? 'text-[10px] px-3 py-1.5' : 'text-xs px-4 py-2'
+                      }`}>
                         {step.tech}
                       </span>
                     </div>
@@ -278,7 +288,7 @@ const InfrastructureSection = () => {
                     {/* Headline */}
                     <h3
                       className={`font-black text-[#1A1A1A] uppercase leading-tight transition-colors duration-500 ${
-                        isMobile ? 'text-xl' : 'text-xl lg:text-2xl'
+                        isMobile ? 'text-base' : 'text-xl lg:text-2xl'
                       }`}
                       style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
                     >
@@ -286,24 +296,30 @@ const InfrastructureSection = () => {
                     </h3>
 
                     {/* Divider */}
-                    <div className="w-16 h-1 bg-[#FF6B35] group-hover:w-24 transition-all duration-500" />
+                    <div className={`bg-[#FF6B35] transition-all duration-500 ${
+                        isMobile ? 'w-12 h-0.5' : 'w-16 h-1 group-hover:w-24'
+                      }`} />
 
                     {/* Description */}
                     <p className={`font-mono text-[#6B6B6B] leading-relaxed ${
-                      isMobile ? 'text-sm' : 'text-sm lg:text-base'
+                      isMobile ? 'text-xs' : 'text-sm lg:text-base'
                     }`}>
                       {step.text}
                     </p>
 
-                    {/* Arrow Icon on Hover */}
-                    <div className="flex items-center gap-2 text-[#FF6B35] opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                      <span className="font-mono text-xs font-bold uppercase tracking-wider">Learn More</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
+                    {/* Arrow Icon on Hover - Hide on mobile */}
+                    {!isMobile && (
+                      <div className="flex items-center gap-2 text-[#FF6B35] opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider">Learn More</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    )}
                   </div>
 
                   {/* Decorative Corner Element */}
-                  <div className="absolute bottom-0 right-0 w-16 h-16 lg:w-20 lg:h-20 border-t-2 border-l-2 border-[#FF6B35] opacity-0 group-hover:opacity-20 transition-all duration-500" />
+                  <div className={`border-t-2 border-l-2 border-[#FF6B35] opacity-0 group-hover:opacity-20 transition-all duration-500 absolute bottom-0 right-0 ${
+                    isMobile ? 'w-12 h-12' : 'w-16 h-16 lg:w-20 lg:h-20'
+                  }`} />
                 </div>
               </motion.div>
             ))}
