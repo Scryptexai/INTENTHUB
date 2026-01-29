@@ -2,63 +2,42 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, FileText, User, ChevronLeft, ChevronRight, AlertCircle } from "lucide-react";
 import { useResponsive } from "@/contexts/ResponsiveContext";
+import { useTranslation } from 'react-i18next';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const problems = [
-  {
-    icon: X,
-    number: "01",
-    headline: "Kebanyakan transaksi, tapi nggak tau mana yang penting",
-    text: "Swap kecil berkali-kali, bridge bolak-balik, tapi tetap ragu ini dihitung apa nggak.",
-    details: [
-      "Transaksi random",
-      "Nggak fokus ke dApps yang beneran",
-      "Ragu hasilnya"
-    ]
-  },
-  {
-    icon: FileText,
-    number: "02",
-    headline: "Bukti aktivitas ribet & manual",
-    text: "Screenshot, copy tx hash, isi form, nunggu centang.",
-    details: [
-      "Proses panjang",
-      "Butuh manual work",
-      "Ribet dipake"
-    ]
-  },
-  {
-    icon: AlertCircle,
-    number: "03",
-    headline: "Pola farming kelihatan banget",
-    text: "Semua orang ngelakuin hal yang sama → gampang ke-flag sebagai bot.",
-    details: [
-      "Pattern sama",
-      "Gampang detect",
-      "Dianggap bot"
-    ]
-  },
-  {
-    icon: X,
-    number: "04",
-    headline: "Nggak ada arah yang jelas",
-    text: "Hari ini ngapain? Besok ngapain? Semua cuma nebak.",
-    details: [
-      "Tidak ada roadmap",
-      "Random activity",
-      "Tujuannya nggak jelas"
-    ]
-  },
-];
+// Problem data will be populated using translations
 
 const ProblemFraming = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const { isMobile } = useResponsive();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Get problems from translations
+  const problems = [
+    {
+      icon: X,
+      number: "01",
+      headline: t('problem.problems.0.title'),
+      text: t('problem.problems.0.description'),
+    },
+    {
+      icon: FileText,
+      number: "02",
+      headline: t('problem.problems.1.title'),
+      text: t('problem.problems.1.description'),
+    },
+    {
+      icon: AlertCircle,
+      number: "03",
+      headline: t('problem.problems.2.title'),
+      text: t('problem.problems.2.description'),
+    }
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -156,7 +135,7 @@ const ProblemFraming = () => {
               >
                 <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-                  THE CHALLENGE
+                  {t('problem.badge')}
                 </p>
               </motion.div>
 
@@ -171,7 +150,7 @@ const ProblemFraming = () => {
                   className="text-[40px] lg:text-[48px] font-black leading-[0.95] tracking-tight text-[#1A1A1A] uppercase"
                   style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
                 >
-                  Farming di testnet itu capek, tapi tetap nggak yakin hasilnya dihitung.
+                  {t('problem.headline')}
                 </h2>
               </motion.div>
 
@@ -192,7 +171,7 @@ const ProblemFraming = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="font-mono text-lg text-[#6B6B6B] leading-relaxed max-w-md border-l-4 border-[#FF6B35] pl-6"
               >
-                Ecosystems can't reward what they can't verify.
+                {t('problem.subtitle')}
               </motion.p>
 
               {/* Carousel Controls */}
@@ -289,16 +268,6 @@ const ProblemFraming = () => {
                       <p className="font-mono text-lg text-[#6B6B6B] leading-relaxed">
                         {problems[activeIndex].text}
                       </p>
-
-                      {/* Details List */}
-                      <div className="pt-6 space-y-4 border-t-2 border-[#E5E5E0]">
-                        {problems[activeIndex].details.map((detail, idx) => (
-                          <div key={idx} className="flex items-start gap-4">
-                            <div className="w-2.5 h-2.5 bg-[#FF6B35] rounded-full mt-2 flex-shrink-0" />
-                            <p className="font-mono text-base text-[#1A1A1A] font-medium">{detail}</p>
-                          </div>
-                        ))}
-                      </div>
                     </div>
 
                     {/* Decorative Corner */}
@@ -346,11 +315,11 @@ const ProblemFraming = () => {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full">
                 <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full animate-pulse" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#FF6B35] font-bold">
-                  THE CHALLENGE
+                  {t('problem.badge')}
                 </p>
               </div>
               <h2 className="text-2xl font-black text-[#1A1A1A] uppercase leading-tight">
-                Farming di testnet itu capek, tapi tetap nggak yakin hasilnya dihitung.
+                {t('problem.headline')}
               </h2>
             </motion.div>
 
@@ -401,14 +370,6 @@ const ProblemFraming = () => {
                         <p className="font-mono text-sm text-[#6B6B6B] leading-relaxed">
                           {problem.text}
                         </p>
-                        <div className="space-y-3">
-                          {problem.details.map((detail, idx) => (
-                            <div key={idx} className="flex items-start gap-3">
-                              <div className="w-2 h-2 bg-[#FF6B35] rounded-full mt-1.5 flex-shrink-0" />
-                              <p className="font-mono text-sm text-[#1A1A1A]">{detail}</p>
-                            </div>
-                          ))}
-                        </div>
                       </motion.div>
                     )}
                   </div>

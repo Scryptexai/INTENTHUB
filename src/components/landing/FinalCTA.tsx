@@ -4,11 +4,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
 import { useResponsive } from "@/contexts/ResponsiveContext";
+import { useTranslation } from 'react-i18next';
 import WaitlistForm from "./WaitlistForm";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FinalCTA = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
@@ -74,7 +76,7 @@ const FinalCTA = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/20 border border-[#FF6B35] rounded-full">
               <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-                FINAL CTA
+                {t('finalCta.badge')}
               </span>
             </div>
 
@@ -85,9 +87,7 @@ const FinalCTA = () => {
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
               }}
             >
-              Kalau mau farming,<br />
-              setidaknya lakukan<br />
-              dengan cara yang benar.
+              {t('finalCta.headline')}
             </h2>
 
             {/* Orange Accent Line */}
@@ -95,7 +95,7 @@ const FinalCTA = () => {
 
             {/* Subtitle */}
             <p className="text-xl text-[#D0D0CB] leading-relaxed max-w-2xl mx-auto font-mono">
-              Pakai dApps, bangun history, dan biarkan INTENT urus verifikasi + bukti.
+              {t('finalCta.subheadline')}
             </p>
 
             {/* CTA Buttons */}
@@ -104,14 +104,14 @@ const FinalCTA = () => {
                 onClick={() => setIsWaitlistOpen(true)}
                 className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase tracking-wider px-12 py-5 rounded-lg transition-all duration-300 shadow-2xl hover:shadow-[#FF6B35]/50 hover:-translate-y-1 active:translate-y-0 active:scale-95"
               >
-                Start Using ARC with INTENT
+                {t('finalCta.cta')}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
               <Button
                 className="border-2 border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35] hover:text-white font-mono text-sm uppercase tracking-wider px-12 py-5 rounded-lg transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
               >
                 <Wallet className="mr-2 w-5 h-5" />
-                Connect Wallet
+                {t('finalCta.connectWallet')}
               </Button>
             </div>
 
@@ -120,14 +120,14 @@ const FinalCTA = () => {
               <div className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg backdrop-blur-sm">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span className="font-mono text-xs text-white/80 uppercase tracking-wider">
-                  No Credit Card Required
+                  {t('finalCta.noCreditCard')}
                 </span>
               </div>
               <div className="w-px h-6 bg-white/20" />
               <div className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg backdrop-blur-sm">
                 <Sparkles className="w-4 h-4 text-[#FF6B35]" />
                 <span className="font-mono text-xs text-white/80 uppercase tracking-wider">
-                  Free to Start
+                  {t('finalCta.freeToStart')}
                 </span>
               </div>
             </div>

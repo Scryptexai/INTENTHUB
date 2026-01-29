@@ -1,14 +1,16 @@
 import { useResponsive } from "@/contexts/ResponsiveContext";
 import { Award, Link, Eye, CheckCircle, Hash, Trophy, Users, TrendingUp, Lock, Globe } from "lucide-react";
-
-const proofStats = [
-  { icon: Trophy, label: "Activities Verified", value: "10K+", color: "text-[#FFD700]" },
-  { icon: Users, label: "Active Users", value: "2.5K+", color: "text-[#00D9FF]" },
-  { icon: TrendingUp, label: "Monthly Growth", value: "180%", color: "text-green-500" },
-];
+import { useTranslation } from 'react-i18next';
 
 const AboutProofBadge = () => {
+  const { t } = useTranslation();
   const { isMobile } = useResponsive();
+
+  const proofStats = [
+    { icon: Trophy, label: t('aboutProof.stats.activities'), value: "10K+", color: "text-[#FFD700]" },
+    { icon: Users, label: t('aboutProof.stats.users'), value: "2.5K+", color: "text-[#00D9FF]" },
+    { icon: TrendingUp, label: t('aboutProof.stats.growth'), value: "180%", color: "text-green-500" },
+  ];
 
   return (
     <section
@@ -24,7 +26,7 @@ const AboutProofBadge = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full">
             <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-              ABOUT PROOF & BADGE
+              {t('aboutProof.badge')}
             </p>
           </div>
 
@@ -37,8 +39,7 @@ const AboutProofBadge = () => {
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
               }}
             >
-              Badge di sini bukan koleksi,<br />
-              tapi bukti aktivitas.
+              {t('aboutProof.headline')}
             </h2>
           </div>
 
@@ -75,29 +76,29 @@ const AboutProofBadge = () => {
           {[
             {
               icon: Link,
-              title: "Terhubung langsung ke transaksi",
-              description: "Setiap proof di INTENT terhubung langsung ke transaksi kamu di chain. Bukan cuma NFT kosong, tapi catatan aktivitas yang bisa dicek ulang.",
+              title: t('aboutProof.features.0.title'),
+              description: t('aboutProof.features.0.description'),
               color: "text-[#00D9FF]",
               bgColor: "bg-[#00D9FF]/10"
             },
             {
               icon: Eye,
-              title: "Bisa diverifikasi kapan saja",
-              description: "Kalau nanti ada snapshot, campaign, atau retroactive reward, kamu punya history yang rapi dan bisa diverifikasi.",
+              title: t('aboutProof.features.1.title'),
+              description: t('aboutProof.features.1.description'),
               color: "text-[#FF6B35]",
               bgColor: "bg-[#FF6B35]/10"
             },
             {
               icon: Lock,
-              title: "Privasi tetap terjaga",
-              description: "Proof kamu tetap anonim dan tidak mengekspos data sensitif. Hanya verifikasi yang bisa dibuktikan tanpa membuka identitas.",
+              title: t('aboutProof.features.2.title'),
+              description: t('aboutProof.features.2.description'),
               color: "text-purple-500",
               bgColor: "bg-purple-500/10"
             },
             {
               icon: Globe,
-              title: "Terbuka untuk semua ecosystem",
-              description: "Proof yang kamu bangun di INTENT tetap relevan meskipun nanti ecosystem lain membutuhkan verifikasi aktivitas.",
+              title: t('aboutProof.features.3.title'),
+              description: t('aboutProof.features.3.description'),
               color: "text-green-500",
               bgColor: "bg-green-500/10"
             }
@@ -137,17 +138,17 @@ const AboutProofBadge = () => {
             {/* Left: Content */}
             <div>
               <h4 className="font-black text-xl lg:text-2xl text-[#1A1A1A] mb-4 uppercase">
-                How Your Proof Works
+                {t('aboutProof.howItWorks.title')}
               </h4>
               <p className="font-mono text-base text-[#6B6B6B] leading-relaxed mb-6">
-                Each proof contains timestamp, transaction hash, protocol interaction, and verification status.
+                {t('aboutProof.howItWorks.description')}
               </p>
 
               {/* Proof Details */}
               <div className="space-y-3">
                 {[
-                  { icon: Hash, label: "Transaction Hash", value: "0x1a2b...9z8y" },
-                  { icon: CheckCircle, label: "Verification Status", value: "Verified" },
+                  { icon: Hash, label: t('aboutProof.howItWorks.txHash'), value: "0x1a2b...9z8y" },
+                  { icon: CheckCircle, label: t('aboutProof.howItWorks.verificationStatus'), value: t('aboutProof.howItWorks.verified') },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-4 p-3 bg-white rounded-lg border border-[#E5E5E0]">
                     <item.icon className="w-5 h-5 text-[#FF6B35] flex-shrink-0" />
@@ -179,7 +180,7 @@ const AboutProofBadge = () => {
                 <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-center">
                   <div className="px-4 py-2 bg-[#FF6B35] rounded-lg shadow-lg">
                     <p className="font-mono text-xs font-bold text-white uppercase tracking-wider">
-                      VERIFIED ACTIVITY
+                      {t('aboutProof.howItWorks.badgeLabel')}
                     </p>
                   </div>
                 </div>
@@ -191,16 +192,11 @@ const AboutProofBadge = () => {
         {/* Timeline/Process Section */}
         <div className="mt-16 p-8 lg:p-10 bg-white border-2 border-[#E5E5E0] rounded-xl max-w-5xl mx-auto">
           <h4 className="font-black text-xl lg:text-2xl text-[#1A1A1A] mb-8 uppercase text-center">
-            How INTENT Verifies Your Activity
+            {t('aboutProof.process.title')}
           </h4>
 
           <div className="grid lg:grid-cols-4 gap-6">
-            {[
-              { step: "01", title: "Execute", desc: "Lakukan transaksi di dApps ARC ecosystem" },
-              { step: "02", title: "Track", desc: "INTENT mendeteksi dan mencatat activity kamu" },
-              { step: "03", title: "Verify", desc: "Data diverifikasi langsung dari ARC RPC" },
-              { step: "04", title: "Badge", desc: "Proof badge otomatis ditambahkan ke profil kamu" },
-            ].map((item, index) => (
+            {(t('aboutProof.process.steps', { returnObjects: true }) as any[]).map((item, index) => (
               <div key={index} className="relative">
                 <div className="flex flex-col items-center text-center">
                   {/* Step Number */}

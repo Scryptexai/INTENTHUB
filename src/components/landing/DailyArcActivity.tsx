@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, Clock, Calendar as CalendarIcon, ChevronLeft,
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useResponsive } from "@/contexts/ResponsiveContext";
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,68 +51,69 @@ const activities = [
   },
 ];
 
-const dApps = [
-  {
-    name: "ArcFlow Finance",
-    logo: "/assets/logos/arc/arcflow-finance.jpg",
-    description: "DEX Aggregator",
-    color: "text-blue-600"
-  },
-  {
-    name: "Across",
-    logo: "/assets/logos/arc/accros.jpg",
-    description: "Bridging Protocol",
-    color: "text-purple-600"
-  },
-  {
-    name: "Aave ARC",
-    logo: "/assets/logos/arc/aave.jpg",
-    description: "Lending Protocol",
-    color: "text-purple-500"
-  },
-  {
-    name: "Curve",
-    logo: "/assets/logos/arc/curve.jpg",
-    description: "DEX & AMM",
-    color: "text-pink-600"
-  },
-  {
-    name: "Axelar",
-    logo: "/assets/logos/arc/axelar.jpg",
-    description: "Cross-chain Bridging",
-    color: "text-blue-500"
-  },
-  {
-    name: "Oku",
-    logo: "/assets/logos/arc/oku.jpg",
-    description: "DEX Aggregator",
-    color: "text-cyan-600"
-  },
-  {
-    name: "Hinkal",
-    logo: "/assets/logos/arc/hinkal.jpg",
-    description: "Privacy Protocol",
-    color: "text-green-600"
-  },
-  {
-    name: "Crossmint",
-    logo: "/assets/logos/arc/crossmint.jpg",
-    description: "NFT Infrastructure",
-    color: "text-orange-600"
-  },
-  {
-    name: "Superface",
-    logo: "/assets/logos/arc/superface.jpg",
-    description: "Identity Protocol",
-    color: "text-indigo-600"
-  },
-];
-
 const DailyArcActivity = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const { isMobile } = useResponsive();
   const [dappStartIndex, setDappStartIndex] = useState(0);
   const [isDappAutoPlaying, setIsDappAutoPlaying] = useState(true);
+
+  const dApps = [
+    {
+      name: "ArcFlow Finance",
+      logo: "/assets/logos/arc/arcflow-finance.jpg",
+      description: "DEX Aggregator",
+      color: "text-blue-600"
+    },
+    {
+      name: "Across",
+      logo: "/assets/logos/arc/accros.jpg",
+      description: "Bridging Protocol",
+      color: "text-purple-600"
+    },
+    {
+      name: "Aave ARC",
+      logo: "/assets/logos/arc/aave.jpg",
+      description: "Lending Protocol",
+      color: "text-purple-500"
+    },
+    {
+      name: "Curve",
+      logo: "/assets/logos/arc/curve.jpg",
+      description: "DEX & AMM",
+      color: "text-pink-600"
+    },
+    {
+      name: "Axelar",
+      logo: "/assets/logos/arc/axelar.jpg",
+      description: "Cross-chain Bridging",
+      color: "text-blue-500"
+    },
+    {
+      name: "Oku",
+      logo: "/assets/logos/arc/oku.jpg",
+      description: "DEX Aggregator",
+      color: "text-cyan-600"
+    },
+    {
+      name: "Hinkal",
+      logo: "/assets/logos/arc/hinkal.jpg",
+      description: "Privacy Protocol",
+      color: "text-green-600"
+    },
+    {
+      name: "Crossmint",
+      logo: "/assets/logos/arc/crossmint.jpg",
+      description: "NFT Infrastructure",
+      color: "text-orange-600"
+    },
+    {
+      name: "Superface",
+      logo: "/assets/logos/arc/superface.jpg",
+      description: "Identity Protocol",
+      color: "text-indigo-600"
+    },
+  ];
 
   // Calculate visible dApps (3 cards on desktop, 1 on mobile)
   const visibleDAppsCount = isMobile ? 1 : 3;
@@ -189,7 +191,7 @@ const DailyArcActivity = () => {
           >
             <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-              DAILY ARC ACTIVITY ROUTE
+              {t('dailyActivity.badge')}
             </p>
           </motion.div>
 
@@ -208,7 +210,7 @@ const DailyArcActivity = () => {
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
               }}
             >
-              Bukan task random. Ini jalur aktivitas yang masuk akal.
+              {t('dailyActivity.headline')}
             </h2>
           </motion.div>
 
@@ -230,31 +232,8 @@ const DailyArcActivity = () => {
             className="max-w-2xl mx-auto"
           >
             <p className="font-mono text-base lg:text-lg text-[#6B6B6B] uppercase tracking-[0.15em] leading-relaxed">
-              Setiap hari, INTENT rekomendasikan aktivitas berbeda supaya:
+              {t('dailyActivity.subheadline')}
             </p>
-          </motion.div>
-
-          {/* Benefits */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto"
-          >
-            {[
-              { text: "kamu explore lebih banyak dApps", icon: CheckCircle2 },
-              { text: "nggak cuma ulangi tx yang sama", icon: CheckCircle2 },
-              { text: "pola aktivitas kamu kelihatan natural", icon: CheckCircle2 },
-            ].map((benefit, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-3 px-6 py-3 bg-white border-2 border-[#FF6B35] rounded-lg shadow-sm hover:shadow-md transition-shadow"
-              >
-                <benefit.icon className="w-5 h-5 text-[#FF6B35] flex-shrink-0" />
-                <span className="font-mono text-sm text-[#1A1A1A] font-medium">{benefit.text}</span>
-              </div>
-            ))}
           </motion.div>
         </div>
 
@@ -278,7 +257,7 @@ const DailyArcActivity = () => {
                 <div className="absolute top-4 right-4 flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
                   <span className="font-mono text-xs font-bold text-[#FF6B35] uppercase tracking-wider">
-                    Active Now
+                    {t('dailyActivity.active')}
                   </span>
                 </div>
               )}
@@ -359,7 +338,7 @@ const DailyArcActivity = () => {
         >
           <div className="text-center mb-8">
             <h3 className="font-mono text-sm lg:text-base text-[#6B6B6B] uppercase tracking-[0.2em] mb-2">
-              Supported dApps in ARC Ecosystem
+              {t('dailyActivity.dappsHeadline')}
             </h3>
             <div className="w-20 h-1 bg-[#FF6B35] mx-auto" />
           </div>
@@ -477,7 +456,7 @@ const DailyArcActivity = () => {
         >
           <button className="inline-flex items-center gap-3 bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase tracking-wider px-10 py-4 rounded-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0">
             <CalendarIcon className="w-5 h-5" />
-            View Full Activity Plan
+            {t('dailyActivity.viewAllDapps')}
             <ArrowRight className="w-5 h-5" />
           </button>
         </motion.div>

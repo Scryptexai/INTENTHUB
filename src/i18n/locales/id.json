@@ -3,36 +3,197 @@
     "badge": "Bukti Partisipasi",
     "headline": "Berhenti Farming Buta. Mulai Gunakan ARC dengan Benar.",
     "subheadline": "INTENT bantu kamu fokus ke aktivitas on-chain yang beneran dipakai tim ARC, bukan cuma spam transaksi.",
-    "cta": "Mulai Aktivitas ARC Harian"
+    "cta": "Mulai Aktivitas ARC Harian",
+    "runningText": "BEYOND ONCHAIN"
   },
   "problem": {
     "badge": "MASALAHNYA",
-    "headline": "Sebagian besar user farming tanpa tahu apa yang mereka lakukan"
+    "subtitle": "B E Y O N D · O N C H A I N",
+    "headline": "Sebagian besar user farming tanpa tahu apa yang mereka lakukan",
+    "problems": [
+      {
+        "title": "Transaksi Acak",
+        "description": "Swap token bolak-balik tanpa tujuan jelas, cuma buat nambah volume"
+      },
+      {
+        "title": "Tanpa Strategi",
+        "description": "Lakukan aktivitas yang sama seperti orang lain tanpa paham ecosystem"
+      },
+      {
+        "title": "Resource Tersia-sia",
+        "description": "Habis gas buat transaksi yang nggak jelas daripada partisipasi ecosystem yang beneran"
+      }
+    ]
   },
   "infrastructure": {
     "badge": "YANG SEBENARNYA DILAKUKAN INTENT",
-    "headline": "INTENT bantu kamu pakai dApps ARC secara nyata, bukan cuma kelihatan aktif."
+    "subtitle": "B E Y O N D · O N C H A I N",
+    "headline": "INTENT bantu kamu pakai dApps ARC secara nyata, bukan cuma kelihatan aktif.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Kamu pakai dApps seperti biasa",
+        "description": "Swap, LP, bridge, atau fitur lain di ecosystem ARC.",
+        "tech": "Penggunaan Normal"
+      },
+      {
+        "number": "02",
+        "title": "INTENT baca transaksi kamu langsung dari chain",
+        "description": "Tanpa form, tanpa upload bukti, tanpa klaim manual.",
+        "tech": "Baca RPC Langsung"
+      },
+      {
+        "number": "03",
+        "title": "Aktivitas kamu langsung diverifikasi",
+        "description": "Bukan cuma 'ada tx', tapi benar-benar interaksi ke kontrak yang relevan.",
+        "tech": "Verifikasi Smart Contract"
+      },
+      {
+        "number": "04",
+        "title": "Bukti + konten otomatis dibuat",
+        "description": "Siap buat share, siap buat jadi history partisipasi kamu.",
+        "tech": "Generasi Otomatis"
+      }
+    ],
+    "summary": "Infrastructure > Manual Tasks"
   },
   "dailyActivity": {
     "badge": "AKTIVITAS ARC HARIAN",
-    "headline": "Aktivitas yang Direkomendasikan Hari Ini"
+    "headline": "Aktivitas yang Direkomendasikan Hari Ini",
+    "subheadline": "Selesaikan aktivitas ini untuk membangun reputasi on-chain kamu",
+    "today": "Hari Ini",
+    "tomorrow": "Besok",
+    "day": "Hari",
+    "difficulty": "Kesulitan",
+    "time": "Waktu",
+    "easy": "Mudah",
+    "medium": "Sedang",
+    "hard": "Sulit",
+    "min": "menit",
+    "active": "Aktif",
+    "upcoming": "Akan Datang",
+    "completed": "Selesai",
+    "viewAllDapps": "Lihat Semua dApps ARC",
+    "dappsHeadline": "dApps Ecosystem ARC yang Didukung",
+    "learnMore": "Pelajari Lebih"
   },
   "whyDifferent": {
     "badge": "KENAPA INI BERBEDA",
-    "headline": "Ini bukan platform quest. Ini panduan aktivitas on-chain."
+    "headline": "Ini bukan platform quest. Ini panduan aktivitas on-chain.",
+    "questPlatform": {
+      "title": "Platform Quest Biasa",
+      "point1": "Fokus ke checklist",
+      "detail1": "Task yang sama untuk semua orang",
+      "point2": "Task sama untuk semua orang",
+      "detail2": "Tidak ada personalisasi",
+      "point3": "Tujuan utama: claim reward",
+      "detail3": "Orientasi ke reward, bukan penggunaan",
+      "status": "Tidak Optimal"
+    },
+    "intent": {
+      "title": "INTENT",
+      "badge": "✨ Cara Lebih Baik",
+      "point1": "Fokus ke cara kamu pakai dApps",
+      "detail1": "Personalisasi berdasarkan perilaku nyata",
+      "point2": "Aktivitas bervariasi & berurutan",
+      "detail2": "Alur yang logis dan masuk akal",
+      "point3": "Tujuan utama: partisipasi nyata",
+      "detail3": "Bangun jejak penggunaan yang berharga",
+      "status": "Direkomendasikan"
+    },
+    "explanation": "INTENT bukan ngajarin kamu 'cara cepat claim', tapi bantu kamu bangun jejak penggunaan yang masuk akal."
   },
   "aboutProof": {
     "badge": "TENTANG PROOF & BADGE",
-    "headline": "Badge di sini bukan koleksi, tapi bukti aktivitas."
+    "headline": "Badge di sini bukan koleksi, tapi bukti aktivitas.",
+    "stats": {
+      "activities": "Aktivitas Terverifikasi",
+      "users": "Pengguna Aktif",
+      "growth": "Pertumbuhan Bulanan"
+    },
+    "features": [
+      {
+        "title": "Terhubung langsung ke transaksi",
+        "description": "Setiap proof di INTENT terhubung langsung ke transaksi kamu di chain. Bukan cuma NFT kosong, tapi catatan aktivitas yang bisa dicek ulang."
+      },
+      {
+        "title": "Bisa diverifikasi kapan saja",
+        "description": "Kalau nanti ada snapshot, campaign, atau retroactive reward, kamu punya history yang rapi dan bisa diverifikasi."
+      },
+      {
+        "title": "Privasi tetap terjaga",
+        "description": "Proof kamu tetap anonim dan tidak mengekspos data sensitif. Hanya verifikasi yang bisa dibuktikan tanpa membuka identitas."
+      },
+      {
+        "title": "Terbuka untuk semua ecosystem",
+        "description": "Proof yang kamu bangun di INTENT tetap relevan meskipun nanti ecosystem lain membutuhkan verifikasi aktivitas."
+      }
+    ],
+    "howItWorks": {
+      "title": "Cara Kerja Proof Kamu",
+      "description": "Setiap proof berisi timestamp, transaction hash, interaksi protocol, dan status verifikasi.",
+      "txHash": "Transaction Hash",
+      "verificationStatus": "Status Verifikasi",
+      "verified": "Terverifikasi",
+      "badgeLabel": "AKTIVITAS TERVERIFIKASI"
+    },
+    "process": {
+      "title": "Cara INTENT Memverifikasi Aktivitas Kamu",
+      "steps": [
+        { "step": "01", "title": "Eksekusi", "desc": "Lakukan transaksi di dApps ARC ecosystem" },
+        { "step": "02", "title": "Lacak", "desc": "INTENT mendeteksi dan mencatat activity kamu" },
+        { "step": "03", "title": "Verifikasi", "desc": "Data diverifikasi langsung dari ARC RPC" },
+        { "step": "04", "title": "Badge", "desc": "Proof badge otomatis ditambahkan ke profil kamu" }
+      ]
+    }
   },
   "ecosystem": {
     "badge": "ECOSYSTEM TRUST",
-    "headline": "Dibangun di ARC, dipercaya komunitas"
+    "headline": "Dibangun di ARC, dipercaya komunitas",
+    "subheadline": "B E Y O N D · O N C H A I N",
+    "stats": {
+      "transactions": "Total Transaksi",
+      "users": "Pengguna Terverifikasi",
+      "protocols": "Protocol Partner",
+      "rate": "Rate Verifikasi"
+    },
+    "protocolsTitle": "Protocol ARC yang Didukung",
+    "trustPoints": [
+      {
+        "title": "Aktivitas diverifikasi langsung dari ARC RPC",
+        "description": "Verifikasi real-time dari blockchain"
+      },
+      {
+        "title": "Tanpa perlu submit bukti manual",
+        "description": "Deteksi & verifikasi otomatis"
+      },
+      {
+        "title": "Rekaman transparan & immutable",
+        "description": "Semua data disimpan di-chain"
+      },
+      {
+        "title": "Governance yang digerakkan komunitas",
+        "description": "Keputusan protocol oleh pengguna"
+      }
+    ]
   },
   "finalCta": {
     "badge": "CTA FINAL",
     "headline": "Kalau mau farming, setidaknya lakukan dengan cara yang benar.",
+    "subheadline": "Pakai dApps, bangun history, dan biarkan INTENT urus verifikasi + bukti.",
     "cta": "Mulai Gunakan ARC dengan INTENT",
-    "connectWallet": "Hubungkan Dompet"
+    "connectWallet": "Hubungkan Dompet",
+    "noCreditCard": "Tidak Perlu Kartu Kredit",
+    "freeToStart": "Gratis untuk Mulai"
+  },
+  "navbar": {
+    "explore": "Explore",
+    "build": "Build",
+    "integrate": "Integrate",
+    "launchApp": "Launch App →",
+    "launchIn": "Launch in",
+    "days": "Hari",
+    "hours": "Jam",
+    "mins": "Menit"
   }
 }

@@ -1,7 +1,9 @@
 import { CheckCircle2, XCircle } from "lucide-react";
 import { useResponsive } from "@/contexts/ResponsiveContext";
+import { useTranslation } from 'react-i18next';
 
 const WhyDifferentSection = () => {
+  const { t } = useTranslation();
   const { isMobile } = useResponsive();
 
   return (
@@ -18,7 +20,7 @@ const WhyDifferentSection = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full">
             <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-              WHY THIS IS DIFFERENT
+              {t('whyDifferent.badge')}
             </p>
           </div>
 
@@ -31,7 +33,7 @@ const WhyDifferentSection = () => {
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
               }}
             >
-              Ini bukan platform quest. Ini panduan aktivitas on-chain.
+              {t('whyDifferent.headline')}
             </h2>
           </div>
 
@@ -51,7 +53,7 @@ const WhyDifferentSection = () => {
                   <XCircle className="w-8 h-8 text-[#6B6B6B]" />
                 </div>
                 <h3 className="font-black text-xl lg:text-2xl text-[#1A1A1A] uppercase">
-                  Platform Quest Biasa
+                  {t('whyDifferent.questPlatform.title')}
                 </h3>
               </div>
 
@@ -61,9 +63,9 @@ const WhyDifferentSection = () => {
               {/* Points */}
               <div className="space-y-6">
                 {[
-                  { icon: XCircle, text: "Fokus ke checklist", detail: "Task yang sama untuk semua orang" },
-                  { icon: XCircle, text: "Task sama untuk semua orang", detail: "Tidak ada personalisasi" },
-                  { icon: XCircle, text: "Tujuan utama: claim reward", detail: "Orientasi ke reward, bukan penggunaan" }
+                  { icon: XCircle, text: t('whyDifferent.questPlatform.point1'), detail: t('whyDifferent.questPlatform.detail1') },
+                  { icon: XCircle, text: t('whyDifferent.questPlatform.point2'), detail: t('whyDifferent.questPlatform.detail2') },
+                  { icon: XCircle, text: t('whyDifferent.questPlatform.point3'), detail: t('whyDifferent.questPlatform.detail3') }
                 ].map((point, index) => (
                   <div key={index} className="flex items-start gap-4">
                     <div className="w-8 h-8 bg-[#E5E5E0] rounded-lg flex items-center justify-center flex-shrink-0">
@@ -85,7 +87,7 @@ const WhyDifferentSection = () => {
               <div className="mt-8 pt-6 border-t-2 border-[#E5E5E0]">
                 <div className="flex items-center gap-2 text-[#6B6B6B]">
                   <XCircle className="w-5 h-5" />
-                  <span className="font-mono text-sm uppercase tracking-wider">Not Optimal</span>
+                  <span className="font-mono text-sm uppercase tracking-wider">{t('whyDifferent.questPlatform.status')}</span>
                 </div>
               </div>
             </div>
@@ -98,7 +100,7 @@ const WhyDifferentSection = () => {
               <div className="absolute top-6 right-6">
                 <div className="px-4 py-2 bg-[#FF6B35] rounded-lg shadow-lg">
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
-                    ✨ Better Way
+                    {t('whyDifferent.intent.badge')}
                   </span>
                 </div>
               </div>
@@ -112,7 +114,7 @@ const WhyDifferentSection = () => {
                   <CheckCircle2 className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="font-black text-xl lg:text-2xl text-[#1A1A1A] uppercase">
-                  INTENT
+                  {t('whyDifferent.intent.title')}
                 </h3>
               </div>
 
@@ -122,9 +124,9 @@ const WhyDifferentSection = () => {
               {/* Points */}
               <div className="space-y-6 relative z-10">
                 {[
-                  { icon: CheckCircle2, text: "Fokus ke cara kamu pakai dApps", detail: "Personalisasi berdasarkan perilaku nyata" },
-                  { icon: CheckCircle2, text: "Aktivitas bervariasi & berurutan", detail: "Alur yang logis dan masuk akal" },
-                  { icon: CheckCircle2, text: "Tujuan utama: partisipasi nyata", detail: "Bangun jejak penggunaan yang berharga" }
+                  { icon: CheckCircle2, text: t('whyDifferent.intent.point1'), detail: t('whyDifferent.intent.detail1') },
+                  { icon: CheckCircle2, text: t('whyDifferent.intent.point2'), detail: t('whyDifferent.intent.detail2') },
+                  { icon: CheckCircle2, text: t('whyDifferent.intent.point3'), detail: t('whyDifferent.intent.detail3') }
                 ].map((point, index) => (
                   <div key={index} className="flex items-start gap-4">
                     <div className="w-8 h-8 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -146,7 +148,7 @@ const WhyDifferentSection = () => {
               <div className="mt-8 pt-6 border-t-2 border-[#FF6B35]/30 relative z-10">
                 <div className="flex items-center gap-2 text-[#FF6B35]">
                   <CheckCircle2 className="w-5 h-5" />
-                  <span className="font-mono text-sm uppercase tracking-wider font-bold">Recommended</span>
+                  <span className="font-mono text-sm uppercase tracking-wider font-bold">{t('whyDifferent.intent.status')}</span>
                 </div>
               </div>
             </div>
@@ -160,9 +162,7 @@ const WhyDifferentSection = () => {
           <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#FF6B35]/5 rounded-full blur-2xl pointer-events-none" />
 
           <p className="font-mono text-base lg:text-lg text-[#1A1A1A] leading-relaxed relative z-10">
-            <span className="font-black text-[#FF6B35]">INTENT</span> bukan ngajarin kamu "cara cepat claim",
-            <br />
-            tapi bantu kamu bangun jejak penggunaan yang masuk akal.
+            {t('whyDifferent.explanation')}
           </p>
         </div>
       </div>

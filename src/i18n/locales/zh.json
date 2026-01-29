@@ -3,36 +3,197 @@
     "badge": "参与证明",
     "headline": "停止盲目刷量。开始正确使用ARC。",
     "subheadline": "INTENT帮助您专注于ARC团队实际使用的链上活动，而不仅仅是垃圾交易。",
-    "cta": "开始每日ARC活动"
+    "cta": "开始每日ARC活动",
+    "runningText": "BEYOND ONCHAIN"
   },
   "problem": {
     "badge": "问题所在",
-    "headline": "大多数用户在不知道自己在做什么的情况下进行刷量"
+    "subtitle": "B E Y O N D · O N C H A I N",
+    "headline": "大多数用户在不知道自己在做什么的情况下进行刷量",
+    "problems": [
+      {
+        "title": "随机交易",
+        "description": "来回交换代币而没有真正目的，只是为了增加交易量"
+      },
+      {
+        "title": "没有策略",
+        "description": "做和其他人一样的活动，而不了解生态系统"
+      },
+      {
+        "title": "资源浪费",
+        "description": "在无意义的交易上花费gas，而不是真正的生态系统参与"
+      }
+    ]
   },
   "infrastructure": {
     "badge": "INTENT的真正作用",
-    "headline": "INTENT帮助您真实地使用ARC dApps，而不仅仅是看起来活跃。"
+    "subtitle": "B E Y O N D · O N C H A I N",
+    "headline": "INTENT帮助您真实地使用ARC dApps，而不仅仅是看起来活跃。",
+    "steps": [
+      {
+        "number": "01",
+        "title": "像往常一样使用dApps",
+        "description": "在ARC生态系统中进行交换、流动性、桥接或其他功能。",
+        "tech": "正常使用"
+      },
+      {
+        "number": "02",
+        "title": "INTENT直接从链上读取您的交易",
+        "description": "无需表格，无需上传证明，无需手动领取。",
+        "tech": "直接RPC读取"
+      },
+      {
+        "number": "03",
+        "title": "您的活动立即得到验证",
+        "description": "不仅仅是'有交易'，而是与相关合约的实际交互。",
+        "tech": "智能合约验证"
+      },
+      {
+        "number": "04",
+        "title": "证明+内容自动生成",
+        "description": "准备分享，准备成为您的参与历史。",
+        "tech": "自动生成"
+      }
+    ],
+    "summary": "基础设施 > 手动任务"
   },
   "dailyActivity": {
     "badge": "每日ARC活动",
-    "headline": "今日推荐活动"
+    "headline": "今日推荐活动",
+    "subheadline": "完成这些活动以建立您的链上声誉",
+    "today": "今天",
+    "tomorrow": "明天",
+    "day": "天",
+    "difficulty": "难度",
+    "time": "时间",
+    "easy": "简单",
+    "medium": "中等",
+    "hard": "困难",
+    "min": "分钟",
+    "active": "进行中",
+    "upcoming": "即将开始",
+    "completed": "已完成",
+    "viewAllDapps": "查看所有ARC dApps",
+    "dappsHeadline": "支持的ARC生态系统dApps",
+    "learnMore": "了解更多"
   },
   "whyDifferent": {
     "badge": "为什么与众不同",
-    "headline": "这不是任务平台。这是链上活动指南。"
+    "headline": "这不是任务平台。这是链上活动指南。",
+    "questPlatform": {
+      "title": "普通任务平台",
+      "point1": "专注于检查清单",
+      "detail1": "每个人的任务都相同",
+      "point2": "所有人的任务相同",
+      "detail2": "没有个性化",
+      "point3": "主要目标：领取奖励",
+      "detail3": "以奖励为导向，不是实际使用",
+      "status": "不是最佳选择"
+    },
+    "intent": {
+      "title": "INTENT",
+      "badge": "✨ 更好的方式",
+      "point1": "专注于您如何使用dApps",
+      "detail1": "基于实际行为个性化",
+      "point2": "活动多样且有序",
+      "detail2": "逻辑合理",
+      "point3": "主要目标：真正参与",
+      "detail3": "建立有价值的使用历史",
+      "status": "推荐"
+    },
+    "explanation": "INTENT不是教您'如何快速领取'，而是帮助您建立合理的使用历史。"
   },
   "aboutProof": {
     "badge": "关于证明与徽章",
-    "headline": "这里的徽章不是收藏品，而是活动证明。"
+    "headline": "这里的徽章不是收藏品，而是活动证明。",
+    "stats": {
+      "activities": "已验证活动",
+      "users": "活跃用户",
+      "growth": "月增长率"
+    },
+    "features": [
+      {
+        "title": "直接连接到交易",
+        "description": "INTENT中的每个证明都直接链接到您的链上交易。不仅仅是空NFT，而是可验证的活动记录。"
+      },
+      {
+        "title": "可以随时验证",
+        "description": "当以后有快照、活动或追溯奖励时，您拥有可以验证的整洁历史记录。"
+      },
+      {
+        "title": "隐私仍然受到保护",
+        "description": "您的证明保持匿名，不会暴露敏感数据。只有可以在不揭示身份的情况下证明的验证。"
+      },
+      {
+        "title": "对所有生态系统开放",
+        "description": "您在INTENT上建立的证明即使其他生态系统以后需要活动验证仍然相关。"
+      }
+    ],
+    "howItWorks": {
+      "title": "您的证明如何工作",
+      "description": "每个证明包含时间戳、交易哈希、协议交互和验证状态。",
+      "txHash": "交易哈希",
+      "verificationStatus": "验证状态",
+      "verified": "已验证",
+      "badgeLabel": "已验证活动"
+    },
+    "process": {
+      "title": "INTENT如何验证您的活动",
+      "steps": [
+        { "step": "01", "title": "执行", "desc": "在ARC生态系统dApps中进行交易" },
+        { "step": "02", "title": "追踪", "desc": "INTENT检测并记录您的活动" },
+        { "step": "03", "title": "验证", "desc": "数据直接从ARC RPC验证" },
+        { "step": "04", "title": "徽章", "desc": "证明徽章自动添加到您的个人资料" }
+      ]
+    }
   },
   "ecosystem": {
     "badge": "生态系统信任",
-    "headline": "建立在ARC上，受社区信任"
+    "headline": "建立在ARC上，受社区信任",
+    "subheadline": "B E Y O N D · O N C H A I N",
+    "stats": {
+      "transactions": "总交易数",
+      "users": "已验证用户",
+      "protocols": "合作伙伴协议",
+      "rate": "验证率"
+    },
+    "protocolsTitle": "支持的ARC协议",
+    "trustPoints": [
+      {
+        "title": "活动直接从ARC RPC验证",
+        "description": "来自区块链的实时验证"
+      },
+      {
+        "title": "无需手动提交证明",
+        "description": "自动检测和验证"
+      },
+      {
+        "title": "透明且不可篡改的记录",
+        "description": "所有数据存储在链上"
+      },
+      {
+        "title": "社区驱动的治理",
+        "description": "由用户决定协议"
+      }
+    ]
   },
   "finalCta": {
     "badge": "最终行动号召",
     "headline": "如果要刷量，至少要以正确的方式进行。",
+    "subheadline": "使用dApps，建立历史记录，让INTENT处理验证+证明。",
     "cta": "开始使用ARC与INTENT",
-    "connectWallet": "连接钱包"
+    "connectWallet": "连接钱包",
+    "noCreditCard": "无需信用卡",
+    "freeToStart": "免费开始"
+  },
+  "navbar": {
+    "explore": "探索",
+    "build": "构建",
+    "integrate": "集成",
+    "launchApp": "启动应用 →",
+    "launchIn": "启动于",
+    "days": "天",
+    "hours": "小时",
+    "mins": "分钟"
   }
 }

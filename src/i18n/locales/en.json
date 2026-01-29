@@ -3,36 +3,197 @@
     "badge": "Proof of Participation",
     "headline": "Stop Farming Blind. Start Using ARC the Right Way.",
     "subheadline": "INTENT helps you focus on on-chain activities that the ARC team actually uses, not just spamming transactions.",
-    "cta": "Start Daily ARC Activities"
+    "cta": "Start Daily ARC Activities",
+    "runningText": "BEYOND ONCHAIN"
   },
   "problem": {
     "badge": "THE PROBLEM",
-    "headline": "Most users farm without knowing what they're doing"
+    "subtitle": "B E Y O N D · O N C H A I N",
+    "headline": "Most users farm without knowing what they're doing",
+    "problems": [
+      {
+        "title": "Random Transactions",
+        "description": "Swapping tokens back and forth without real purpose, just to increase volume"
+      },
+      {
+        "title": "No Strategy",
+        "description": "Doing the same activities as everyone else without understanding the ecosystem"
+      },
+      {
+        "title": "Wasted Resources",
+        "description": "Spending gas on meaningless transactions instead of genuine ecosystem participation"
+      }
+    ]
   },
   "infrastructure": {
     "badge": "WHAT INTENT ACTUALLY DOES",
-    "headline": "INTENT helps you use ARC dApps for real, not just appear active."
+    "subtitle": "B E Y O N D · O N C H A I N",
+    "headline": "INTENT helps you use ARC dApps for real, not just appear active.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "You use dApps as usual",
+        "description": "Swap, LP, bridge, or other features in the ARC ecosystem.",
+        "tech": "Normal Usage"
+      },
+      {
+        "number": "02",
+        "title": "INTENT reads your transactions directly from the chain",
+        "description": "No forms, no proof uploads, no manual claims.",
+        "tech": "Direct RPC Reading"
+      },
+      {
+        "number": "03",
+        "title": "Your activity is verified instantly",
+        "description": "Not just 'there's a tx', but actual interaction with relevant contracts.",
+        "tech": "Smart Contract Verification"
+      },
+      {
+        "number": "04",
+        "title": "Proof + content is auto-generated",
+        "description": "Ready to share, ready to be your participation history.",
+        "tech": "Auto Generation"
+      }
+    ],
+    "summary": "Infrastructure > Manual Tasks"
   },
   "dailyActivity": {
     "badge": "DAILY ARC ACTIVITIES",
-    "headline": "Today's Recommended Activities"
+    "headline": "Today's Recommended Activities",
+    "subheadline": "Complete these activities to build your on-chain reputation",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "day": "Day",
+    "difficulty": "Difficulty",
+    "time": "Time",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "min": "min",
+    "active": "Active",
+    "upcoming": "Upcoming",
+    "completed": "Completed",
+    "viewAllDapps": "View All ARC dApps",
+    "dappsHeadline": "Supported ARC Ecosystem dApps",
+    "learnMore": "Learn More"
   },
   "whyDifferent": {
     "badge": "WHY THIS IS DIFFERENT",
-    "headline": "This isn't a quest platform. This is an on-chain activity guide."
+    "headline": "This isn't a quest platform. This is an on-chain activity guide.",
+    "questPlatform": {
+      "title": "Regular Quest Platform",
+      "point1": "Focused on checklist",
+      "detail1": "Same tasks for everyone",
+      "point2": "Same tasks for everyone",
+      "detail2": "No personalization",
+      "point3": "Main goal: claim reward",
+      "detail3": "Reward-oriented, not actual usage",
+      "status": "Not Optimal"
+    },
+    "intent": {
+      "title": "INTENT",
+      "badge": "✨ Better Way",
+      "point1": "Focused on how you use dApps",
+      "detail1": "Personalized based on actual behavior",
+      "point2": "Activities vary & are sequential",
+      "detail2": "Logical and sensible flow",
+      "point3": "Main goal: real participation",
+      "detail3": "Build valuable usage history",
+      "status": "Recommended"
+    },
+    "explanation": "INTENT doesn't teach you 'how to claim quickly', but helps you build sensible usage history."
   },
   "aboutProof": {
     "badge": "ABOUT PROOF & BADGE",
-    "headline": "Badges here aren't collections, but proof of activity."
+    "headline": "Badges here aren't collections, but proof of activity.",
+    "stats": {
+      "activities": "Activities Verified",
+      "users": "Active Users",
+      "growth": "Monthly Growth"
+    },
+    "features": [
+      {
+        "title": "Directly connected to transactions",
+        "description": "Each proof in INTENT is directly linked to your on-chain transactions. Not just empty NFTs, but verifiable activity records."
+      },
+      {
+        "title": "Can be verified anytime",
+        "description": "When there's a snapshot, campaign, or retroactive reward later, you have a neat history that can be verified."
+      },
+      {
+        "title": "Privacy remains protected",
+        "description": "Your proof remains anonymous and doesn't expose sensitive data. Only verification that can be proven without revealing identity."
+      },
+      {
+        "title": "Open to all ecosystems",
+        "description": "The proof you build on INTENT remains relevant even if other ecosystems later need activity verification."
+      }
+    ],
+    "howItWorks": {
+      "title": "How Your Proof Works",
+      "description": "Each proof contains timestamp, transaction hash, protocol interaction, and verification status.",
+      "txHash": "Transaction Hash",
+      "verificationStatus": "Verification Status",
+      "verified": "Verified",
+      "badgeLabel": "VERIFIED ACTIVITY"
+    },
+    "process": {
+      "title": "How INTENT Verifies Your Activity",
+      "steps": [
+        { "step": "01", "title": "Execute", "desc": "Make transactions in ARC ecosystem dApps" },
+        { "step": "02", "title": "Track", "desc": "INTENT detects and records your activity" },
+        { "step": "03", "title": "Verify", "desc": "Data verified directly from ARC RPC" },
+        { "step": "04", "title": "Badge", "desc": "Proof badge automatically added to your profile" }
+      ]
+    }
   },
   "ecosystem": {
     "badge": "ECOSYSTEM TRUST",
-    "headline": "Built on ARC, trusted by the community"
+    "headline": "Built on ARC, trusted by the community",
+    "subheadline": "B E Y O N D · O N C H A I N",
+    "stats": {
+      "transactions": "Total Transactions",
+      "users": "Verified Users",
+      "protocols": "Partner Protocols",
+      "rate": "Verification Rate"
+    },
+    "protocolsTitle": "Supported ARC Protocols",
+    "trustPoints": [
+      {
+        "title": "Activity verified directly from ARC RPC",
+        "description": "Real-time verification from blockchain"
+      },
+      {
+        "title": "No manual proof submission required",
+        "description": "Automatic detection & verification"
+      },
+      {
+        "title": "Transparent & immutable records",
+        "description": "All data stored on-chain"
+      },
+      {
+        "title": "Community-driven governance",
+        "description": "Protocol decisions by users"
+      }
+    ]
   },
   "finalCta": {
     "badge": "FINAL CTA",
     "headline": "If you want to farm, at least do it the right way.",
+    "subheadline": "Use dApps, build history, and let INTENT handle verification + proof.",
     "cta": "Start Using ARC with INTENT",
-    "connectWallet": "Connect Wallet"
+    "connectWallet": "Connect Wallet",
+    "noCreditCard": "No Credit Card Required",
+    "freeToStart": "Free to Start"
+  },
+  "navbar": {
+    "explore": "Explore",
+    "build": "Build",
+    "integrate": "Integrate",
+    "launchApp": "Launch App →",
+    "launchIn": "Launch in",
+    "days": "Days",
+    "hours": "Hours",
+    "mins": "Mins"
   }
 }

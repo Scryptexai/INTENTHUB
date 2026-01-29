@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import intentLogo from "/assets/intent-logo.jpg";
 import { useResponsive } from "@/contexts/ResponsiveContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-// 7-day countdown target
-const LAUNCH_DATE = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-
 const Navbar = () => {
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0 });
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isMobile } = useResponsive();
@@ -21,35 +19,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    // Initial countdown update
-    const now = new Date();
-    const diff = LAUNCH_DATE.getTime() - now.getTime();
-    if (diff > 0) {
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      setCountdown({ days, hours, minutes });
-    }
-
-    const interval = setInterval(() => {
-      // Force re-render to ensure mobile updates
-      setCountdown(prev => {
-        const now = new Date();
-        const diff = LAUNCH_DATE.getTime() - now.getTime();
-        if (diff > 0) {
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          return { days, hours, minutes };
-        }
-        return prev;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -57,8 +26,6 @@ const Navbar = () => {
       setMobileMenuOpen(false);
     }
   };
-
-  const formatNumber = (num: number) => num.toString().padStart(2, "0");
 
   // Mobile Layout - Optimized for touch targets and readability
   if (isMobile) {
@@ -131,7 +98,7 @@ const Navbar = () => {
                 onClick={() => scrollToSection("problem")}
                 className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
               >
-                Explore
+                {t('navbar.explore')}
               </button>
 
               <div className="h-px bg-[#E5E5E0]" />
@@ -140,7 +107,7 @@ const Navbar = () => {
                 onClick={() => scrollToSection("how-it-works")}
                 className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
               >
-                Build
+                {t('navbar.build')}
               </button>
 
               <div className="h-px bg-[#E5E5E0]" />
@@ -149,7 +116,7 @@ const Navbar = () => {
                 onClick={() => scrollToSection("dapps")}
                 className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
               >
-                Integrate
+                {t('navbar.integrate')}
               </button>
 
               <div className="h-px bg-[#E5E5E0] mt-4" />
@@ -158,40 +125,16 @@ const Navbar = () => {
                 disabled
                 className="touch-target w-full mt-4 px-6 py-4 bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-lg font-bold rounded-xl transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg active:scale-95"
               >
-                Launch App →
+                {t('navbar.launchApp')}
               </button>
             </motion.nav>
           </>
         )}
-
-        {/* Mobile Bottom Countdown Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-[#FF6B35] safe-area-bottom"
-        >
-          <div className="flex items-center justify-center gap-4 px-4 py-3 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold text-[#9B9B9B] uppercase">Launch In</span>
-              <div className="flex items-center gap-1 font-mono font-bold text-[#1A1A1A]">
-                <span>{formatNumber(countdown.days)}</span>
-                <span className="text-[#9B9B9B] text-xs">d</span>
-                <span className="text-[#E5E5E0] mx-1">:</span>
-                <span>{formatNumber(countdown.hours)}</span>
-                <span className="text-[#9B9B9B] text-xs">h</span>
-                <span className="text-[#E5E5E0] mx-1">:</span>
-                <span>{formatNumber(countdown.minutes)}</span>
-                <span className="text-[#9B9B9B] text-xs">m</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </>
     );
   }
 
-  // Desktop Layout (unchanged)
+  // Desktop Layout
   return (
     <>
       {/* Logo - Fixed Top Left */}
@@ -230,7 +173,7 @@ const Navbar = () => {
           scrolled ? "shadow-2xl" : "shadow-lg"
         }`}
       >
-        <div 
+        <div
           className="flex items-center gap-2 px-8 py-4 bg-white/95 backdrop-blur-xl border-2 border-[#FF6B35] rounded-full"
           style={{ backdropFilter: "blur(24px)" }}
         >
@@ -238,79 +181,46 @@ const Navbar = () => {
             onClick={() => scrollToSection("problem")}
             className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#FF6B35] rounded-full transition-all duration-300"
           >
-            Explore
+            {t('navbar.explore')}
           </button>
-          
+
           <div className="w-px h-6 bg-[#E5E5E0]" />
-          
+
           <button
             onClick={() => scrollToSection("how-it-works")}
             className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#FF6B35] rounded-full transition-all duration-300"
           >
-            Integrate
+            {t('navbar.integrate')}
           </button>
-          
+
           <div className="w-px h-6 bg-[#E5E5E0]" />
-          
+
           <button
             onClick={() => scrollToSection("dapps")}
             className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#FF6B35] rounded-full transition-all duration-300"
           >
-            Build
+            {t('navbar.build')}
           </button>
-          
+
           <div className="w-px h-6 bg-[#E5E5E0]" />
-          
+
           <button
             disabled
             className="px-8 py-3 bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base font-bold rounded-full transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg"
           >
-            Launch App →
+            {t('navbar.launchApp')}
           </button>
         </div>
       </motion.nav>
 
-      {/* Countdown & Language Switcher - Fixed Top Right */}
+      {/* Language Switcher - Fixed Top Right */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="fixed top-8 right-8 z-50 flex items-center gap-4"
+        className="fixed top-8 right-8 z-50"
       >
         <LanguageSwitcher />
-        <div className="flex items-center gap-4 px-6 py-4 bg-white/95 backdrop-blur-xl border-2 border-[#FF6B35] rounded-full shadow-lg">
-          <span className="font-mono text-sm font-bold text-[#9B9B9B] uppercase tracking-wider">
-            Launch in
-          </span>
-          <div className="flex items-center gap-2">
-            <div className="flex flex-col items-center">
-              <span className="font-mono text-2xl font-black text-[#1A1A1A]">
-                {formatNumber(countdown.days)}
-              </span>
-              <span className="font-mono text-[10px] text-[#9B9B9B] uppercase">
-                Days
-              </span>
-            </div>
-            <span className="font-mono text-2xl font-black text-[#E5E5E0]">:</span>
-            <div className="flex flex-col items-center">
-              <span className="font-mono text-2xl font-black text-[#1A1A1A]">
-                {formatNumber(countdown.hours)}
-              </span>
-              <span className="font-mono text-[10px] text-[#9B9B9B] uppercase">
-                Hours
-              </span>
-            </div>
-            <span className="font-mono text-2xl font-black text-[#E5E5E0]">:</span>
-            <div className="flex flex-col items-center">
-              <span className="font-mono text-2xl font-black text-[#1A1A1A]">
-                {formatNumber(countdown.minutes)}
-              </span>
-              <span className="font-mono text-[10px] text-[#9B9B9B] uppercase">
-                Mins
-              </span>
-            </div>
-          </div>
-        </div>
       </motion.div>
     </>
   );

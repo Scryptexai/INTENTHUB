@@ -4,64 +4,43 @@ import { CheckCircle, Database, Zap, Shield, Verified, Activity, Users, Network 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useResponsive } from "@/contexts/ResponsiveContext";
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ecosystemStats = [
-  { icon: Activity, label: "Total Transactions", value: "150K+", color: "text-[#FF6B35]" },
-  { icon: Users, label: "Verified Users", value: "5,200+", color: "text-[#00D9FF]" },
-  { icon: Network, label: "Partner Protocols", value: "12+", color: "text-purple-500" },
-  { icon: Shield, label: "Verification Rate", value: "99.9%", color: "text-green-500" },
-];
-
-const protocols = [
-  { name: "ArcFlow Finance", category: "DEX Aggregator" },
-  { name: "Across Protocol", category: "Bridging" },
-  { name: "Aave ARC", category: "Lending" },
-  { name: "Uniswap ARC", category: "DEX" },
-  { name: "Balancer", category: "AMM" },
-  { name: "Curve", category: "DEX & AMM" },
-  { name: "Axelar", category: "Bridging" },
-  { name: "Crossmint", category: "NFT Infrastructure" },
-  { name: "Oku", category: "DEX Aggregator" },
-  { name: "Hinkal", category: "Privacy" },
-  { name: "MintAura", category: "NFT Platform" },
-  { name: "Superface", category: "Identity" },
-  { name: "Synthra", category: "Derivatives" },
-  { name: "OnchainGM", category: "Gaming" },
-  { name: "Watchoor", category: "Analytics" },
-  { name: "ZKCodex", category: "Developer Tools" },
-  { name: "BlockRadar", category: "Analytics" },
-  { name: "Infinity Name", category: "Naming Service" },
-  { name: "Para", category: "DeFi" },
-];
-
-const trustPoints = [
-  {
-    icon: Database,
-    title: "Aktivitas diverifikasi langsung dari ARC RPC",
-    description: "Verifikasi real-time dari blockchain"
-  },
-  {
-    icon: CheckCircle,
-    title: "Fokus ke dApps yang benar-benar ada di ecosystem",
-    description: "Hanya protocol terverifikasi"
-  },
-  {
-    icon: Zap,
-    title: "Task disesuaikan dengan growth stage network",
-    description: "Selalu relevan dan up-to-date"
-  },
-  {
-    icon: Shield,
-    title: "INTENT bukan multi-chain farming tool",
-    description: "Saat ini fokus penuh bantu user aktif di ARC"
-  }
-];
-
 const EcosystemTrust = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const { isMobile } = useResponsive();
+
+  const ecosystemStats = [
+    { icon: Activity, label: t('ecosystem.stats.transactions'), value: "150K+", color: "text-[#FF6B35]" },
+    { icon: Users, label: t('ecosystem.stats.users'), value: "5,200+", color: "text-[#00D9FF]" },
+    { icon: Network, label: t('ecosystem.stats.protocols'), value: "12+", color: "text-purple-500" },
+    { icon: Shield, label: t('ecosystem.stats.rate'), value: "99.9%", color: "text-green-500" },
+  ];
+
+  const protocols = [
+    { name: "ArcFlow Finance", category: "DEX Aggregator" },
+    { name: "Across Protocol", category: "Bridging" },
+    { name: "Aave ARC", category: "Lending" },
+    { name: "Uniswap ARC", category: "DEX" },
+    { name: "Balancer", category: "AMM" },
+    { name: "Curve", category: "DEX & AMM" },
+    { name: "Axelar", category: "Bridging" },
+    { name: "Crossmint", category: "NFT Infrastructure" },
+    { name: "Oku", category: "DEX Aggregator" },
+    { name: "Hinkal", category: "Privacy" },
+    { name: "MintAura", category: "NFT Platform" },
+    { name: "Superface", category: "Identity" },
+    { name: "Synthra", category: "Derivatives" },
+    { name: "OnchainGM", category: "Gaming" },
+    { name: "Watchoor", category: "Analytics" },
+    { name: "ZKCodex", category: "Developer Tools" },
+    { name: "BlockRadar", category: "Analytics" },
+    { name: "Infinity Name", category: "Naming Service" },
+    { name: "Para", category: "DeFi" },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -137,7 +116,7 @@ const EcosystemTrust = () => {
           >
             <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-              TRUST / BUILT ON ARC
+              {t('ecosystem.badge')}
             </p>
           </motion.div>
 
@@ -156,8 +135,7 @@ const EcosystemTrust = () => {
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
               }}
             >
-              Dibangun khusus<br />
-              untuk ecosystem ARC.
+              {t('ecosystem.headline')}
             </h2>
           </motion.div>
 
@@ -213,7 +191,7 @@ const EcosystemTrust = () => {
           className="mt-12 p-8 lg:p-10 bg-white border-2 border-[#E5E5E0] rounded-xl max-w-5xl mx-auto"
         >
           <h4 className="font-black text-xl lg:text-2xl text-[#1A1A1A] mb-6 uppercase text-center">
-            Supported ARC Protocols
+            {t('ecosystem.protocolsTitle')}
           </h4>
           <div className={`grid gap-4 ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'}`}>
             {protocols.map((protocol, index) => (
@@ -243,8 +221,8 @@ const EcosystemTrust = () => {
         </motion.div>
 
         {/* Trust Points Grid */}
-        <div className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-4'} mt-16`}>
-          {trustPoints.map((point, index) => (
+        <div className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'} mt-16`}>
+          {(t('ecosystem.trustPoints', { returnObjects: true }) as any[]).map((point, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
@@ -259,7 +237,7 @@ const EcosystemTrust = () => {
 
                 {/* Icon */}
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 bg-[#FF6B35]/10 group-hover:bg-[#FF6B35] transition-all duration-500 relative z-10">
-                  <point.icon className="w-8 h-8 text-[#FF6B35] group-hover:text-white transition-colors duration-500" />
+                  <CheckCircle className="w-8 h-8 text-[#FF6B35] group-hover:text-white transition-colors duration-500" />
                 </div>
 
                 {/* Title */}

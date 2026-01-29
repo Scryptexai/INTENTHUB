@@ -4,43 +4,45 @@ import { Search, CheckCircle, Palette, Loader2, ArrowRight } from "lucide-react"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useResponsive } from "@/contexts/ResponsiveContext";
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
-  {
-    number: "01",
-    icon: Search,
-    headline: "Kamu pakai dApps seperti biasa",
-    text: "Swap, LP, bridge, atau fitur lain di ecosystem ARC.",
-    tech: "Normal Usage"
-  },
-  {
-    number: "02",
-    icon: CheckCircle,
-    headline: "INTENT baca transaksi kamu langsung dari chain",
-    text: "Tanpa form, tanpa upload bukti, tanpa klaim manual.",
-    tech: "Direct RPC Reading"
-  },
-  {
-    number: "03",
-    icon: Palette,
-    headline: "Aktivitas kamu langsung diverifikasi",
-    text: "Bukan cuma \"ada tx\", tapi benar-benar interaksi ke kontrak yang relevan.",
-    tech: "Smart Contract Verification"
-  },
-  {
-    number: "04",
-    icon: Loader2,
-    headline: "Bukti + konten otomatis dibuat",
-    text: "Siap buat share, siap buat jadi history partisipasi kamu.",
-    tech: "Auto Generation"
-  },
-];
-
 const InfrastructureSection = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const { isMobile } = useResponsive();
+
+  const steps = [
+    {
+      number: "01",
+      icon: Search,
+      headline: t('infrastructure.steps.0.title'),
+      text: t('infrastructure.steps.0.description'),
+      tech: t('infrastructure.steps.0.tech')
+    },
+    {
+      number: "02",
+      icon: CheckCircle,
+      headline: t('infrastructure.steps.1.title'),
+      text: t('infrastructure.steps.1.description'),
+      tech: t('infrastructure.steps.1.tech')
+    },
+    {
+      number: "03",
+      icon: Palette,
+      headline: t('infrastructure.steps.2.title'),
+      text: t('infrastructure.steps.2.description'),
+      tech: t('infrastructure.steps.2.tech')
+    },
+    {
+      number: "04",
+      icon: Loader2,
+      headline: t('infrastructure.steps.3.title'),
+      text: t('infrastructure.steps.3.description'),
+      tech: t('infrastructure.steps.3.tech')
+    },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -167,7 +169,7 @@ const InfrastructureSection = () => {
           >
             <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-              WHAT INTENT ACTUALLY DOES
+              {t('infrastructure.badge')}
             </p>
           </motion.div>
 
@@ -181,7 +183,7 @@ const InfrastructureSection = () => {
             <p
               className="font-mono text-[#9B9B9B] uppercase tracking-[0.3em]"
             >
-              B E Y O N D · O N C H A I N
+              {t('infrastructure.subtitle')}
             </p>
           </motion.div>
 
@@ -199,7 +201,7 @@ const InfrastructureSection = () => {
               }`}
               style={{ fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif' }}
             >
-              INTENT bantu kamu pakai dApps ARC secara nyata, bukan cuma kelihatan aktif.
+              {t('infrastructure.headline')}
             </h2>
           </motion.div>
 
@@ -319,7 +321,7 @@ const InfrastructureSection = () => {
               <p className={`font-mono text-[#1A1A1A] font-bold uppercase tracking-wider ${
                 isMobile ? 'text-sm' : 'text-lg lg:text-xl'
               }`}>
-                Infrastructure <span className="text-[#FF6B35]">&gt;</span> Manual Tasks
+                {t('infrastructure.summary')}
               </p>
             </div>
           </motion.div>
