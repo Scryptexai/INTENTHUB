@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { WaitlistForm } from "./WaitlistForm";
+import WaitlistForm from "./WaitlistForm";
 import { useResponsive } from "@/contexts/ResponsiveContext";
 import Hero3DElement from "./Hero3DElement";
 
