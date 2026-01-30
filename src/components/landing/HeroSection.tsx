@@ -1,44 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useTranslation } from "react-i18next";
-import WaitlistForm from "./WaitlistForm";
-import { Button } from "@/components/ui/button";
+import { WaitlistForm } from "./WaitlistForm";
 import { useResponsive } from "@/contexts/ResponsiveContext";
-import { MOBILE_CONFIG } from "@/config/mobileConfig";
 import Hero3DElement from "./Hero3DElement";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const HeroSection = () => {
-  const { t } = useTranslation();
-  const sectionRef = useRef<HTMLElement>(null);
-  const runningTextRef = useRef<HTMLDivElement>(null);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
-  const { isMobile, width } = useResponsive();
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Running text scroll animation with responsive speed
-      if (runningTextRef.current) {
-        const duration = isMobile ? MOBILE_CONFIG.animations.tickerSpeed.mobile : MOBILE_CONFIG.animations.tickerSpeed.desktop;
-        gsap.fromTo(runningTextRef.current,
-          { x: "0%" },
-          {
-            x: "-50%",
-            duration: duration,
-            ease: "none",
-            repeat: -1,
-          }
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [isMobile, width]);
+  const { isMobile } = useResponsive();
 
   return (
     <>
@@ -46,19 +14,14 @@ const HeroSection = () => {
       {!isMobile && (
         <section
           id="hero"
-          ref={sectionRef}
           className="relative w-full h-screen overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, #FFFFFF 0%, #FFE8DC 30%, #FFD4BD 70%, #FF6B35 100%)'
           }}
         >
-          {/* 3D Wave Animation Layer */}
-          <Hero3DElement />
-
           {/* Running Text Background */}
           <div className="absolute top-0 left-0 w-full h-[30vh] flex items-center overflow-hidden z-10 pointer-events-none">
             <div
-              ref={runningTextRef}
               className="flex whitespace-nowrap"
               style={{ willChange: 'transform' }}
             >
@@ -77,6 +40,9 @@ const HeroSection = () => {
             </div>
           </div>
 
+          {/* 3D Wave Animation Layer */}
+          <Hero3DElement />
+
           {/* Hero Content Overlay - Centered */}
           <div className="absolute inset-0 z-20 flex items-center justify-center">
             <div className="w-full max-w-[1400px] px-6 lg:px-12">
@@ -90,7 +56,7 @@ const HeroSection = () => {
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/20 border border-[#FF6B35]/30 rounded-full mb-5 backdrop-blur-sm">
                   <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
                   <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
-                    {t('hero.badge')}
+                    Your Activity, Your Proof
                   </span>
                 </div>
 
@@ -101,7 +67,7 @@ const HeroSection = () => {
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 900
                   }}
-                  dangerouslySetInnerHTML={{ __html: t('hero.headline').replace('. ', '.<br />') }}
+                  dangerouslySetInnerHTML={{ __html: 'Don\'t Get Flagged.<br />Build Your History.' }}
                 />
 
                 {/* Orange Accent Line */}
@@ -114,17 +80,28 @@ const HeroSection = () => {
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                   }}
                 >
-                  {t('hero.subheadline')}
+                  Your wallet activities tell your story.<br />
+                  Turn them into verifiable proof that you're a real user.
                 </p>
 
                 {/* CTA Button */}
-                <Button
+                <button
                   onClick={() => setIsWaitlistOpen(true)}
                   className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base lg:text-lg uppercase tracking-wider px-12 py-5 rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
                 >
-                  {t('hero.cta')}
-                  <span className="ml-2">→</span>
-                </Button>
+                  Connect Wallet
+                </button>
+
+                {/* Explanation Below Fold */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="mt-8 font-mono text-sm text-[#1A1A1A] max-w-2xl mx-auto leading-relaxed"
+                >
+                  Stop getting flagged as sybil. Your real activity becomes your strongest asset.<br />
+                  Build proof that you're genuine.
+                </motion.p>
               </motion.div>
             </div>
           </div>
@@ -135,16 +112,13 @@ const HeroSection = () => {
       {isMobile && (
         <section
           id="hero"
-          ref={sectionRef}
           className="relative w-screen h-screen overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, #FFFFFF 0%, #FFE8DC 30%, #FFD4BD 70%, #FF6B35 100%)'
           }}
         >
           {/* 3D Wave Animation Layer - Mobile optimized */}
-          <div className="absolute bottom-0 left-0 right-0 h-[40vh] pointer-events-none">
-            <Hero3DElement />
-          </div>
+          <Hero3DElement />
 
           {/* Content */}
           <div className="absolute inset-0 flex items-center justify-center px-6 z-10">
@@ -163,7 +137,7 @@ const HeroSection = () => {
               >
                 <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full animate-pulse" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#FF6B35] font-bold">
-                  Proof of Participation
+                  Your Activity, Your Proof
                 </span>
               </motion.div>
 
@@ -178,9 +152,8 @@ const HeroSection = () => {
                   fontWeight: 900
                 }}
               >
-                Stop Farming Blind.<br />
-                Start Using ARC<br />
-                the Right Way.
+                Don't Get Flagged.<br />
+                Build Your History.
               </motion.h1>
 
               {/* Orange Accent Line */}
@@ -201,7 +174,8 @@ const HeroSection = () => {
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                 }}
               >
-                INTENT bantu kamu fokus ke aktivitas on-chain yang beneran dipakai tim ARC.
+                Your activities get tracked automatically.<br />
+                Your history becomes your strongest asset.
               </motion.p>
 
               {/* CTA Button */}
@@ -210,13 +184,12 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <Button
+                <button
                   onClick={() => setIsWaitlistOpen(true)}
                   className="w-full bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase tracking-wider px-10 py-4 rounded-xl transition-all duration-300 shadow-2xl active:scale-95"
                 >
-                  Start Daily ARC Activities
-                  <span className="ml-2">→</span>
-                </Button>
+                  Connect Wallet
+                </button>
               </motion.div>
             </motion.div>
           </div>

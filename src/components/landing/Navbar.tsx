@@ -95,7 +95,7 @@ const Navbar = () => {
               className="fixed top-20 right-0 bottom-0 w-full max-w-xs z-40 bg-white/98 backdrop-blur-xl border-l border-[#FF6B35] shadow-2xl overflow-y-auto pt-2 pb-24 px-4 space-y-3"
             >
               <button
-                onClick={() => scrollToSection("problem")}
+                onClick={() => scrollToSection("how-it-works")}
                 className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
               >
                 {t('navbar.explore')}
@@ -104,7 +104,7 @@ const Navbar = () => {
               <div className="h-px bg-[#E5E5E0]" />
 
               <button
-                onClick={() => scrollToSection("how-it-works")}
+                onClick={() => scrollToSection("why-matters")}
                 className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
               >
                 {t('navbar.build')}
@@ -113,7 +113,7 @@ const Navbar = () => {
               <div className="h-px bg-[#E5E5E0]" />
 
               <button
-                onClick={() => scrollToSection("dapps")}
+                onClick={() => scrollToSection("ecosystem")}
                 className="touch-target w-full px-6 py-4 text-left font-mono text-lg font-bold text-[#1A1A1A] hover:bg-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 active:scale-95"
               >
                 {t('navbar.integrate')}
@@ -178,7 +178,7 @@ const Navbar = () => {
           style={{ backdropFilter: "blur(24px)" }}
         >
           <button
-            onClick={() => scrollToSection("problem")}
+            onClick={() => scrollToSection("how-it-works")}
             className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#FF6B35] rounded-full transition-all duration-300"
           >
             {t('navbar.explore')}
@@ -187,7 +187,7 @@ const Navbar = () => {
           <div className="w-px h-6 bg-[#E5E5E0]" />
 
           <button
-            onClick={() => scrollToSection("how-it-works")}
+            onClick={() => scrollToSection("why-matters")}
             className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#FF6B35] rounded-full transition-all duration-300"
           >
             {t('navbar.integrate')}
@@ -196,7 +196,7 @@ const Navbar = () => {
           <div className="w-px h-6 bg-[#E5E5E0]" />
 
           <button
-            onClick={() => scrollToSection("dapps")}
+            onClick={() => scrollToSection("ecosystem")}
             className="px-6 py-3 font-mono text-base font-bold text-[#1A1A1A] hover:text-white hover:bg-[#FF6B35] rounded-full transition-all duration-300"
           >
             {t('navbar.build')}
