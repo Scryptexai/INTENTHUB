@@ -16,7 +16,7 @@ const HeroSection = () => {
           id="hero"
           className="relative w-full h-screen overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, #FFFFFF 0%, #FFE8DC 30%, #FFD4BD 70%, #FF6B35 100%)'
+            background: 'linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 30%, #E0F2FE 70%, #3B82F6 100%)'
           }}
         >
           {/* Running Text Background */}
@@ -53,16 +53,16 @@ const HeroSection = () => {
                 className="w-full text-center"
               >
                 {/* Orange Accent Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/20 border border-[#FF6B35]/30 rounded-full mb-5 backdrop-blur-sm">
-                  <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
-                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-full mb-5 backdrop-blur-sm">
+                  <div className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse" />
+                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#3B82F6] font-bold">
                     Your Activity, Your Proof
                   </span>
                 </div>
 
                 {/* Main Headline */}
                 <h1
-                  className="text-[48px] lg:text-[64px] xl:text-[72px] font-black leading-[1.1] tracking-tight text-[#FF6B35] uppercase mb-6 drop-shadow-lg"
+                  className="text-[48px] lg:text-[64px] xl:text-[72px] font-black leading-[1.1] tracking-tight text-[#3B82F6] uppercase mb-6 drop-shadow-lg"
                   style={{
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 900
@@ -71,7 +71,7 @@ const HeroSection = () => {
                 />
 
                 {/* Orange Accent Line */}
-                <div className="w-20 h-1.5 bg-[#FF6B35] mb-6 shadow-lg mx-auto" />
+                <div className="w-20 h-1.5 bg-[#3B82F6] mb-6 shadow-lg mx-auto" />
 
                 {/* Subheadline */}
                 <p
@@ -84,13 +84,21 @@ const HeroSection = () => {
                   Turn them into verifiable proof that you're a real user.
                 </p>
 
-                {/* CTA Button */}
-                <button
-                  onClick={() => setIsWaitlistOpen(true)}
-                  className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-base lg:text-lg uppercase tracking-wider px-12 py-5 rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
-                >
-                  Connect Wallet
-                </button>
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <button
+                    onClick={() => setIsWaitlistOpen(true)}
+                    className="bg-[#3B82F6] hover:bg-[#4A90FF] text-white font-mono text-base lg:text-lg uppercase tracking-wider px-12 py-5 rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
+                  >
+                    Start Journey
+                  </button>
+                  <a
+                    href="/docs"
+                    className="bg-white hover:bg-[#F5F5F2] text-[#1A1A1A] border-2 border-[#1A1A1A]/20 font-mono text-base lg:text-lg uppercase tracking-wider px-12 py-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
+                  >
+                    Read Docs
+                  </a>
+                </div>
 
                 {/* Explanation Below Fold */}
                 <motion.p
@@ -114,7 +122,7 @@ const HeroSection = () => {
           id="hero"
           className="relative w-screen h-screen overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, #FFFFFF 0%, #FFE8DC 30%, #FFD4BD 70%, #FF6B35 100%)'
+            background: 'linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 30%, #E0F2FE 70%, #3B82F6 100%)'
           }}
         >
           {/* 3D Wave Animation Layer - Mobile optimized */}
@@ -133,10 +141,10 @@ const HeroSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FF6B35]/20 border border-[#FF6B35]/30 rounded-full mb-4 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-full mb-4 backdrop-blur-sm"
               >
-                <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full animate-pulse" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#FF6B35] font-bold">
+                <div className="w-1.5 h-1.5 bg-[#3B82F6] rounded-full animate-pulse" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#3B82F6] font-bold">
                   Your Activity, Your Proof
                 </span>
               </motion.div>
@@ -146,7 +154,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-[32px] lg:text-[40px] font-black leading-[1.1] tracking-tight text-[#FF6B35] uppercase mb-5 drop-shadow-lg"
+                className="text-[32px] lg:text-[40px] font-black leading-[1.1] tracking-tight text-[#3B82F6] uppercase mb-5 drop-shadow-lg"
                 style={{
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                   fontWeight: 900
@@ -161,7 +169,7 @@ const HeroSection = () => {
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="w-16 h-1.5 bg-[#FF6B35] mb-5 origin-left shadow-lg"
+                className="w-16 h-1.5 bg-[#3B82F6] mb-5 origin-left shadow-lg"
               />
 
               {/* Subheadline */}
@@ -178,18 +186,25 @@ const HeroSection = () => {
                 Your history becomes your strongest asset.
               </motion.p>
 
-              {/* CTA Button */}
+              {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col gap-3 w-full"
               >
                 <button
                   onClick={() => setIsWaitlistOpen(true)}
-                  className="w-full bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase tracking-wider px-10 py-4 rounded-xl transition-all duration-300 shadow-2xl active:scale-95"
+                  className="w-full bg-[#3B82F6] hover:bg-[#4A90FF] text-white font-mono text-sm uppercase tracking-wider px-10 py-4 rounded-xl transition-all duration-300 shadow-2xl active:scale-95"
                 >
-                  Connect Wallet
+                  Start Journey
                 </button>
+                <a
+                  href="/docs"
+                  className="w-full bg-white hover:bg-[#F5F5F2] text-[#1A1A1A] border-2 border-[#1A1A1A]/20 font-mono text-sm uppercase tracking-wider px-10 py-4 rounded-xl transition-all duration-300 shadow-lg active:scale-95 text-center"
+                >
+                  Read Docs
+                </a>
               </motion.div>
             </motion.div>
           </div>

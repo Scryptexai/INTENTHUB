@@ -34,10 +34,10 @@ const WhyVerificationMatters = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#3B82F6]/10 border border-[#3B82F6] rounded-full"
           >
-            <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
+            <div className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse" />
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#3B82F6] font-bold">
               Why It Matters
             </p>
           </motion.div>
@@ -63,7 +63,7 @@ const WhyVerificationMatters = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-24 h-1.5 bg-[#FF6B35] mx-auto"
+            className="w-24 h-1.5 bg-[#3B82F6] mx-auto"
           />
         </div>
 
@@ -113,14 +113,14 @@ const WhyVerificationMatters = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-br from-[#FF6B35]/5 to-white border-2 border-[#FF6B35] rounded-2xl p-8 lg:p-10 shadow-xl relative overflow-hidden"
+            className="bg-gradient-to-br from-[#3B82F6]/5 to-white border-2 border-[#3B82F6] rounded-2xl p-8 lg:p-10 shadow-xl relative overflow-hidden"
           >
             {/* Decorative gradient overlay */}
-            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#FF6B35]/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#3B82F6]/20 rounded-full blur-3xl pointer-events-none" />
 
             {/* Header */}
             <div className="flex items-center gap-4 mb-8 relative z-10">
-              <div className="w-16 h-16 bg-[#FF6B35] rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 bg-[#3B82F6] rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle2 className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-black text-[#1A1A1A] uppercase text-xl lg:text-2xl">
@@ -129,14 +129,14 @@ const WhyVerificationMatters = () => {
             </div>
 
             {/* Divider */}
-            <div className="w-16 h-1 bg-[#FF6B35] mb-8 relative z-10" />
+            <div className="w-16 h-1 bg-[#3B82F6] mb-8 relative z-10" />
 
             {/* Points */}
             <div className="space-y-4 relative z-10">
               {withPoints.map((point, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#FF6B35]" />
+                  <div className="w-6 h-6 bg-[#3B82F6]/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#3B82F6]" />
                   </div>
                   <p className={`font-mono text-[#1A1A1A] leading-relaxed font-medium ${
                     isMobile ? 'text-sm' : 'text-base'

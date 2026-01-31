@@ -28,14 +28,14 @@ const LanguageSwitcher = () => {
             <button
               key={lang.code}
               onClick={() => i18n.changeLanguage(lang.code)}
-              className="w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg hover:bg-[#FF6B35]/10 transition-all"
+              className="w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg hover:bg-[#3B82F6]/10 transition-all"
             >
               <div className="flex items-center gap-2">
                 <span className="text-lg">{lang.flag}</span>
                 <span className="text-sm font-medium text-[#1A1A1A]">{lang.name}</span>
               </div>
               {currentLang === lang.code && (
-                <Check className="w-4 h-4 text-[#FF6B35]" />
+                <Check className="w-4 h-4 text-[#3B82F6]" />
               )}
             </button>
           ))}

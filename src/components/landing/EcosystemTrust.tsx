@@ -6,7 +6,7 @@ const EcosystemTrust = () => {
   const { isMobile } = useResponsive();
 
   const ecosystemStats = [
-    { icon: Activity, label: "Verified Activities", value: "47,000+", color: "text-[#FF6B35]" },
+    { icon: Activity, label: "Verified Activities", value: "47,000+", color: "text-[#3B82F6]" },
     { icon: Network, label: "Protocol Integrations", value: "12", color: "text-purple-500" },
     { icon: Zap, label: "Uptime", value: "99.2%", color: "text-green-500" },
   ];
@@ -39,10 +39,10 @@ const EcosystemTrust = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/10 border border-[#FF6B35] rounded-full"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#3B82F6]/10 border border-[#3B82F6] rounded-full"
           >
-            <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FF6B35] font-bold">
+            <div className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse" />
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#3B82F6] font-bold">
               Ecosystem Coverage
             </p>
           </motion.div>
@@ -68,7 +68,7 @@ const EcosystemTrust = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-24 h-1.5 bg-[#FF6B35] mx-auto"
+            className="w-24 h-1.5 bg-[#3B82F6] mx-auto"
           />
         </div>
 
@@ -88,7 +88,7 @@ const EcosystemTrust = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               whileHover={{ y: -5 }}
-              className="aspect-square bg-transparent border-2 border-[#E5E5E0] hover:border-[#FF6B35] rounded-xl flex items-center justify-center p-4 transition-all duration-300"
+              className="aspect-square bg-transparent border-2 border-[#E5E5E0] hover:border-[#3B82F6] rounded-xl flex items-center justify-center p-4 transition-all duration-300"
             >
               <img
                 src={dapp.logo}
@@ -118,10 +118,10 @@ const EcosystemTrust = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="p-6 bg-[#F5F5F2] border-2 border-[#E5E5E0] rounded-xl hover:border-[#FF6B35] hover:shadow-xl transition-all duration-300"
+              className="p-6 bg-[#F5F5F2] border-2 border-[#E5E5E0] rounded-xl hover:border-[#3B82F6] hover:shadow-xl transition-all duration-300"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-white border-2 border-[#FF6B35] mb-4">
+                <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-white border-2 border-[#3B82F6] mb-4">
                   <stat.icon className={`w-7 h-7 ${stat.color}`} />
                 </div>
                 <p className="font-mono text-3xl lg:text-4xl font-black text-[#1A1A1A] mb-2">

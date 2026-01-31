@@ -50,15 +50,16 @@ const FinalCTA = () => {
             >
               <button
                 onClick={() => setIsWaitlistOpen(true)}
-                className="bg-[#FF6B35] hover:bg-[#FF8C5A] text-white font-mono text-sm uppercase tracking-wider px-12 py-5 rounded-lg transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
+                className="bg-[#3B82F6] hover:bg-[#4A90FF] text-white font-mono text-sm uppercase tracking-wider px-12 py-5 rounded-lg transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
               >
-                Connect Wallet
+                Start Journey
               </button>
-              <button
-                className="border-2 border-white/30 text-white hover:bg-white hover:text-[#1A1A1A] font-mono text-sm uppercase tracking-wider px-12 py-5 rounded-lg transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
+              <a
+                href="/docs"
+                className="bg-white hover:bg-[#F5F5F2] text-[#1A1A1A] font-mono text-sm uppercase tracking-wider px-12 py-5 rounded-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
               >
                 Read Docs
-              </button>
+              </a>
             </motion.div>
 
             {/* Trust Signals */}
@@ -70,7 +71,7 @@ const FinalCTA = () => {
               className={`flex ${isMobile ? 'flex-col gap-3' : 'items-center justify-center gap-6'} pt-8`}
             >
               <div className="flex items-center gap-2 text-sm text-[#B0B0B0]">
-                <div className="w-5 h-5 bg-[#FF6B35] rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-5 h-5 bg-[#3B82F6] rounded-full flex items-center justify-center flex-shrink-0">
                   <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -78,7 +79,7 @@ const FinalCTA = () => {
                 <span className="font-mono uppercase tracking-wider">Free forever</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-[#B0B0B0]">
-                <div className="w-5 h-5 bg-[#FF6B35] rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-5 h-5 bg-[#3B82F6] rounded-full flex items-center justify-center flex-shrink-0">
                   <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>

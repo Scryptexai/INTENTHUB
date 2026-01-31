@@ -70,16 +70,16 @@ const SocialProofBanner = () => {
             className="space-y-6"
           >
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFF5F0] border border-[#FFE5D9] rounded-full">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#F0F9FF] border border-[#FFE5D9] rounded-full">
               <div className="relative">
-                <div className="w-1.5 h-1.5 bg-[#FF6B35] rounded-full" />
+                <div className="w-1.5 h-1.5 bg-[#3B82F6] rounded-full" />
                 <motion.div
                   animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute inset-0 bg-[#FF6B35] rounded-full"
+                  className="absolute inset-0 bg-[#3B82F6] rounded-full"
                 />
               </div>
-              <span className="font-mono text-[10px] font-medium uppercase tracking-[0.15em] text-[#FF6B35]">
+              <span className="font-mono text-[10px] font-medium uppercase tracking-[0.15em] text-[#3B82F6]">
                 Live Verification
               </span>
             </div>
@@ -110,7 +110,7 @@ const SocialProofBanner = () => {
                 </div>
               </div>
               <div>
-                <div className="font-mono text-2xl lg:text-3xl font-black text-[#FF6B35]">
+                <div className="font-mono text-2xl lg:text-3xl font-black text-[#3B82F6]">
                   {stats.verifications}
                 </div>
                 <div className="font-mono text-[10px] uppercase tracking-wider text-[#6B6B6B] mt-1">
@@ -148,7 +148,7 @@ const SocialProofBanner = () => {
           >
             {/* Dashboard Container */}
             <div
-              className="relative mx-auto bg-gradient-to-br from-[#FFF5F0] to-[#FFE8DC] rounded-2xl overflow-hidden shadow-2xl p-6"
+              className="relative mx-auto bg-gradient-to-br from-[#F0F9FF] to-[#E0F2FE] rounded-2xl overflow-hidden shadow-2xl p-6"
               style={{
                 width: isMobile ? '340px' : '420px',
                 height: isMobile ? '340px' : '420px'
@@ -157,8 +157,8 @@ const SocialProofBanner = () => {
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#FF6B35]">
+                  <div className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse" />
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]">
                     Verified Protocols
                   </span>
                 </div>
@@ -201,14 +201,14 @@ const SocialProofBanner = () => {
                           transition={{ duration: 1, repeat: isActive ? Infinity : 0 }}
                           className="w-2 h-2 rounded-full"
                           style={{
-                            backgroundColor: isActive ? '#10B981' : '#FF6B35'
+                            backgroundColor: isActive ? '#10B981' : '#3B82F6'
                           }}
                         />
                       </div>
 
                       {/* Logo */}
                       <div className="flex items-center justify-center mb-2">
-                        <div className="w-10 h-10 rounded-lg bg-[#FFF5F0] flex items-center justify-center overflow-hidden">
+                        <div className="w-10 h-10 rounded-lg bg-[#F0F9FF] flex items-center justify-center overflow-hidden">
                           <img
                             src={node.logo}
                             alt={node.name}
@@ -246,7 +246,7 @@ const SocialProofBanner = () => {
               </div>
 
               {/* Activity Feed */}
-              <div className="mt-4 pt-4 border-t border-[#FF6B35]/20">
+              <div className="mt-4 pt-4 border-t border-[#3B82F6]/20">
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-[#6B6B6B]">
                     Recent Verifications
@@ -286,7 +286,7 @@ const SocialProofBanner = () => {
               </div>
 
               {/* Bottom Stats */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 bg-white/80 backdrop-blur-sm rounded-lg border border-[#FF6B35]/20">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 bg-white/80 backdrop-blur-sm rounded-lg border border-[#3B82F6]/20">
                 <div className="flex items-center gap-1.5">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}

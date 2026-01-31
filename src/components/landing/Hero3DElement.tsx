@@ -32,7 +32,7 @@ const AnimatedCursor = ({ targetPosition }: { targetPosition: [number, number, n
       {/* Cursor pointer */}
       <mesh ref={meshRef}>
         <coneGeometry args={[0.05, 0.15, 8]} />
-        <meshBasicMaterial color="#FF6B35" />
+        <meshBasicMaterial color="#3B82F6" />
       </mesh>
     </group>
   );
@@ -51,9 +51,9 @@ const ParticleWave = () => {
     const colors = new Float32Array(particleCount * 3);
     
     // Orange to Maroon gradient colors
-    const colorStart = new THREE.Color("#FF6B35"); // Orange
-    const colorMid = new THREE.Color("#FF8C5A"); // Light Orange
-    const colorEnd = new THREE.Color("#8B2635"); // Maroon
+    const colorStart = new THREE.Color("#3B82F6"); // Orange
+    const colorMid = new THREE.Color("#4A90FF"); // Light Orange
+    const colorEnd = new THREE.Color("#000080"); // Maroon
     
     let i = 0;
     for (let z = 0; z < gridDepth; z++) {
@@ -178,7 +178,7 @@ const AmbientParticles = () => {
       </bufferGeometry>
       <pointsMaterial
         size={0.02}
-        color="#FF6B35"
+        color="#3B82F6"
         transparent
         opacity={0.3}
         sizeAttenuation
@@ -193,8 +193,8 @@ const Scene = () => {
     <>
       {/* Ambient lighting for subtle depth */}
       <ambientLight intensity={0.4} />
-      <pointLight position={[0, 5, 5]} intensity={0.8} color="#FF6B35" />
-      <pointLight position={[0, -5, -5]} intensity={0.5} color="#8B2635" />
+      <pointLight position={[0, 5, 5]} intensity={0.8} color="#3B82F6" />
+      <pointLight position={[0, -5, -5]} intensity={0.5} color="#000080" />
       
       {/* Main particle wave */}
       <ParticleWave />
