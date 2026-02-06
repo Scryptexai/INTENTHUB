@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useResponsive } from "@/contexts/ResponsiveContext";
-import { Wallet, Shield, FileText } from "lucide-react";
+import { Database, TrendingUp, Lightbulb, Award } from "lucide-react";
 
 const WhatYouDo = () => {
   const { isMobile } = useResponsive();
@@ -8,21 +8,27 @@ const WhatYouDo = () => {
   const steps = [
     {
       number: "01",
-      icon: Wallet,
-      title: "Use Your Wallet Normally",
-      description: "Swap. Bridge. Farm. Whatever you already do. Your activities get tracked automatically.",
+      icon: Database,
+      title: "Connect Your Wallet",
+      description: "We read your existing transactions. No changes. No interpretations. Just data collection.",
     },
     {
       number: "02",
-      icon: Shield,
-      title: "Get Verified Proof",
-      description: "Your on-chain history becomes evidence that you're a real human, not a bot.",
+      icon: TrendingUp,
+      title: "Activities Organized",
+      description: "Your transactions are grouped by type, context, and timeline. Structured for clarity.",
     },
     {
       number: "03",
-      icon: FileText,
-      title: "Share & Get Recognized",
-      description: "Teams see your verified activity. You get access. Your history works for you.",
+      icon: Lightbulb,
+      title: "Review Your Report",
+      description: "See your complete on-chain footprint. Understand your own activity patterns.",
+    },
+    {
+      number: "04",
+      icon: Award,
+      title: "Save Your Report",
+      description: "Mint a badge as your activity snapshot. A timestamped record of your on-chain history.",
     },
   ];
 
@@ -61,7 +67,7 @@ const WhatYouDo = () => {
               fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
             }}
           >
-            Your Activities = Your<br/>Reputation
+            From Scattered Data<br/>To Organized Report
           </motion.h2>
 
           {/* Orange Accent Line */}
@@ -75,7 +81,7 @@ const WhatYouDo = () => {
         </div>
 
         {/* Steps Grid */}
-        <div className={`grid gap-8 ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-3'}`}>
+        <div className={`grid gap-8 ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-4'}`}>
           {steps.map((step, index) => (
             <motion.div
               key={index}

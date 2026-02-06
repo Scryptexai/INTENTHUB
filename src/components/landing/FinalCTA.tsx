@@ -25,7 +25,7 @@ const FinalCTA = () => {
                 fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
               }}
             >
-              Stop Getting Flagged.<br/>Start Building Proof.
+              Understand Your<br/>On-Chain Activity.
             </motion.h2>
 
             {/* Subtitle */}
@@ -36,8 +36,8 @@ const FinalCTA = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg lg:text-xl text-[#B0B0B0] leading-relaxed max-w-2xl mx-auto font-mono"
             >
-              Connect your wallet. Your activities get tracked automatically.<br/>
-              Your history becomes your strongest asset.
+              Connect your wallet. See your activities organized.<br/>
+              No scores. No judgment. Just your data, clearly presented.
             </motion.p>
 
             {/* CTA Buttons */}

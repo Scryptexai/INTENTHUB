@@ -19,25 +19,33 @@ const HeroSection = () => {
             background: 'linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 30%, #E0F2FE 70%, #3B82F6 100%)'
           }}
         >
-          {/* Running Text Background */}
+          {/* Running Text Background - Marquee */}
           <div className="absolute top-0 left-0 w-full h-[30vh] flex items-center overflow-hidden z-10 pointer-events-none">
-            <div
+            <motion.div
               className="flex whitespace-nowrap"
+              animate={{
+                x: [0, -2000]
+              }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear"
+              }}
               style={{ willChange: 'transform' }}
             >
-              {[...Array(4)].map((_, index) => (
+              {[...Array(12)].map((_, index) => (
                 <span
                   key={index}
-                  className="inline-block px-12 text-[40px] font-normal text-[#1A1A1A] opacity-10 uppercase tracking-tight select-none"
+                  className="inline-block px-16 text-[100px] font-bold text-[#1A1A1A] uppercase tracking-tight select-none"
                   style={{
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
-                    fontWeight: 400
+                    fontWeight: 700
                   }}
                 >
                   BEYOND ONCHAIN
                 </span>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* 3D Wave Animation Layer */}
@@ -52,11 +60,11 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="w-full text-center"
               >
-                {/* Orange Accent Badge */}
+                {/* Ice Blue Accent Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-full mb-5 backdrop-blur-sm">
                   <div className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse" />
                   <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#3B82F6] font-bold">
-                    Your Activity, Your Proof
+                    No Scoring. No Judgment. Just Understanding.
                   </span>
                 </div>
 
@@ -67,10 +75,10 @@ const HeroSection = () => {
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif',
                     fontWeight: 900
                   }}
-                  dangerouslySetInnerHTML={{ __html: 'Don\'t Get Flagged.<br />Build Your History.' }}
+                  dangerouslySetInnerHTML={{ __html: 'Personal Onchain<br/>Activity Organizer.' }}
                 />
 
-                {/* Orange Accent Line */}
+                {/* Ice Blue Accent Line */}
                 <div className="w-20 h-1.5 bg-[#3B82F6] mb-6 shadow-lg mx-auto" />
 
                 {/* Subheadline */}
@@ -80,8 +88,8 @@ const HeroSection = () => {
                     fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                   }}
                 >
-                  Your wallet activities tell your story.<br />
-                  Turn them into verifiable proof that you're a real user.
+                  Your Self-Audit Tool for On-Chain Activity.<br />
+                  No scores. No labels. Just your data, organized clearly.
                 </p>
 
                 {/* CTA Buttons */}
@@ -107,8 +115,8 @@ const HeroSection = () => {
                   transition={{ duration: 0.8, delay: 0.6 }}
                   className="mt-8 font-mono text-sm text-[#1A1A1A] max-w-2xl mx-auto leading-relaxed"
                 >
-                  Stop getting flagged as sybil. Your real activity becomes your strongest asset.<br />
-                  Build proof that you're genuine.
+                  No scores. No labels. No judgment.<br />
+                  Just your activity, organized and presented clearly.
                 </motion.p>
               </motion.div>
             </div>
@@ -136,7 +144,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8 }}
               className="w-full text-center"
             >
-              {/* Orange Accent Badge */}
+              {/* Ice Blue Accent Badge */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -145,7 +153,7 @@ const HeroSection = () => {
               >
                 <div className="w-1.5 h-1.5 bg-[#3B82F6] rounded-full animate-pulse" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#3B82F6] font-bold">
-                  Your Activity, Your Proof
+                  No Scoring. No Judgment. Just Understanding.
                 </span>
               </motion.div>
 
@@ -160,11 +168,10 @@ const HeroSection = () => {
                   fontWeight: 900
                 }}
               >
-                Don't Get Flagged.<br />
-                Build Your History.
+                Personal Onchain<br/>Activity Organizer.
               </motion.h1>
 
-              {/* Orange Accent Line */}
+              {/* Ice Blue Accent Line */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -182,8 +189,8 @@ const HeroSection = () => {
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                 }}
               >
-                Your activities get tracked automatically.<br />
-                Your history becomes your strongest asset.
+                Your Self-Audit Tool for On-Chain Activity.<br />
+                No scores. No labels. Just your data, organized clearly.
               </motion.p>
 
               {/* CTA Buttons */}

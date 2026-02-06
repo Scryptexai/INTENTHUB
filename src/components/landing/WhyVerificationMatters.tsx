@@ -6,17 +6,17 @@ const WhyVerificationMatters = () => {
   const { isMobile } = useResponsive();
 
   const withoutPoints = [
-    "You get flagged as sybil without proof",
-    "Teams block you - no appeal process",
-    "Your activity history counts for nothing",
-    "Built reputation gets destroyed overnight",
+    "Your transactions are scattered across multiple protocols",
+    "No unified view of your complete on-chain activity",
+    "Difficult to see patterns or understand your own behavior",
+    "No way to reference past activity in an organized way",
   ];
 
   const withPoints = [
-    "Verified proof you're a real human",
-    "Teams see your actual usage context",
-    "Your history becomes your asset",
-    "Fair access based on real activity",
+    "All activities organized into one structured, readable report",
+    "Grouped by type, protocol, and timeline for clarity",
+    "See patterns and understand your own on-chain behavior",
+    "Timestamped record that you can reference anytime",
   ];
 
   return (
@@ -54,7 +54,7 @@ const WhyVerificationMatters = () => {
               fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
             }}
           >
-            The Real Problem:<br/>False Sybil Flags
+            Scattered Data vs<br/>Organized Report
           </motion.h2>
 
           {/* Orange Accent Line */}
@@ -83,7 +83,7 @@ const WhyVerificationMatters = () => {
                 <AlertCircle className="w-8 h-8 text-[#6B6B6B]" />
               </div>
               <h3 className="font-black text-[#1A1A1A] uppercase text-xl lg:text-2xl">
-                Without Proof
+                Without INTENT
               </h3>
             </div>
 

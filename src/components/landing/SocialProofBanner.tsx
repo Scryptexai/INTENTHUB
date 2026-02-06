@@ -79,8 +79,8 @@ const SocialProofBanner = () => {
                   className="absolute inset-0 bg-[#3B82F6] rounded-full"
                 />
               </div>
-              <span className="font-mono text-[10px] font-medium uppercase tracking-[0.15em] text-[#3B82F6]">
-                Live Verification
+              <span className="font-mono text-sm font-medium uppercase tracking-[0.15em] text-[#3B82F6]">
+                Activity Tracking
               </span>
             </div>
 
@@ -90,13 +90,13 @@ const SocialProofBanner = () => {
                   fontSize: isMobile ? '2rem' : '2.5rem',
                   fontFamily: '"Mastertext Plain", "Space Grotesk", sans-serif'
                 }}>
-              On-Chain Activity<br/>Intelligence
+              Your Complete<br/>On-Chain Report
             </h2>
 
             {/* Description */}
             <p className="text-[#6B6B6B] leading-relaxed max-w-md"
                style={{ fontSize: isMobile ? '0.95rem' : '1rem' }}>
-              Interpreting, contextualizing, and verifying ecosystem activity in real-time across {stats.protocols} major protocols.
+              Organizing your activities across {stats.protocols} protocols into one structured, readable report.
             </p>
 
             {/* Live Stats */}
@@ -131,10 +131,6 @@ const SocialProofBanner = () => {
                   System Active
                 </span>
               </div>
-              <div className="w-px h-3 bg-[#E5E5E5]" />
-              <span className="font-mono text-[10px] text-[#6B6B6B]">
-                CHAIN: ARC_MAINNET
-              </span>
             </div>
           </motion.div>
 
@@ -158,13 +154,13 @@ const SocialProofBanner = () => {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse" />
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]">
-                    Verified Protocols
+                  <span className="font-mono text-sm font-bold uppercase tracking-wider text-[#3B82F6]">
+                    Protocols Tracked
                   </span>
                 </div>
                 <div className="px-2 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-                  <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-emerald-600">
-                    {stats.protocols} Active
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-600">
+                    {stats.protocols} Connected
                   </span>
                 </div>
               </div>
@@ -218,15 +214,15 @@ const SocialProofBanner = () => {
                       </div>
 
                       {/* Name */}
-                      <p className="font-mono text-[9px] font-bold text-[#1A1A1A] text-center truncate">
+                      <p className="font-mono text-xs font-bold text-[#1A1A1A] text-center truncate">
                         {node.name}
                       </p>
 
                       {/* Status */}
-                      <p className="font-mono text-[8px] text-center mt-1" style={{
+                      <p className="font-mono text-[10px] text-center mt-1" style={{
                         color: isActive ? '#10B981' : '#6B6B6B'
                       }}>
-                        {isActive ? 'VERIFYING' : 'CONFIRMED'}
+                        {isActive ? 'SCANNING' : 'TRACKED'}
                       </p>
 
                       {/* Active Glow */}
@@ -248,8 +244,8 @@ const SocialProofBanner = () => {
               {/* Activity Feed */}
               <div className="mt-4 pt-4 border-t border-[#3B82F6]/20">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-[#6B6B6B]">
-                    Recent Verifications
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#6B6B6B]">
+                    Being Organized
                   </span>
                   <motion.div
                     animate={{ opacity: [0.5, 1, 0.5] }}
@@ -258,7 +254,7 @@ const SocialProofBanner = () => {
                   />
                 </div>
 
-                {/* Scrolling verification list */}
+                {/* Scrolling activity list */}
                 <div className="space-y-1.5 max-h-20 overflow-hidden">
                   {ecosystemNodes.slice(0, 3).map((node, index) => (
                     <motion.div
@@ -274,11 +270,11 @@ const SocialProofBanner = () => {
                       className="flex items-center gap-2 px-2 py-1.5 bg-white/50 rounded-lg"
                     >
                       <div className="w-1 h-1 bg-emerald-500 rounded-full" />
-                      <span className="font-mono text-[8px] text-[#1A1A1A] flex-1">
-                        {node.name} verified
+                      <span className="font-mono text-xs text-[#1A1A1A] flex-1">
+                        {node.name} activities
                       </span>
-                      <span className="font-mono text-[7px] text-[#6B6B6B]">
-                        just now
+                      <span className="font-mono text-[10px] text-[#6B6B6B]">
+                        collected
                       </span>
                     </motion.div>
                   ))}
@@ -293,20 +289,20 @@ const SocialProofBanner = () => {
                     transition={{ duration: 1.5, repeat: Infinity }}
                     className="w-1 h-1 bg-emerald-500 rounded-full"
                   />
-                  <span className="font-mono text-[8px] text-[#1A1A1A]/70 uppercase tracking-wider">
-                    Live
+                  <span className="font-mono text-[10px] text-[#1A1A1A]/70 uppercase tracking-wider">
+                    Organizing
                   </span>
                 </div>
-                <span className="font-mono text-[8px] text-[#1A1A1A]/50 uppercase tracking-wider">
-                  {stats.activities.toLocaleString()}+ Checks
+                <span className="font-mono text-[10px] text-[#1A1A1A]/50 uppercase tracking-wider">
+                  {stats.activities.toLocaleString()}+ Activities
                 </span>
               </div>
             </div>
 
             {/* Bottom Label */}
             <div className="text-center mt-4">
-              <p className="font-mono text-[9px] uppercase tracking-widest text-[#AAAAAA]">
-                Observer Mode • Non-Intrusive • Proof-Based
+              <p className="font-mono text-xs uppercase tracking-widest text-[#AAAAAA]">
+                Read-Only • No Judgment • Your Data, Organized
               </p>
             </div>
           </motion.div>
